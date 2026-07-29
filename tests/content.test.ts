@@ -6,6 +6,7 @@ import questions from "../public/data/questions.json";
 import videos from "../public/data/source-videos.json";
 import {
   fingerprintQuestion,
+  isOfficialAwsDocumentationUrl,
   normalizeText
 } from "../scripts/normalize-question.mjs";
 
@@ -28,6 +29,42 @@ describe("question normalization", () => {
     ]);
 
     expect(first).toBe(second);
+  });
+});
+
+describe("official AWS answer authority", () => {
+  it("accepts only the documented official AWS verification hosts", () => {
+    expect(
+      isOfficialAwsDocumentationUrl(
+        "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+      )
+    ).toBe(true);
+    expect(
+      isOfficialAwsDocumentationUrl(
+        "https://aws.amazon.com/compliance/shared-responsibility-model/"
+      )
+    ).toBe(true);
+    expect(isOfficialAwsDocumentationUrl("https://kiro.dev/docs/")).toBe(true);
+    expect(
+      isOfficialAwsDocumentationUrl("https://strandsagents.com/latest/")
+    ).toBe(true);
+    expect(
+      isOfficialAwsDocumentationUrl("https://docs.aws.amazon.com.attacker.test/")
+    ).toBe(false);
+    expect(
+      isOfficialAwsDocumentationUrl("https://unapproved.aws.amazon.com/")
+    ).toBe(false);
+    expect(isOfficialAwsDocumentationUrl("https://example.com/aws-docs")).toBe(
+      false
+    );
+    expect(
+      isOfficialAwsDocumentationUrl(
+        "http://docs.aws.amazon.com/aws-certification/"
+      )
+    ).toBe(false);
+    expect(
+      isOfficialAwsDocumentationUrl("https://docs.aws.amazon.com:8443/")
+    ).toBe(false);
   });
 });
 
@@ -209,7 +246,7 @@ describe("verified content bank", () => {
           question.verification.length > 0 &&
           question.verification.every(
             (source) =>
-              source.url.startsWith("https://") &&
+              isOfficialAwsDocumentationUrl(source.url) &&
               source.verifiedOn >= "2026-07-29"
           )
       )

@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 import {
   fingerprintQuestion,
+  isOfficialAwsDocumentationUrl,
   normalizeText
 } from "./normalize-question.mjs";
 
@@ -105,8 +106,8 @@ function validateQuestion(question, videoIds) {
   );
   for (const verification of question.verification ?? []) {
     requireValue(
-      verification.url?.startsWith("https://"),
-      `${question.id}: verification URL must use HTTPS`
+      isOfficialAwsDocumentationUrl(verification.url),
+      `${question.id}: verification URL must use an approved official AWS documentation host`
     );
     requireValue(
       verification.verifiedOn >= "2026-07-29",
