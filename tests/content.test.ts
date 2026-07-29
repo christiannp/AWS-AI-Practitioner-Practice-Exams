@@ -79,17 +79,50 @@ describe("source audit", () => {
 });
 
 describe("course syllabus audit", () => {
-  it("classifies all 16 supplied course chapters", () => {
+  it("preserves canonical metadata and all 16 chapter classifications", () => {
     const course = materials.find(
       (item) => item.id === "youtube:WZeZZ8_W-M4"
     );
-    expect(course?.durationSeconds).toBe(53928);
-    expect(course?.chapters).toHaveLength(16);
+    expect(course).toMatchObject({
+      title:
+        "AWS Certified AI Practitioner (AIF-C01) – Full Course to PASS the Certification Exam",
+      author: "freeCodeCamp.org",
+      kind: "course",
+      sourceUrl: "https://www.youtube.com/watch?v=WZeZZ8_W-M4",
+      role: "informational-syllabus-only",
+      answerAuthority: false,
+      durationSeconds: 53928
+    });
     expect(
-      course?.chapters.every((chapter) =>
-        ["covered", "gap", "out-of-scope", "outdated"].includes(
-          chapter.coverage
-        )
+      course?.chapters.map(({ title, startSeconds, coverage }) => [
+        title,
+        startSeconds,
+        coverage
+      ])
+    ).toEqual([
+      ["Introduction", 0, "outdated"],
+      ["AI and ML Fundamentals", 1068, "covered"],
+      ["Data", 4607, "covered"],
+      ["Gen AI Primer", 5508, "covered"],
+      ["Amazon Bedrock", 7342, "covered"],
+      ["Datastores for GenAI", 26160, "covered"],
+      ["PartyRock", 28338, "out-of-scope"],
+      ["Amazon SageMaker AI", 29326, "covered"],
+      ["Evaluations", 34904, "covered"],
+      ["AI Developer Tools", 36398, "covered"],
+      ["AWS Managed ML", 37814, "covered"],
+      ["Generative AI Security", 47970, "covered"],
+      ["Amazon Athena", 48918, "out-of-scope"],
+      ["AWS Glue", 49875, "covered"],
+      ["Amazon OpenSearch Service", 52386, "covered"],
+      ["AWS Lake Formation", 53772, "gap"]
+    ]);
+    expect(
+      course?.chapters.every(
+        (chapter) =>
+          Array.isArray(chapter.domains) &&
+          Array.isArray(chapter.tasks) &&
+          Array.isArray(chapter.concepts)
       )
     ).toBe(true);
   });
@@ -113,10 +146,37 @@ describe("course syllabus audit", () => {
     );
   });
 
-  it("teaches the Lake Formation gap in the bank and cheat sheet", () => {
+  it("teaches the Lake Formation gap only as an official addition", () => {
+    const lakeFormationQuestionIds = [
+      "aif-d5-aws-lake-formation-scenario",
+      "aif-d5-aws-lake-formation-definition"
+    ];
+    const lakeFormationQuestions = questions.filter((question) =>
+      lakeFormationQuestionIds.includes(question.id)
+    );
+
+    expect(lakeFormationQuestions).toHaveLength(2);
     expect(
-      questions.some((question) =>
-        question.concepts.includes("aws-lake-formation")
+      lakeFormationQuestions.every(
+        (question) =>
+          question.origin === "official-addition" &&
+          question.sources.length === 0 &&
+          question.concepts.length === 1 &&
+          question.concepts[0] === "aws-lake-formation"
+      )
+    ).toBe(true);
+    expect(
+      lakeFormationQuestions.every(
+        (question) =>
+          question.verification.length === 1 &&
+          question.verification.every(
+            (verification) =>
+              verification.title ===
+                "AWS documentation: AWS Lake Formation" &&
+              verification.url ===
+                "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html" &&
+              verification.verifiedOn === "2026-07-29"
+          )
       )
     ).toBe(true);
     expect(

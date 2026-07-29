@@ -188,14 +188,58 @@ const auditedCourseId = "youtube:WZeZZ8_W-M4";
 const auditedCourses = materials.filter(
   (material) => material.id === auditedCourseId
 );
+const expectedCourseChapters = [
+  ["Introduction", 0, "outdated"],
+  ["AI and ML Fundamentals", 1068, "covered"],
+  ["Data", 4607, "covered"],
+  ["Gen AI Primer", 5508, "covered"],
+  ["Amazon Bedrock", 7342, "covered"],
+  ["Datastores for GenAI", 26160, "covered"],
+  ["PartyRock", 28338, "out-of-scope"],
+  ["Amazon SageMaker AI", 29326, "covered"],
+  ["Evaluations", 34904, "covered"],
+  ["AI Developer Tools", 36398, "covered"],
+  ["AWS Managed ML", 37814, "covered"],
+  ["Generative AI Security", 47970, "covered"],
+  ["Amazon Athena", 48918, "out-of-scope"],
+  ["AWS Glue", 49875, "covered"],
+  ["Amazon OpenSearch Service", 52386, "covered"],
+  ["AWS Lake Formation", 53772, "gap"]
+];
 requireValue(
   auditedCourses.length === 1,
   `${auditedCourseId}: exactly one course material is required`
 );
 const auditedCourse = auditedCourses[0];
 requireValue(
-  auditedCourse?.chapters?.length === 16,
-  `${auditedCourseId}: exactly 16 chapters are required`
+  auditedCourse?.title ===
+    "AWS Certified AI Practitioner (AIF-C01) – Full Course to PASS the Certification Exam",
+  `${auditedCourseId}: canonical title is required`
+);
+requireValue(
+  auditedCourse?.author === "freeCodeCamp.org",
+  `${auditedCourseId}: canonical author is required`
+);
+requireValue(
+  auditedCourse?.kind === "course" &&
+    auditedCourse?.sourceUrl ===
+      "https://www.youtube.com/watch?v=WZeZZ8_W-M4" &&
+    auditedCourse?.role === "informational-syllabus-only" &&
+    auditedCourse?.answerAuthority === false &&
+    auditedCourse?.durationSeconds === 53928,
+  `${auditedCourseId}: exact informational-only material contract is required`
+);
+requireValue(
+  JSON.stringify(
+    auditedCourse?.chapters?.map(
+      ({ title, startSeconds, coverage }) => [
+        title,
+        startSeconds,
+        coverage
+      ]
+    )
+  ) === JSON.stringify(expectedCourseChapters),
+  `${auditedCourseId}: exact chapter title, timestamp, and coverage contract is required`
 );
 requireValue(
   auditedCourse?.chapters?.every(
@@ -208,6 +252,12 @@ requireValue(
   `${auditedCourseId}: chapter timestamps must be increasing nonnegative integers`
 );
 for (const chapter of auditedCourse?.chapters ?? []) {
+  requireValue(
+    Array.isArray(chapter.domains) &&
+      Array.isArray(chapter.tasks) &&
+      Array.isArray(chapter.concepts),
+    `${auditedCourseId}/${chapter.title}: domains, tasks, and concepts arrays are required`
+  );
   requireValue(
     ["covered", "gap", "out-of-scope", "outdated"].includes(
       chapter.coverage
@@ -266,6 +316,38 @@ for (const chapter of auditedCourse?.chapters ?? []) {
       `${auditedCourseId}/${chapter.title}: gap concept ${concept} has no cheat-sheet card`
     );
   }
+}
+
+const lakeFormationVerificationUrl =
+  "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html";
+for (const questionId of [
+  "aif-d5-aws-lake-formation-scenario",
+  "aif-d5-aws-lake-formation-definition"
+]) {
+  const matchingQuestions = questions.filter(
+    (question) => question.id === questionId
+  );
+  requireValue(
+    matchingQuestions.length === 1,
+    `${questionId}: exactly one generated Lake Formation question is required`
+  );
+  const question = matchingQuestions[0];
+  requireValue(
+    question?.origin === "official-addition" &&
+      Array.isArray(question.sources) &&
+      question.sources.length === 0 &&
+      JSON.stringify(question.concepts) ===
+        JSON.stringify(["aws-lake-formation"]),
+    `${questionId}: must be an official addition without course provenance`
+  );
+  requireValue(
+    question?.verification?.length === 1 &&
+      question.verification[0].title ===
+        "AWS documentation: AWS Lake Formation" &&
+      question.verification[0].url === lakeFormationVerificationUrl &&
+      question.verification[0].verifiedOn === "2026-07-29",
+    `${questionId}: exact official Lake Formation verification is required`
+  );
 }
 requireValue(
   !questions.some((question) =>

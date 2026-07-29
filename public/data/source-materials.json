@@ -2,6 +2,8 @@
   {
     "id": "youtube:WZeZZ8_W-M4",
     "kind": "course",
+    "title": "AWS Certified AI Practitioner (AIF-C01) – Full Course to PASS the Certification Exam",
+    "author": "freeCodeCamp.org",
     "sourceUrl": "https://www.youtube.com/watch?v=WZeZZ8_W-M4",
     "role": "informational-syllabus-only",
     "answerAuthority": false,
@@ -127,7 +129,7 @@
         "tasks": [],
         "concepts": [],
         "coverage": "out-of-scope",
-        "reason": "PartyRock is not named in the current objectives or current in-scope AWS services list, so product-specific instruction is excluded.",
+        "reason": "This audit applies the brief-mandated out-of-scope classification because PartyRock is absent from both the current objectives and the non-exhaustive named in-scope services list; AWS does not explicitly declare it out of scope.",
         "verification": [
           "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01.html",
           "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/aif-01-in-scope-services.html"
@@ -244,7 +246,7 @@
         "tasks": [],
         "concepts": [],
         "coverage": "out-of-scope",
-        "reason": "Amazon Athena is not named in the current objectives or current in-scope AWS services list, so product-specific query instruction is excluded.",
+        "reason": "This audit applies the brief-mandated out-of-scope classification because Amazon Athena is absent from both the current objectives and the non-exhaustive named in-scope services list; AWS does not explicitly declare it out of scope.",
         "verification": [
           "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01.html",
           "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/aif-01-in-scope-services.html",
