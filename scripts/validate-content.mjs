@@ -181,6 +181,24 @@ const [questions, audit, videos, cheatSheet, materials, corrections] =
     readFile(path.join(root, "source-answer-corrections.txt"), "utf8")
   ]);
 
+const finalCourseHandoff = { questions, audit, cheatSheet, materials };
+for (const [label, actual, expected] of [
+  ["questions", questions.length, 268],
+  ["source audit records", audit.length, 680],
+  ["memory notes", cheatSheet.length, 20],
+  ["source materials", materials.length, 1]
+]) {
+  requireValue(
+    actual === expected,
+    `Final course handoff requires ${expected} ${label}; found ${actual}`
+  );
+}
+requireValue(
+  new Set(questions.map((question) => question.fingerprint)).size ===
+    questions.length,
+  "Final course handoff requires unique question fingerprints"
+);
+
 const videoIds = new Set(videos.map((video) => video.videoId));
 for (const question of questions) validateQuestion(question, videoIds);
 
@@ -360,7 +378,7 @@ requireValue(
   `${auditedCourseId}: informational course must not be question provenance`
 );
 
-const loadedPublicData = [questions, audit, videos, cheatSheet, materials];
+const loadedPublicData = { ...finalCourseHandoff, videos };
 requireValue(
   !/examtopics/i.test(JSON.stringify(loadedPublicData)),
   "Loaded public data must not contain ExamTopics references"
@@ -368,8 +386,7 @@ requireValue(
 
 for (const [label, values] of [
   ["question IDs", questions.map((question) => question.id)],
-  ["normalized prompts", questions.map((question) => normalizeText(question.prompt))],
-  ["fingerprints", questions.map((question) => question.fingerprint)]
+  ["normalized prompts", questions.map((question) => normalizeText(question.prompt))]
 ]) {
   const duplicates = duplicateValues(values);
   requireValue(

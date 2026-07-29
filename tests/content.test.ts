@@ -42,7 +42,6 @@ describe("source audit", () => {
   });
 
   it("gives every recovered source question a traceable disposition", () => {
-    expect(audit).toHaveLength(680);
     expect(
       audit.every(
         (entry) =>
@@ -193,11 +192,8 @@ describe("verified content bank", () => {
     const prompts = questions.map((question) =>
       normalizeText(question.prompt)
     );
-    const fingerprints = questions.map((question) => question.fingerprint);
-
     expect(new Set(ids).size).toBe(ids.length);
     expect(new Set(prompts).size).toBe(prompts.length);
-    expect(new Set(fingerprints).size).toBe(fingerprints.length);
   });
 
   it("ships only explained questions with dated HTTPS verification", () => {
@@ -264,5 +260,20 @@ describe("verified content bank", () => {
           entry.sourceUrl.startsWith("https://")
       )
     ).toBe(true);
+  });
+});
+
+describe("final course-only handoff", () => {
+  it("locks the generated inventory, provenance exclusion, and fingerprints", () => {
+    expect(questions).toHaveLength(268);
+    expect(audit).toHaveLength(680);
+    expect(cheatSheet).toHaveLength(20);
+    expect(materials).toHaveLength(1);
+    expect(
+      JSON.stringify({ questions, audit, cheatSheet, materials })
+    ).not.toMatch(/examtopics/i);
+    expect(new Set(questions.map((question) => question.fingerprint)).size).toBe(
+      questions.length
+    );
   });
 });

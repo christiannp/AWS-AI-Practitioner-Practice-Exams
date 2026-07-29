@@ -8,9 +8,9 @@ and revisit errors on a widening schedule.
 
 ## What is included
 
-- 266 original, verified practice questions.
-- All 680 discernible questions from the two supplied YouTube playlists are
-  represented in the source audit and mapped to the consolidated bank.
+- 268 original, verified practice questions.
+- The complete, unchanged 680-item audit of the two supplied YouTube playlists
+  is represented in the source audit and mapped to the consolidated bank.
 - No exact duplicate practice prompts.
 - Multiple choice, multiple response, ordering, and matching formats.
 - Current AIF-C01 coverage as of July 29, 2026, including agentic AI, MCP,
@@ -18,17 +18,18 @@ and revisit errors on a widening schedule.
   AgentCore.
 - Adaptive 25-question daily groups: 13 weak items, 7 unseen items, and 5 due
   reviews when those pools are available.
-- Balanced first-session diagnostic and untimed 65-question mixed mocks.
+- Balanced first-session diagnostic and untimed 65-question mixed mocks. They
+  reflect the current 90-minute exam format without imposing an in-app timer.
 - Answers and explanations appear only after the whole group is submitted.
 - Every attempt is saved locally; incorrect attempts remain available through
   the Library's **Errors logged** filter.
-- A 19-card, weak-first memory sheet with text download and print support.
+- A 20-card, weak-first memory sheet with TXT download and print support.
 - Editable exam date, initially August 31, 2026.
 - JSON progress backup/import and confirmed device-local reset.
+- English-only prompts and explanations, with no account, backend, credential,
+  telemetry, or timer.
 - One confirmed source-answer correction in
   [`source-answer-corrections.txt`](source-answer-corrections.txt).
-
-There is no account, backend, credential, telemetry, or timer.
 
 ## Run locally
 
@@ -63,9 +64,20 @@ The source inventory is in:
 - `public/data/questions.json` — the verified, consolidated practice bank; and
 - `public/data/cheat-sheet.json` — the commuter memory deck.
 
-Official AWS documentation is authoritative. Video questions are treated as
-coverage references, rewritten in original wording, and corrected when
-necessary.
+## Course-only knowledge audit
+
+The 16-chapter freeCodeCamp/ExamPro course knowledge audit is retained as
+informational syllabus evidence only. Official AWS documentation is the only
+answer authority: video prompts are coverage references, rewritten in original
+wording, and corrected when necessary.
+
+The audit rejects obsolete beta claims that the exam lasts 120 minutes or uses
+case studies. The current mechanics are 65 questions in 90 minutes, using
+multiple-choice, multiple-response, ordering, and matching interactions.
+
+AWS Lake Formation was the explicit verified gap discovered in the course
+review and was added to both the question bank and memory deck using official
+AWS documentation. ExamTopics is not included.
 
 ## Deploy to a VPS
 
