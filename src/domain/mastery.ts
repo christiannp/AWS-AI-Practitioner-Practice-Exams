@@ -1,4 +1,4 @@
-import type { LearnerState, Question } from "../data/types";
+import type { Answer, LearnerState, Question } from "../data/types";
 
 const BASELINE_MASTERY = 0.35;
 const CORRECT_INCREMENT = 0.15;
@@ -26,7 +26,8 @@ export function recordAttempt(
   state: LearnerState,
   question: Question,
   correct: boolean,
-  completedAt: string
+  completedAt: string,
+  answer: Answer = ""
 ): LearnerState {
   const completedDate = completedAt.slice(0, 10);
   const attempts = {
@@ -35,7 +36,7 @@ export function recordAttempt(
       ...(state.attempts[question.id] ?? []),
       {
         questionId: question.id,
-        answer: "",
+        answer,
         correct,
         completedAt
       }
