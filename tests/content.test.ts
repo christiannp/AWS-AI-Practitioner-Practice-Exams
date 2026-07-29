@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import audit from "../public/data/source-audit.json";
 import cheatSheet from "../public/data/cheat-sheet.json";
+import materials from "../public/data/source-materials.json";
 import questions from "../public/data/questions.json";
 import videos from "../public/data/source-videos.json";
 import {
@@ -73,6 +74,55 @@ describe("source audit", () => {
               source.questionNumber === entry.questionNumber
           );
         })
+    ).toBe(true);
+  });
+});
+
+describe("course syllabus audit", () => {
+  it("classifies all 16 supplied course chapters", () => {
+    const course = materials.find(
+      (item) => item.id === "youtube:WZeZZ8_W-M4"
+    );
+    expect(course?.durationSeconds).toBe(53928);
+    expect(course?.chapters).toHaveLength(16);
+    expect(
+      course?.chapters.every((chapter) =>
+        ["covered", "gap", "out-of-scope", "outdated"].includes(
+          chapter.coverage
+        )
+      )
+    ).toBe(true);
+  });
+
+  it("rejects beta-era duration and case-study claims", () => {
+    const course = materials.find(
+      (item) => item.id === "youtube:WZeZZ8_W-M4"
+    );
+    expect(course?.rejectedClaims).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          claim: "The exam duration is 120 minutes.",
+          currentRule: "The current exam duration is 90 minutes."
+        }),
+        expect.objectContaining({
+          claim: "Case studies are an exam interaction format.",
+          currentRule:
+            "The current guide lists multiple choice, multiple response, ordering, and matching."
+        })
+      ])
+    );
+  });
+
+  it("teaches the Lake Formation gap in the bank and cheat sheet", () => {
+    expect(
+      questions.some((question) =>
+        question.concepts.includes("aws-lake-formation")
+      )
+    ).toBe(true);
+    expect(
+      cheatSheet.some((entry) =>
+        entry.concepts.includes("aws-lake-formation")
+      )
     ).toBe(true);
   });
 });

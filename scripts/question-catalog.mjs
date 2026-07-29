@@ -163,5 +163,15 @@ export const concepts = [
   concept("data-lifecycle-governance", 5, "5.2", "Data lifecycle governance", "define how AI data is retained, monitored, located, and eventually disposed of", "Applies retention, residency, logging, monitoring, and deletion requirements throughout the data lifecycle.", ["data residency", "data retention", "review cadence"]),
   concept("agentcore-identity", 5, "5.1", "Amazon Bedrock AgentCore Identity", "give an AI agent controlled access to external resources on behalf of users or itself", "Provides identity and credential controls for agent access to services and tools.", ["agent identity", "agentcore identity"], "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html"),
   concept("agentcore-policy", 5, "5.1", "Policy in Amazon Bedrock AgentCore", "enforce deterministic boundaries on actions an AI agent may perform", "Evaluates agent tool calls against explicit authorization policies.", ["agent policy", "agentcore policy"], "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html"),
-  concept("rag-grounding", 5, "5.1", "RAG grounding", "reduce unsupported output by supplying retrieved authoritative context", "Grounds generation in relevant external evidence.", ["hallucination detection", "output accuracy"])
+  concept("rag-grounding", 5, "5.1", "RAG grounding", "reduce unsupported output by supplying retrieved authoritative context", "Grounds generation in relevant external evidence.", ["hallucination detection", "output accuracy"]),
+  concept(
+    "aws-lake-formation",
+    5,
+    "5.1",
+    "AWS Lake Formation",
+    "centrally govern fine-grained access to data in an Amazon S3 data lake",
+    "Builds on the AWS Glue Data Catalog and provides database-, table-, column-, row-, and cell-level permissions for governed data lake access.",
+    ["data lake permissions", "fine-grained access", "glue data catalog"],
+    "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html"
+  )
 ];

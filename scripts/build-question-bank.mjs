@@ -11,6 +11,27 @@ const root = path.resolve(
 );
 const verifiedOn = "2026-07-29";
 const visualVideoId = "Di_tP3QRSHE";
+const officialAdditionDistractorExclusions = new Set([
+  "aws-lake-formation"
+]);
+const lakeFormationMemoryCard = {
+  id: "d5-data-governance-services",
+  domain: 5,
+  title: "Data discovery versus governance",
+  memoryHook:
+    "Glue catalogs; Lake Formation governs; Macie discovers sensitive S3 data.",
+  facts: [
+    "AWS Glue Data Catalog stores technical metadata about data assets.",
+    "AWS Lake Formation applies fine-grained permissions to governed data lake resources.",
+    "Amazon Macie discovers and reports sensitive data in Amazon S3."
+  ],
+  confusions: [
+    "A catalog describes data; Lake Formation controls governed access; Macie detects sensitive content."
+  ],
+  sourceUrl:
+    "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html",
+  concepts: ["aws-glue", "aws-lake-formation", "amazon-macie"]
+};
 const correctedSourceKeys = new Set(["yrkju-Ch7ME:9"]);
 const forcedConceptBySourceKey = new Map([
   ["yrkju-Ch7ME:9", "sse-s3-object-access"],
@@ -194,7 +215,9 @@ function lowerFirst(value) {
 function rotatedDistractors(concept, conceptIndex) {
   const sameDomain = concepts.filter(
     (candidate) =>
-      candidate.domain === concept.domain && candidate.key !== concept.key
+      candidate.domain === concept.domain &&
+      candidate.key !== concept.key &&
+      !officialAdditionDistractorExclusions.has(candidate.key)
   );
   const selected = [];
   for (let offset = 1; selected.length < 3; offset += 1) {
@@ -308,12 +331,26 @@ async function readJson(relativePath) {
   return JSON.parse(await readFile(path.join(root, relativePath), "utf8"));
 }
 
+function stringifyMemoryNotes(notes) {
+  return `${JSON.stringify(notes, null, 2).replace(
+    /"concepts": \[\n((?:\s+"(?:\\.|[^"\\])*",?\n)+)\s+\]/g,
+    (_match, values) =>
+      `"concepts": [${values
+        .trim()
+        .split("\n")
+        .map((line) => line.trim())
+        .join(" ")}]`
+  )}\n`;
+}
+
 async function main() {
-  const [originalAudit, drafts, specialQuestions] = await Promise.all([
-    readJson("public/data/source-audit.json"),
-    readJson(".source-cache/source-drafts.json"),
-    readJson("public/data/questions.json")
-  ]);
+  const [originalAudit, drafts, specialQuestions, cheatSheet] =
+    await Promise.all([
+      readJson("public/data/source-audit.json"),
+      readJson(".source-cache/source-drafts.json"),
+      readJson("public/data/questions.json"),
+      readJson("public/data/cheat-sheet.json")
+    ]);
   const conceptByKey = new Map(concepts.map((concept) => [concept.key, concept]));
   const draftBySourceKey = new Map(
     drafts.map((draft) => [draft.sourceKey, draft])
@@ -408,6 +445,12 @@ async function main() {
     /^aif-d\d-0001$/.test(question.id)
   );
   const questions = [...generatedQuestions, ...retainedSpecialQuestions];
+  const memoryNotes = [
+    ...cheatSheet.filter(
+      (entry) => entry.id !== lakeFormationMemoryCard.id
+    ),
+    lakeFormationMemoryCard
+  ];
 
   await Promise.all([
     writeFile(
@@ -417,6 +460,10 @@ async function main() {
     writeFile(
       path.join(root, "public/data/source-audit.json"),
       `${JSON.stringify(mappedAudit, null, 2)}\n`
+    ),
+    writeFile(
+      path.join(root, "public/data/cheat-sheet.json"),
+      stringifyMemoryNotes(memoryNotes)
     )
   ]);
 
@@ -434,6 +481,7 @@ async function main() {
       {
         questions: questions.length,
         concepts: concepts.length,
+        memoryNotes: memoryNotes.length,
         sourceDerivedConcepts,
         statusCounts,
         matchScore: {

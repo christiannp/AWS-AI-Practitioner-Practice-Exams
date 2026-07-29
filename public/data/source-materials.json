@@ -1,0 +1,321 @@
+[
+  {
+    "id": "youtube:WZeZZ8_W-M4",
+    "kind": "course",
+    "sourceUrl": "https://www.youtube.com/watch?v=WZeZZ8_W-M4",
+    "role": "informational-syllabus-only",
+    "answerAuthority": false,
+    "durationSeconds": 53928,
+    "chapters": [
+      {
+        "title": "Introduction",
+        "startSeconds": 0,
+        "domains": [],
+        "tasks": [],
+        "concepts": [],
+        "coverage": "outdated",
+        "reason": "The chapter contains beta-era exam mechanics that conflict with the current 90-minute exam overview and current interaction formats.",
+        "verification": [
+          "https://aws.amazon.com/certification/certified-ai-practitioner/",
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01.html"
+        ]
+      },
+      {
+        "title": "AI and ML Fundamentals",
+        "startSeconds": 1068,
+        "domains": [1],
+        "tasks": ["1.1", "1.2", "1.3"],
+        "concepts": [
+          "supervised-learning",
+          "unsupervised-learning",
+          "reinforcement-learning",
+          "classification",
+          "regression",
+          "clustering",
+          "training",
+          "inference"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers the learning paradigms, model lifecycle, use cases, and evaluation foundations in Domain 1.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+        ]
+      },
+      {
+        "title": "Data",
+        "startSeconds": 4607,
+        "domains": [1, 5],
+        "tasks": ["1.3", "5.1", "5.2"],
+        "concepts": [
+          "amazon-s3",
+          "aws-glue",
+          "data-preprocessing",
+          "feature-engineering",
+          "data-lineage",
+          "data-lifecycle-governance"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers data storage, preparation, quality, lineage, access, and lifecycle governance.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html"
+        ]
+      },
+      {
+        "title": "Gen AI Primer",
+        "startSeconds": 5508,
+        "domains": [2],
+        "tasks": ["2.1", "2.2"],
+        "concepts": [
+          "generative-ai",
+          "foundation-model",
+          "large-language-model",
+          "tokens",
+          "context-window",
+          "embeddings",
+          "transformer",
+          "hallucination"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers generative AI foundations, model architecture and units, use cases, and limitations.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html"
+        ]
+      },
+      {
+        "title": "Amazon Bedrock",
+        "startSeconds": 7342,
+        "domains": [2, 3, 5],
+        "tasks": ["2.3", "3.1", "3.2", "5.1"],
+        "concepts": [
+          "amazon-bedrock",
+          "bedrock-knowledge-bases",
+          "bedrock-prompt-management",
+          "bedrock-guardrails",
+          "bedrock-agentcore"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers Bedrock model access, knowledge bases, prompt management, guardrails, and agent services.",
+        "verification": [
+          "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html"
+        ]
+      },
+      {
+        "title": "Datastores for GenAI",
+        "startSeconds": 26160,
+        "domains": [3],
+        "tasks": ["3.1"],
+        "concepts": [
+          "rag",
+          "embeddings",
+          "vector-database",
+          "opensearch-vector-engine",
+          "bedrock-knowledge-bases"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers embeddings, vector stores, retrieval, OpenSearch vector search, and Bedrock knowledge bases.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+          "https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vector-search.html"
+        ]
+      },
+      {
+        "title": "PartyRock",
+        "startSeconds": 28338,
+        "domains": [],
+        "tasks": [],
+        "concepts": [],
+        "coverage": "out-of-scope",
+        "reason": "PartyRock is not named in the current objectives or current in-scope AWS services list, so product-specific instruction is excluded.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/aif-01-in-scope-services.html"
+        ]
+      },
+      {
+        "title": "Amazon SageMaker AI",
+        "startSeconds": 29326,
+        "domains": [1, 4],
+        "tasks": ["1.3", "4.2"],
+        "concepts": [
+          "sagemaker-ai",
+          "sagemaker-canvas",
+          "sagemaker-feature-store",
+          "sagemaker-model-monitor",
+          "sagemaker-clarify",
+          "sagemaker-model-cards"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers SageMaker AI lifecycle tooling, no-code modeling, feature reuse, monitoring, bias analysis, and model documentation.",
+        "verification": [
+          "https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html"
+        ]
+      },
+      {
+        "title": "Evaluations",
+        "startSeconds": 34904,
+        "domains": [3],
+        "tasks": ["3.4"],
+        "concepts": [
+          "human-evaluation",
+          "automatic-evaluation",
+          "benchmark-dataset",
+          "rouge",
+          "bleu",
+          "bertscore",
+          "llm-as-judge",
+          "business-alignment-metrics"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers human, automatic, benchmark, rubric-based, and business-aligned foundation model evaluation.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html"
+        ]
+      },
+      {
+        "title": "AI Developer Tools",
+        "startSeconds": 36398,
+        "domains": [2],
+        "tasks": ["2.3"],
+        "concepts": [
+          "amazon-q",
+          "kiro",
+          "strands-agents",
+          "bedrock-agentcore"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers the current developer and agent-building tools named by the revised exam guide.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/aif-01-in-scope-services.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/aif-01-revisions.html"
+        ]
+      },
+      {
+        "title": "AWS Managed ML",
+        "startSeconds": 37814,
+        "domains": [1],
+        "tasks": ["1.2", "1.3"],
+        "concepts": [
+          "amazon-textract",
+          "amazon-comprehend",
+          "amazon-rekognition",
+          "amazon-transcribe",
+          "amazon-polly",
+          "amazon-translate",
+          "amazon-lex",
+          "amazon-kendra",
+          "amazon-personalize"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers the managed AI services and business use cases identified by Domain 1.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/aif-01-in-scope-services.html"
+        ]
+      },
+      {
+        "title": "Generative AI Security",
+        "startSeconds": 47970,
+        "domains": [5],
+        "tasks": ["5.1", "5.2"],
+        "concepts": [
+          "iam-least-privilege",
+          "aws-kms",
+          "amazon-macie",
+          "aws-privatelink",
+          "prompt-injection",
+          "data-leakage-prevention",
+          "bedrock-guardrails",
+          "aws-cloudtrail",
+          "rag-grounding"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers access control, encryption, privacy, network isolation, prompt attacks, filtering, logging, and grounding.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html"
+        ]
+      },
+      {
+        "title": "Amazon Athena",
+        "startSeconds": 48918,
+        "domains": [],
+        "tasks": [],
+        "concepts": [],
+        "coverage": "out-of-scope",
+        "reason": "Amazon Athena is not named in the current objectives or current in-scope AWS services list, so product-specific query instruction is excluded.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/aif-01-in-scope-services.html",
+          "https://docs.aws.amazon.com/athena/latest/ug/what-is.html"
+        ]
+      },
+      {
+        "title": "AWS Glue",
+        "startSeconds": 49875,
+        "domains": [1, 5],
+        "tasks": ["1.3", "5.1"],
+        "concepts": [
+          "aws-glue",
+          "data-preprocessing",
+          "feature-engineering",
+          "data-lineage"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers Glue data discovery, preparation, transformation, cataloging, and lineage distinctions.",
+        "verification": [
+          "https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html"
+        ]
+      },
+      {
+        "title": "Amazon OpenSearch Service",
+        "startSeconds": 52386,
+        "domains": [3],
+        "tasks": ["3.1"],
+        "concepts": [
+          "vector-database",
+          "opensearch-vector-engine",
+          "rag"
+        ],
+        "coverage": "covered",
+        "reason": "The current bank covers OpenSearch Service as a vector store and retrieval component for RAG.",
+        "verification": [
+          "https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vector-search.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html"
+        ]
+      },
+      {
+        "title": "AWS Lake Formation",
+        "startSeconds": 53772,
+        "domains": [5],
+        "tasks": ["5.1"],
+        "concepts": ["aws-lake-formation"],
+        "coverage": "gap",
+        "reason": "Lake Formation is in scope for current data-access-control objectives but was absent from the verified question bank and memory notes.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/aif-01-in-scope-services.html",
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+          "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html"
+        ]
+      }
+    ],
+    "rejectedClaims": [
+      {
+        "claim": "The exam duration is 120 minutes.",
+        "currentRule": "The current exam duration is 90 minutes.",
+        "verification": [
+          "https://aws.amazon.com/certification/certified-ai-practitioner/"
+        ]
+      },
+      {
+        "claim": "Case studies are an exam interaction format.",
+        "currentRule": "The current guide lists multiple choice, multiple response, ordering, and matching.",
+        "verification": [
+          "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01.html"
+        ]
+      }
+    ]
+  }
+]

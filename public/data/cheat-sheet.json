@@ -308,5 +308,21 @@
     ],
     "sourceUrl": "https://docs.aws.amazon.com/bedrock/latest/userguide/kb-permissions.html",
     "concepts": ["sse-s3-object-access", "aws-kms", "iam-least-privilege"]
+  },
+  {
+    "id": "d5-data-governance-services",
+    "domain": 5,
+    "title": "Data discovery versus governance",
+    "memoryHook": "Glue catalogs; Lake Formation governs; Macie discovers sensitive S3 data.",
+    "facts": [
+      "AWS Glue Data Catalog stores technical metadata about data assets.",
+      "AWS Lake Formation applies fine-grained permissions to governed data lake resources.",
+      "Amazon Macie discovers and reports sensitive data in Amazon S3."
+    ],
+    "confusions": [
+      "A catalog describes data; Lake Formation controls governed access; Macie detects sensitive content."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html",
+    "concepts": ["aws-glue", "aws-lake-formation", "amazon-macie"]
   }
 ]

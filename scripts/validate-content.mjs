@@ -171,16 +171,118 @@ function validateQuestion(question, videoIds) {
   }
 }
 
-const [questions, audit, videos, cheatSheet, corrections] = await Promise.all([
-  readJson("public/data/questions.json"),
-  readJson("public/data/source-audit.json"),
-  readJson("public/data/source-videos.json"),
-  readJson("public/data/cheat-sheet.json"),
-  readFile(path.join(root, "source-answer-corrections.txt"), "utf8")
-]);
+const [questions, audit, videos, cheatSheet, materials, corrections] =
+  await Promise.all([
+    readJson("public/data/questions.json"),
+    readJson("public/data/source-audit.json"),
+    readJson("public/data/source-videos.json"),
+    readJson("public/data/cheat-sheet.json"),
+    readJson("public/data/source-materials.json"),
+    readFile(path.join(root, "source-answer-corrections.txt"), "utf8")
+  ]);
 
 const videoIds = new Set(videos.map((video) => video.videoId));
 for (const question of questions) validateQuestion(question, videoIds);
+
+const auditedCourseId = "youtube:WZeZZ8_W-M4";
+const auditedCourses = materials.filter(
+  (material) => material.id === auditedCourseId
+);
+requireValue(
+  auditedCourses.length === 1,
+  `${auditedCourseId}: exactly one course material is required`
+);
+const auditedCourse = auditedCourses[0];
+requireValue(
+  auditedCourse?.chapters?.length === 16,
+  `${auditedCourseId}: exactly 16 chapters are required`
+);
+requireValue(
+  auditedCourse?.chapters?.every(
+    (chapter, index, chapters) =>
+      Number.isInteger(chapter.startSeconds) &&
+      chapter.startSeconds >= 0 &&
+      (index === 0 ||
+        chapter.startSeconds > chapters[index - 1].startSeconds)
+  ),
+  `${auditedCourseId}: chapter timestamps must be increasing nonnegative integers`
+);
+for (const chapter of auditedCourse?.chapters ?? []) {
+  requireValue(
+    ["covered", "gap", "out-of-scope", "outdated"].includes(
+      chapter.coverage
+    ),
+    `${auditedCourseId}/${chapter.title}: invalid coverage`
+  );
+  requireValue(
+    typeof chapter.reason === "string" && chapter.reason.length > 0,
+    `${auditedCourseId}/${chapter.title}: coverage reason is required`
+  );
+  requireValue(
+    Array.isArray(chapter.verification) &&
+      chapter.verification.length > 0 &&
+      chapter.verification.every(
+        (url) => typeof url === "string" && url.startsWith("https://")
+      ),
+    `${auditedCourseId}/${chapter.title}: HTTPS verification is required`
+  );
+}
+
+const rejectedClaims = auditedCourse?.rejectedClaims ?? [];
+for (const [claim, currentRule] of [
+  [
+    "The exam duration is 120 minutes.",
+    "The current exam duration is 90 minutes."
+  ],
+  [
+    "Case studies are an exam interaction format.",
+    "The current guide lists multiple choice, multiple response, ordering, and matching."
+  ]
+]) {
+  requireValue(
+    rejectedClaims.some(
+      (rejected) =>
+        rejected.claim === claim && rejected.currentRule === currentRule
+    ),
+    `${auditedCourseId}: missing rejected claim "${claim}"`
+  );
+}
+
+const questionConcepts = new Set(
+  questions.flatMap((question) => question.concepts)
+);
+const cheatSheetConcepts = new Set(
+  cheatSheet.flatMap((entry) => entry.concepts)
+);
+for (const chapter of auditedCourse?.chapters ?? []) {
+  if (chapter.coverage !== "gap") continue;
+  for (const concept of chapter.concepts ?? []) {
+    requireValue(
+      questionConcepts.has(concept),
+      `${auditedCourseId}/${chapter.title}: gap concept ${concept} has no question`
+    );
+    requireValue(
+      cheatSheetConcepts.has(concept),
+      `${auditedCourseId}/${chapter.title}: gap concept ${concept} has no cheat-sheet card`
+    );
+  }
+}
+requireValue(
+  !questions.some((question) =>
+    question.sources?.some(
+      (source) =>
+        source.videoId === "WZeZZ8_W-M4" ||
+        source.url?.includes("WZeZZ8_W-M4")
+    )
+  ),
+  `${auditedCourseId}: informational course must not be question provenance`
+);
+
+const loadedPublicData = [questions, audit, videos, cheatSheet, materials];
+requireValue(
+  !/examtopics/i.test(JSON.stringify(loadedPublicData)),
+  "Loaded public data must not contain ExamTopics references"
+);
 
 for (const [label, values] of [
   ["question IDs", questions.map((question) => question.id)],

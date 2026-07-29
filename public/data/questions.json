@@ -23048,6 +23048,100 @@
     "fingerprint": "2a708cd30dcaaffff07b917dc115f0b801f06235e63cc113a66ed74886db0e05"
   },
   {
+    "id": "aif-d5-aws-lake-formation-scenario",
+    "origin": "official-addition",
+    "type": "multiple-choice",
+    "domain": 5,
+    "task": "5.1",
+    "difficulty": "exam",
+    "concepts": [
+      "aws-lake-formation"
+    ],
+    "services": [
+      "AWS Lake Formation"
+    ],
+    "sources": [],
+    "verification": [
+      {
+        "title": "AWS documentation: AWS Lake Formation",
+        "url": "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ],
+    "prompt": "A team needs to centrally govern fine-grained access to data in an Amazon S3 data lake. Which option best meets this requirement?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AWS Config",
+        "distractorReason": "AWS Config records configuration changes and evaluates compliance. It does not directly satisfy the stated requirement."
+      },
+      {
+        "id": "b",
+        "text": "Amazon Bedrock AgentCore Identity",
+        "distractorReason": "Amazon Bedrock AgentCore Identity provides identity and credential controls for agent access to services and tools. It does not directly satisfy the stated requirement."
+      },
+      {
+        "id": "c",
+        "text": "AWS PrivateLink",
+        "distractorReason": "AWS PrivateLink keeps service traffic on the AWS network through interface VPC endpoints. It does not directly satisfy the stated requirement."
+      },
+      {
+        "id": "d",
+        "text": "AWS Lake Formation"
+      }
+    ],
+    "correctId": "d",
+    "explanation": "AWS Lake Formation is the best fit because it builds on the AWS Glue Data Catalog and provides database-, table-, column-, row-, and cell-level permissions for governed data lake access.",
+    "fingerprint": "a222efc5e6b1c0b5af9b71935b1268fed78375bf2a1041d6a3d1ba65ae4c9260"
+  },
+  {
+    "id": "aif-d5-aws-lake-formation-definition",
+    "origin": "official-addition",
+    "type": "multiple-choice",
+    "domain": 5,
+    "task": "5.1",
+    "difficulty": "foundation",
+    "concepts": [
+      "aws-lake-formation"
+    ],
+    "services": [
+      "AWS Lake Formation"
+    ],
+    "sources": [],
+    "verification": [
+      {
+        "title": "AWS documentation: AWS Lake Formation",
+        "url": "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ],
+    "prompt": "Which description best matches AWS Lake Formation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Uses machine learning and pattern matching to find sensitive data in S3.",
+        "distractorReason": "This describes Amazon Macie, not AWS Lake Formation."
+      },
+      {
+        "id": "b",
+        "text": "Builds on the AWS Glue Data Catalog and provides database-, table-, column-, row-, and cell-level permissions for governed data lake access."
+      },
+      {
+        "id": "c",
+        "text": "Provides observability data and alarms for AWS resources and applications.",
+        "distractorReason": "This describes Amazon CloudWatch, not AWS Lake Formation."
+      },
+      {
+        "id": "d",
+        "text": "Applies retention, residency, logging, monitoring, and deletion requirements throughout the data lifecycle.",
+        "distractorReason": "This describes Data lifecycle governance, not AWS Lake Formation."
+      }
+    ],
+    "correctId": "b",
+    "explanation": "AWS Lake Formation builds on the AWS Glue Data Catalog and provides database-, table-, column-, row-, and cell-level permissions for governed data lake access.",
+    "fingerprint": "adfc30a4184e5f45e00852e523511ddfa4722785855ecbc4d7435493d923cc10"
+  },
+  {
     "id": "aif-d4-0001",
     "origin": "source-derived",
     "type": "multiple-choice",
