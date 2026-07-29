@@ -1,5 +1,9 @@
 # ExamTopics and Full-Course Source Audit Implementation Plan
 
+> Cancelled on 2026-07-29 after Task 2. The user explicitly chose to skip
+> ExamTopics. Do not execute the remaining tasks in this plan. Continue with
+> `2026-07-29-full-course-knowledge-audit.md`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Audit all 452 ExamTopics AIF-C01 items, use the supplied full course to identify current coverage gaps, add only verified original questions and memory notes, and publish the resulting mobile app to the user's public GitHub repository.

@@ -2,6 +2,11 @@
 
 Date: 2026-07-29
 
+> Superseded on 2026-07-29. The user explicitly removed ExamTopics from
+> scope after its robot-validation gate appeared. The remaining approved
+> full-course work is specified in
+> `2026-07-29-full-course-knowledge-audit-design.md`.
+
 ## 1. Goal
 
 Extend the AWS Certified AI Practitioner study app with a complete,
