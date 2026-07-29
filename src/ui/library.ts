@@ -12,7 +12,10 @@ export function renderLibrary(
     if (filters.type && question.type !== filters.type) return false;
     if (
       filters.source &&
-      !question.sources.some((source) => source.videoId === filters.source)
+      !question.sources.some(
+        (source) =>
+          source.sourceType === "youtube" && source.videoId === filters.source
+      )
     ) {
       return false;
     }

@@ -34,6 +34,7 @@
     "explanation": "This controlled fixture uses option B to test exact scoring.",
     "sources": [
       {
+        "sourceType": "youtube",
         "playlistId": "fixture",
         "videoId": "fixture",
         "videoTitle": "Fixture",
@@ -88,6 +89,7 @@
     "explanation": "This controlled fixture uses A and C to test set equality.",
     "sources": [
       {
+        "sourceType": "youtube",
         "playlistId": "fixture",
         "videoId": "fixture",
         "videoTitle": "Fixture",
@@ -135,6 +137,7 @@
     "explanation": "The fixture defines collect, prepare, train, evaluate as its exact sequence.",
     "sources": [
       {
+        "sourceType": "youtube",
         "playlistId": "fixture",
         "videoId": "fixture",
         "videoTitle": "Fixture",
@@ -187,6 +190,7 @@
     "explanation": "The fixture maps text PII to Comprehend and image objects to Rekognition.",
     "sources": [
       {
+        "sourceType": "youtube",
         "playlistId": "fixture",
         "videoId": "fixture",
         "videoTitle": "Fixture",

@@ -215,7 +215,9 @@ export function selectSourceGroup(
 ): Question[] {
   return uniqueBank(
     bank.filter((question) =>
-      question.sources.some((source) => source.videoId === videoId)
+      question.sources.some(
+        (source) => source.sourceType === "youtube" && source.videoId === videoId
+      )
     )
   );
 }
