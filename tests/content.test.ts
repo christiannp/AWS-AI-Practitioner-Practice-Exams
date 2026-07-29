@@ -57,12 +57,22 @@ describe("source audit", () => {
   });
 
   it("maps every retained source item to a shipped question", () => {
-    const questionIds = new Set(questions.map((question) => question.id));
+    const questionById = new Map(
+      questions.map((question) => [question.id, question])
+    );
 
     expect(
       audit
         .filter((entry) => entry.status !== "excluded")
-        .every((entry) => questionIds.has(entry.questionId))
+        .every((entry) => {
+          const question = questionById.get(entry.questionId);
+          return question?.sources.some(
+            (source) =>
+              source.videoId === entry.videoId &&
+              "questionNumber" in source &&
+              source.questionNumber === entry.questionNumber
+          );
+        })
     ).toBe(true);
   });
 });

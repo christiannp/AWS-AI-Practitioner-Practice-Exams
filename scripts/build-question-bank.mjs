@@ -217,7 +217,7 @@ function orderedChoices(correct, distractors, correctIndex) {
 }
 
 function commonQuestionFields(concept, id, sourceEntries, difficulty) {
-  const sources = sourceEntries.slice(0, 6).map(sourceRef);
+  const sources = sourceEntries.map(sourceRef);
   return {
     id,
     origin: sources.length > 0 ? "source-derived" : "official-addition",
