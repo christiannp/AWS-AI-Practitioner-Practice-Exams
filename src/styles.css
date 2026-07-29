@@ -1,0 +1,427 @@
+:root {
+  color-scheme: light;
+  font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  color: #0b1f33;
+  background: #e9eef3;
+  --ink: #0b1f33;
+  --paper: #f7fafc;
+  --amber: #ff9900;
+  --teal: #0f766e;
+  --cobalt: #2563eb;
+  --graphite: #52606d;
+  --line: #d6dee7;
+  --shadow: 0 18px 44px rgb(11 31 51 / 10%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(#dce4ec 1px, transparent 1px),
+    var(--paper);
+  background-size: 100% 3rem;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.7rem 1rem;
+  color: white;
+  background: var(--ink);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.app-frame {
+  width: min(100%, 72rem);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 1rem 6.5rem;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 5rem;
+  gap: 1rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  background: var(--ink);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  box-shadow: inset 0 -3px 0 var(--amber);
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand strong {
+  font-size: 0.95rem;
+}
+
+.brand small {
+  margin-top: 0.1rem;
+  color: var(--graphite);
+  font-size: 0.69rem;
+}
+
+.target-chip {
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgb(247 250 252 / 80%);
+  color: var(--graphite);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.68rem;
+  white-space: nowrap;
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+}
+
+.route-card,
+.daily-ticket,
+.domain-board {
+  border: 1px solid var(--line);
+  border-radius: 1.15rem;
+  background: rgb(247 250 252 / 94%);
+  box-shadow: var(--shadow);
+}
+
+.route-card {
+  padding: 1rem;
+}
+
+.section-label,
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.section-label {
+  color: var(--graphite);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.section-label strong {
+  color: var(--teal);
+}
+
+.route-line {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  align-items: center;
+  margin: 1.2rem 0 0.85rem;
+}
+
+.route-line::before {
+  position: absolute;
+  right: 0.25rem;
+  left: 0.25rem;
+  height: 2px;
+  background: var(--line);
+  content: "";
+}
+
+.route-stop {
+  position: relative;
+  z-index: 1;
+  width: 0.45rem;
+  height: 0.45rem;
+  justify-self: center;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+.route-stop.is-current {
+  width: 0.78rem;
+  height: 0.78rem;
+  border-color: var(--amber);
+  background: var(--amber);
+  box-shadow: 0 0 0 4px rgb(255 153 0 / 16%);
+}
+
+.route-card p {
+  margin: 0;
+  color: var(--graphite);
+  font-size: 0.86rem;
+}
+
+.daily-ticket {
+  position: relative;
+  overflow: hidden;
+  padding: 1.35rem;
+  color: white;
+  background: var(--ink);
+}
+
+.daily-ticket::after {
+  position: absolute;
+  top: -2.5rem;
+  right: -2.5rem;
+  width: 8rem;
+  height: 8rem;
+  border: 1.5rem solid rgb(255 153 0 / 16%);
+  border-radius: 50%;
+  content: "";
+}
+
+.eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--amber);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  font-family: ui-rounded, "SF Pro Rounded", "Avenir Next", sans-serif;
+  letter-spacing: -0.035em;
+}
+
+h1 {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(2.25rem, 11vw, 4.9rem);
+  line-height: 0.94;
+}
+
+.lead {
+  max-width: 32rem;
+  margin: 1rem 0 0;
+  color: #c9d6e2;
+  line-height: 1.55;
+}
+
+.primary-action {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  min-height: 3.6rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.5rem 0 1.2rem;
+  padding: 0.8rem 1rem;
+  border: 0;
+  border-radius: 0.8rem;
+  color: var(--ink);
+  background: var(--amber);
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #c57300;
+}
+
+.primary-action:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #c57300;
+}
+
+.ticket-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px dashed #456079;
+}
+
+.ticket-meta div {
+  min-width: 0;
+  padding-right: 0.5rem;
+}
+
+.ticket-meta dt {
+  color: #8fa6ba;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+
+.ticket-meta dd {
+  overflow: hidden;
+  margin: 0.2rem 0 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+}
+
+.domain-board {
+  padding: 1.25rem;
+}
+
+.section-heading {
+  align-items: end;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.section-heading > span {
+  color: var(--graphite);
+  font-size: 0.72rem;
+}
+
+.domain-list {
+  display: grid;
+  gap: 0;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.domain-list li {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr auto;
+  align-items: center;
+  min-height: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.domain-list b {
+  color: var(--teal);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+}
+
+.domain-list span {
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.domain-list em {
+  color: var(--graphite);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  font-style: normal;
+}
+
+.bottom-nav {
+  position: fixed;
+  z-index: 20;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  min-height: 4.8rem;
+  padding: 0.45rem max(0.5rem, env(safe-area-inset-right))
+    max(0.45rem, env(safe-area-inset-bottom))
+    max(0.5rem, env(safe-area-inset-left));
+  border-top: 1px solid var(--line);
+  background: rgb(247 250 252 / 96%);
+  box-shadow: 0 -8px 24px rgb(11 31 51 / 8%);
+  backdrop-filter: blur(16px);
+}
+
+.bottom-nav a {
+  display: grid;
+  min-height: 3.2rem;
+  place-items: center;
+  border-radius: 0.7rem;
+  color: var(--graphite);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+.bottom-nav a.is-active {
+  color: var(--ink);
+  background: #e8eef5;
+}
+
+@media (min-width: 48rem) {
+  .app-frame {
+    padding: 0 2rem 3rem;
+  }
+
+  main {
+    grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+  }
+
+  .route-card {
+    grid-column: 1 / -1;
+  }
+
+  .daily-ticket,
+  .domain-board {
+    min-height: 30rem;
+  }
+
+  .bottom-nav {
+    position: static;
+    width: min(100%, 40rem);
+    margin: 1.5rem auto 0;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

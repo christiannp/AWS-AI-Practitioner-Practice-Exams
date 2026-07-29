@@ -1,0 +1,201 @@
+[
+  {
+    "id": "fixture-mc",
+    "type": "multiple-choice",
+    "prompt": "Which option is marked as correct in this scoring fixture?",
+    "domain": 1,
+    "task": "1.1",
+    "difficulty": "foundation",
+    "concepts": ["fixture-choice"],
+    "services": [],
+    "options": [
+      {
+        "id": "a",
+        "text": "Option A",
+        "distractorReason": "The fixture marks option B as correct."
+      },
+      {
+        "id": "b",
+        "text": "Option B"
+      },
+      {
+        "id": "c",
+        "text": "Option C",
+        "distractorReason": "The fixture marks option B as correct."
+      },
+      {
+        "id": "d",
+        "text": "Option D",
+        "distractorReason": "The fixture marks option B as correct."
+      }
+    ],
+    "correctId": "b",
+    "explanation": "This controlled fixture uses option B to test exact scoring.",
+    "sources": [
+      {
+        "playlistId": "fixture",
+        "videoId": "fixture",
+        "videoTitle": "Fixture",
+        "url": "https://example.com/fixture"
+      }
+    ],
+    "verification": [
+      {
+        "title": "Fixture verification",
+        "url": "https://example.com/fixture",
+        "verifiedOn": "2026-07-29"
+      }
+    ],
+    "fingerprint": "fixture-mc"
+  },
+  {
+    "id": "fixture-mr",
+    "type": "multiple-response",
+    "prompt": "Which two options are marked as correct in this scoring fixture?",
+    "domain": 2,
+    "task": "2.1",
+    "difficulty": "foundation",
+    "concepts": ["fixture-response"],
+    "services": [],
+    "options": [
+      {
+        "id": "a",
+        "text": "Option A"
+      },
+      {
+        "id": "b",
+        "text": "Option B",
+        "distractorReason": "The fixture marks A and C as correct."
+      },
+      {
+        "id": "c",
+        "text": "Option C"
+      },
+      {
+        "id": "d",
+        "text": "Option D",
+        "distractorReason": "The fixture marks A and C as correct."
+      },
+      {
+        "id": "e",
+        "text": "Option E",
+        "distractorReason": "The fixture marks A and C as correct."
+      }
+    ],
+    "correctIds": ["a", "c"],
+    "explanation": "This controlled fixture uses A and C to test set equality.",
+    "sources": [
+      {
+        "playlistId": "fixture",
+        "videoId": "fixture",
+        "videoTitle": "Fixture",
+        "url": "https://example.com/fixture"
+      }
+    ],
+    "verification": [
+      {
+        "title": "Fixture verification",
+        "url": "https://example.com/fixture",
+        "verifiedOn": "2026-07-29"
+      }
+    ],
+    "fingerprint": "fixture-mr"
+  },
+  {
+    "id": "fixture-ordering",
+    "type": "ordering",
+    "prompt": "Place the controlled lifecycle labels in the fixture's expected order.",
+    "domain": 3,
+    "task": "3.3",
+    "difficulty": "foundation",
+    "concepts": ["fixture-ordering"],
+    "services": [],
+    "items": [
+      {
+        "id": "collect",
+        "text": "Collect"
+      },
+      {
+        "id": "prepare",
+        "text": "Prepare"
+      },
+      {
+        "id": "train",
+        "text": "Train"
+      },
+      {
+        "id": "evaluate",
+        "text": "Evaluate"
+      }
+    ],
+    "correctOrder": ["collect", "prepare", "train", "evaluate"],
+    "explanation": "The fixture defines collect, prepare, train, evaluate as its exact sequence.",
+    "sources": [
+      {
+        "playlistId": "fixture",
+        "videoId": "fixture",
+        "videoTitle": "Fixture",
+        "url": "https://example.com/fixture"
+      }
+    ],
+    "verification": [
+      {
+        "title": "Fixture verification",
+        "url": "https://example.com/fixture",
+        "verifiedOn": "2026-07-29"
+      }
+    ],
+    "fingerprint": "fixture-ordering"
+  },
+  {
+    "id": "fixture-matching",
+    "type": "matching",
+    "prompt": "Match each controlled data label to the fixture's expected AWS service.",
+    "domain": 5,
+    "task": "5.2",
+    "difficulty": "foundation",
+    "concepts": ["fixture-matching"],
+    "services": ["Amazon Comprehend", "Amazon Rekognition"],
+    "prompts": [
+      {
+        "id": "pii",
+        "text": "PII in text"
+      },
+      {
+        "id": "images",
+        "text": "Objects in images"
+      }
+    ],
+    "targets": [
+      {
+        "id": "Comprehend",
+        "text": "Amazon Comprehend"
+      },
+      {
+        "id": "Rekognition",
+        "text": "Amazon Rekognition"
+      }
+    ],
+    "correctMatches": {
+      "pii": "Comprehend",
+      "images": "Rekognition"
+    },
+    "explanation": "The fixture maps text PII to Comprehend and image objects to Rekognition.",
+    "sources": [
+      {
+        "playlistId": "fixture",
+        "videoId": "fixture",
+        "videoTitle": "Fixture",
+        "url": "https://example.com/fixture"
+      }
+    ],
+    "verification": [
+      {
+        "title": "Fixture verification",
+        "url": "https://example.com/fixture",
+        "verifiedOn": "2026-07-29"
+      }
+    ],
+    "fingerprint": "fixture-matching"
+  }
+]
