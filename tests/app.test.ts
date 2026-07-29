@@ -52,7 +52,9 @@ const content: AppContent = {
       kind: "questions"
     }
   ],
-  cheatSheet: cheatSheet as AppContent["cheatSheet"]
+  cheatSheet: cheatSheet as AppContent["cheatSheet"],
+  exams: [],
+  reviews: []
 };
 const fixedNow = () => new Date("2026-07-29T08:00:00.000Z");
 

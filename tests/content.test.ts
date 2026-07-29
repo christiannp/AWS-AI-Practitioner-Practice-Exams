@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import audit from "../public/data/source-audit.json";
 import cheatSheet from "../public/data/cheat-sheet.json";
 import materials from "../public/data/source-materials.json";
+import exams from "../public/data/practice-exams.json";
+import reviews from "../public/data/question-reviews.json";
 import questions from "../public/data/questions.json";
 import videos from "../public/data/source-videos.json";
 import {
@@ -243,6 +245,45 @@ describe("course syllabus audit", () => {
 });
 
 describe("verified content bank", () => {
+  it("ships five stable Verified-only 65-question exams", () => {
+    expect(exams.map((exam) => exam.id)).toEqual([1, 2, 3, 4, 5]);
+    expect(
+      exams.every(
+        (exam) =>
+          exam.questionIds.length === 65 &&
+          new Set(exam.questionIds).size === 65
+      )
+    ).toBe(true);
+
+    const statusByQuestion = new Map(
+      reviews.map((review) => [review.questionId, review.status])
+    );
+    expect(
+      exams
+        .flatMap((exam) => exam.questionIds)
+        .every((id) => statusByQuestion.get(id) === "verified")
+    ).toBe(true);
+  });
+
+  it("keeps the corrected SSE-S3 source conflict out of every exam", () => {
+    expect(
+      reviews.filter((review) => review.status === "verified")
+    ).toHaveLength(267);
+    expect(
+      reviews.filter((review) => review.status === "unverified")
+    ).toHaveLength(0);
+    expect(
+      reviews.filter((review) => review.status === "conflicted")
+    ).toEqual([
+      expect.objectContaining({
+        questionId: "aif-d5-sse-s3-object-access-scenario"
+      })
+    ]);
+    expect(exams.flatMap((exam) => exam.questionIds)).not.toContain(
+      "aif-d5-sse-s3-object-access-scenario"
+    );
+  });
+
   it("has unique IDs, normalized prompts, and semantic fingerprints", () => {
     const ids = questions.map((question) => question.id);
     const prompts = questions.map((question) =>

@@ -184,13 +184,24 @@ function validateQuestion(question, videoIds) {
   }
 }
 
-const [questions, audit, videos, cheatSheet, materials, corrections] =
+const [
+  questions,
+  audit,
+  videos,
+  cheatSheet,
+  materials,
+  exams,
+  reviews,
+  corrections
+] =
   await Promise.all([
     readJson("public/data/questions.json"),
     readJson("public/data/source-audit.json"),
     readJson("public/data/source-videos.json"),
     readJson("public/data/cheat-sheet.json"),
     readJson("public/data/source-materials.json"),
+    readJson("public/data/practice-exams.json"),
+    readJson("public/data/question-reviews.json"),
     readFile(path.join(root, "source-answer-corrections.txt"), "utf8")
   ]);
 
@@ -214,6 +225,88 @@ requireValue(
 
 const videoIds = new Set(videos.map((video) => video.videoId));
 for (const question of questions) validateQuestion(question, videoIds);
+
+const contentQuestionIds = new Set(questions.map((question) => question.id));
+const reviewByQuestion = new Map(
+  reviews.map((review) => [review.questionId, review])
+);
+requireValue(exams.length === 5, "Exactly five practice exams are required");
+requireValue(
+  exams.every((exam, index) => exam.id === index + 1),
+  "Practice exam IDs must be sequential from 1 through 5"
+);
+for (const exam of exams) {
+  requireValue(
+    exam.title === `Practice Exam ${exam.id}`,
+    `Practice Exam ${exam.id}: title must match its numeric ID`
+  );
+  requireValue(
+    exam.version === 1,
+    `Practice Exam ${exam.id}: unsupported manifest version`
+  );
+  requireValue(
+    Array.isArray(exam.questionIds) && exam.questionIds.length === 65,
+    `Practice Exam ${exam.id}: exactly 65 question IDs are required`
+  );
+  requireValue(
+    duplicateValues(exam.questionIds ?? []).length === 0,
+    `Practice Exam ${exam.id}: question IDs must be unique within the exam`
+  );
+  for (const questionId of exam.questionIds ?? []) {
+    requireValue(
+      contentQuestionIds.has(questionId),
+      `Practice Exam ${exam.id}: unknown question ${questionId}`
+    );
+    requireValue(
+      reviewByQuestion.get(questionId)?.status === "verified",
+      `Practice Exam ${exam.id}: ${questionId} is not Verified`
+    );
+  }
+}
+
+requireValue(
+  reviews.length === questions.length &&
+    reviewByQuestion.size === questions.length,
+  "Every question must have exactly one review record"
+);
+for (const review of reviews) {
+  requireValue(
+    contentQuestionIds.has(review.questionId),
+    `Review references unknown question ${review.questionId}`
+  );
+  requireValue(
+    ["verified", "unverified", "conflicted"].includes(review.status),
+    `${review.questionId}: invalid review status`
+  );
+  requireValue(
+    typeof review.reason === "string" && review.reason.length > 20,
+    `${review.questionId}: review reason is required`
+  );
+  requireValue(
+    Array.isArray(review.proof),
+    `${review.questionId}: proof must be an array`
+  );
+  if (review.status === "verified" || review.status === "conflicted") {
+    requireValue(
+      review.proof.length > 0 &&
+        review.proof.every((item) =>
+          isOfficialAwsDocumentationUrl(item.url)
+        ),
+      `${review.questionId}: ${review.status} review requires official proof`
+    );
+  }
+}
+requireValue(
+  reviews.filter((review) => review.status === "verified").length === 267 &&
+    reviews.filter((review) => review.status === "unverified").length === 0 &&
+    reviews.filter((review) => review.status === "conflicted").length === 1,
+  "Review handoff requires 267 Verified, 0 Unverified, and 1 Conflicted"
+);
+requireValue(
+  reviewByQuestion.get("aif-d5-sse-s3-object-access-scenario")?.status ===
+    "conflicted",
+  "The corrected SSE-S3 source conflict must remain Conflicted"
+);
 
 const auditedCourseId = "youtube:WZeZZ8_W-M4";
 const auditedCourses = materials.filter(

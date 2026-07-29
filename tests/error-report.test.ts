@@ -12,7 +12,9 @@ const questions = fixtureQuestions as unknown as Question[];
 const content: AppContent = {
   questions,
   videos: [],
-  cheatSheet: []
+  cheatSheet: [],
+  exams: [],
+  reviews: []
 };
 
 describe("detailed learner error report", () => {

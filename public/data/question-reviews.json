@@ -1,0 +1,3234 @@
+[
+  {
+    "questionId": "aif-d1-supervised-learning-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Supervised learning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-supervised-learning-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Supervised learning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-unsupervised-learning-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Unsupervised learning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-unsupervised-learning-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Unsupervised learning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-reinforcement-learning-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Reinforcement learning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-reinforcement-learning-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Reinforcement learning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-classification-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Classification",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-classification-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Classification",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-regression-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Regression",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-regression-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Regression",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-clustering-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Clustering",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-clustering-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Clustering",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-anomaly-detection-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Anomaly detection",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-anomaly-detection-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Anomaly detection",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-decision-tree-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Decision tree",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-decision-tree-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Decision tree",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-transfer-learning-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Transfer learning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-transfer-learning-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Transfer learning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-time-series-forecasting-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Time-series forecasting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-time-series-forecasting-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Time-series forecasting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-dimensionality-reduction-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Dimensionality reduction",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-dimensionality-reduction-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Dimensionality reduction",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-computer-vision-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Computer vision",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-computer-vision-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Computer vision",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-natural-language-processing-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Natural language processing",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-natural-language-processing-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Natural language processing",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-training-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Training",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-training-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Training",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-inference-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Inference",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-inference-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Inference",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-batch-inference-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Batch inference",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-batch-inference-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Batch inference",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-real-time-inference-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Real-time inference",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-real-time-inference-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Real-time inference",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-asynchronous-inference-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Asynchronous inference",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-asynchronous-inference-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Asynchronous inference",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-serverless-inference-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Serverless inference",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-serverless-inference-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Serverless inference",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-exploratory-data-analysis-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Exploratory data analysis",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-exploratory-data-analysis-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Exploratory data analysis",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-data-preprocessing-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Data preprocessing",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-data-preprocessing-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Data preprocessing",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-feature-engineering-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Feature engineering",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-feature-engineering-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Feature engineering",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-overfitting-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Overfitting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-overfitting-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Overfitting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-underfitting-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Underfitting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-underfitting-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Underfitting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-accuracy-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Accuracy",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-accuracy-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Accuracy",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-precision-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Precision",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-precision-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Precision",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-recall-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Recall",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-recall-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Recall",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-f1-score-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: F1 score",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-f1-score-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: F1 score",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-sagemaker-ai-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon SageMaker AI",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-sagemaker-ai-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon SageMaker AI",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-sagemaker-canvas-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon SageMaker Canvas",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-sagemaker-canvas-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon SageMaker Canvas",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-sagemaker-feature-store-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: SageMaker Feature Store",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/feature-store.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-sagemaker-feature-store-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: SageMaker Feature Store",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/feature-store.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-sagemaker-model-monitor-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: SageMaker Model Monitor",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-sagemaker-model-monitor-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: SageMaker Model Monitor",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-a2i-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Augmented AI (Amazon A2I)",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-getting-started.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-a2i-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Augmented AI (Amazon A2I)",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-getting-started.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-textract-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Textract",
+        "url": "https://docs.aws.amazon.com/textract/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-textract-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Textract",
+        "url": "https://docs.aws.amazon.com/textract/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-comprehend-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Comprehend",
+        "url": "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-comprehend-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Comprehend",
+        "url": "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-rekognition-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Rekognition",
+        "url": "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-rekognition-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Rekognition",
+        "url": "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-transcribe-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Transcribe",
+        "url": "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-transcribe-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Transcribe",
+        "url": "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-polly-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Polly",
+        "url": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-polly-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Polly",
+        "url": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-translate-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Translate",
+        "url": "https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-translate-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Translate",
+        "url": "https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-lex-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Lex",
+        "url": "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-lex-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Lex",
+        "url": "https://docs.aws.amazon.com/lexv2/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-kendra-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Kendra",
+        "url": "https://docs.aws.amazon.com/kendra/latest/dg/what-is-kendra.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-kendra-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Kendra",
+        "url": "https://docs.aws.amazon.com/kendra/latest/dg/what-is-kendra.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-personalize-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Personalize",
+        "url": "https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-personalize-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Personalize",
+        "url": "https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-aws-glue-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Glue",
+        "url": "https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-aws-glue-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Glue",
+        "url": "https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-s3-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon S3",
+        "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-amazon-s3-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon S3",
+        "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-generative-ai-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Generative AI",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-generative-ai-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Generative AI",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-foundation-model-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Foundation model",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-foundation-model-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Foundation model",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-large-language-model-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Large language model",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-large-language-model-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Large language model",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-tokens-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Tokens",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-tokens-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Tokens",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-context-window-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Context window",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-context-window-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Context window",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-embeddings-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Embeddings",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-embeddings-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Embeddings",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-transformer-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Transformer architecture",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-transformer-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Transformer architecture",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-multimodal-model-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Multimodal model",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-multimodal-model-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Multimodal model",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-diffusion-model-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Diffusion model",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-diffusion-model-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Diffusion model",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-generative-adversarial-network-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Generative adversarial network (GAN)",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-generative-adversarial-network-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Generative adversarial network (GAN)",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-latent-space-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Latent space",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-latent-space-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Latent space",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-hallucination-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Hallucination",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-hallucination-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Hallucination",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-nondeterminism-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Nondeterministic output",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-nondeterminism-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Nondeterministic output",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-prompt-sensitivity-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Prompt sensitivity",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-prompt-sensitivity-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Prompt sensitivity",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-token-pricing-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Token-based pricing",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-token-pricing-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Token-based pricing",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-model-selection-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Foundation model selection",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-model-selection-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Foundation model selection",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-regional-coverage-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Region coverage",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-regional-coverage-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Region coverage",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-context-engineering-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Context engineering",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-context-engineering-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Context engineering",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-agentic-ai-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Agentic AI",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-agentic-ai-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Agentic AI",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-model-context-protocol-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Model Context Protocol (MCP)",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-model-context-protocol-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Model Context Protocol (MCP)",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-amazon-bedrock-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Bedrock",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-amazon-bedrock-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Bedrock",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-sagemaker-jumpstart-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: SageMaker JumpStart",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-sagemaker-jumpstart-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: SageMaker JumpStart",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-amazon-nova-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Nova",
+        "url": "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-amazon-nova-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Nova",
+        "url": "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-amazon-q-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Q",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-amazon-q-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Q",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-amazon-quick-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Quick",
+        "url": "https://docs.aws.amazon.com/quicksuite/latest/userguide/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-amazon-quick-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Quick",
+        "url": "https://docs.aws.amazon.com/quicksuite/latest/userguide/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-kiro-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Kiro",
+        "url": "https://kiro.dev/docs/",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-kiro-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Kiro",
+        "url": "https://kiro.dev/docs/",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-strands-agents-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Strands Agents",
+        "url": "https://strandsagents.com/latest/",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-strands-agents-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Strands Agents",
+        "url": "https://strandsagents.com/latest/",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-bedrock-agentcore-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Bedrock AgentCore",
+        "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-bedrock-agentcore-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Bedrock AgentCore",
+        "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-rag-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Retrieval Augmented Generation (RAG)",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-rag-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Retrieval Augmented Generation (RAG)",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-fine-tuning-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Fine-tuning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-fine-tuning-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Fine-tuning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-pretraining-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Pre-training",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-pretraining-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Pre-training",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-in-context-learning-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: In-context learning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-in-context-learning-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: In-context learning",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-model-distillation-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Model distillation",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-model-distillation-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Model distillation",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-bedrock-knowledge-bases-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Knowledge Bases for Amazon Bedrock",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-bedrock-knowledge-bases-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Knowledge Bases for Amazon Bedrock",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-vector-database-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Vector database",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-vector-database-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Vector database",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-opensearch-vector-engine-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon OpenSearch Service vector engine",
+        "url": "https://docs.aws.amazon.com/opensearch-service/latest/developerguide/knn.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-opensearch-vector-engine-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon OpenSearch Service vector engine",
+        "url": "https://docs.aws.amazon.com/opensearch-service/latest/developerguide/knn.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-ai-agents-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AI agents",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-ai-agents-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AI agents",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-zero-shot-prompting-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Zero-shot prompting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-zero-shot-prompting-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Zero-shot prompting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-few-shot-prompting-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Few-shot prompting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-few-shot-prompting-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Few-shot prompting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-chain-of-thought-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Chain-of-thought prompting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-chain-of-thought-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Chain-of-thought prompting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-negative-prompting-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Negative prompting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-negative-prompting-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Negative prompting",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-prompt-template-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Prompt template",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-prompt-template-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Prompt template",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-bedrock-prompt-management-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Bedrock Prompt Management",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-bedrock-prompt-management-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Bedrock Prompt Management",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-management.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-temperature-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Temperature",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-temperature-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Temperature",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-top-p-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Top-p sampling",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-top-p-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Top-p sampling",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-top-k-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Top-k sampling",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-top-k-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Top-k sampling",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-human-evaluation-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Human evaluation",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-human-evaluation-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Human evaluation",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-automatic-evaluation-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Automatic evaluation",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-automatic-evaluation-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Automatic evaluation",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-benchmark-dataset-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Benchmark dataset",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-benchmark-dataset-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Benchmark dataset",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-rouge-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: ROUGE",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-rouge-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: ROUGE",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-bleu-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: BLEU",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-bleu-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: BLEU",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-bertscore-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: BERTScore",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-bertscore-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: BERTScore",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-llm-as-judge-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: LLM-as-a-judge",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-llm-as-judge-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: LLM-as-a-judge",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-business-alignment-metrics-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Business objective alignment metrics",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-business-alignment-metrics-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Business objective alignment metrics",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-fairness-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Fairness",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-fairness-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Fairness",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-transparency-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Transparency",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-transparency-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Transparency",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-explainability-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Explainability",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-explainability-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Explainability",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-privacy-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Privacy",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-privacy-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Privacy",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-robustness-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Robustness",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-robustness-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Robustness",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-controllability-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Controllability",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-controllability-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Controllability",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-veracity-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Veracity",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-veracity-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Veracity",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-intellectual-property-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Intellectual property safeguards",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-intellectual-property-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Intellectual property safeguards",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-ai-governance-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AI governance",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-ai-governance-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AI governance",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-sagemaker-clarify-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: SageMaker Clarify",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-configure-processing-jobs.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-sagemaker-clarify-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: SageMaker Clarify",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-configure-processing-jobs.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-sagemaker-model-cards-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: SageMaker Model Cards",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-sagemaker-model-cards-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: SageMaker Model Cards",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-human-centered-explainability-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Human-centered explainability",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-human-centered-explainability-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Human-centered explainability",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-iam-least-privilege-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: IAM least privilege",
+        "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-iam-least-privilege-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: IAM least privilege",
+        "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-sse-s3-object-access-scenario",
+    "status": "conflicted",
+    "reason": "The source answer required AWS KMS decrypt permission, but SSE-S3 uses Amazon S3 managed keys. Reading the object requires s3:GetObject; no separate KMS decrypt permission is required.",
+    "sourceClaim": "Grant AWS KMS decrypt permission to read objects encrypted with SSE-S3.",
+    "proof": [
+      {
+        "title": "AWS documentation: s3:GetObject permission on the objects",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/kb-permissions.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-sse-s3-object-access-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: s3:GetObject permission on the objects",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/kb-permissions.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-kms-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Key Management Service (AWS KMS)",
+        "url": "https://docs.aws.amazon.com/kms/latest/developerguide/overview.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-kms-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Key Management Service (AWS KMS)",
+        "url": "https://docs.aws.amazon.com/kms/latest/developerguide/overview.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-amazon-macie-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Macie",
+        "url": "https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-amazon-macie-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Macie",
+        "url": "https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-privatelink-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS PrivateLink",
+        "url": "https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-privatelink-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS PrivateLink",
+        "url": "https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-shared-responsibility-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS shared responsibility model",
+        "url": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-shared-responsibility-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS shared responsibility model",
+        "url": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-prompt-injection-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Prompt injection",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-prompt-injection-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Prompt injection",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-data-leakage-prevention-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Data leakage prevention",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-data-leakage-prevention-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Data leakage prevention",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-bedrock-guardrails-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Bedrock Guardrails",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-bedrock-guardrails-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Bedrock Guardrails",
+        "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-cloudtrail-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS CloudTrail",
+        "url": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-cloudtrail-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS CloudTrail",
+        "url": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-amazon-cloudwatch-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon CloudWatch",
+        "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-amazon-cloudwatch-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon CloudWatch",
+        "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-config-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Config",
+        "url": "https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-config-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Config",
+        "url": "https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-amazon-inspector-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Inspector",
+        "url": "https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-amazon-inspector-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Inspector",
+        "url": "https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-trusted-advisor-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Trusted Advisor",
+        "url": "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-trusted-advisor-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Trusted Advisor",
+        "url": "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-artifact-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Artifact",
+        "url": "https://docs.aws.amazon.com/artifact/latest/ug/what-is-aws-artifact.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-artifact-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Artifact",
+        "url": "https://docs.aws.amazon.com/artifact/latest/ug/what-is-aws-artifact.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-audit-manager-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Audit Manager",
+        "url": "https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-audit-manager-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Audit Manager",
+        "url": "https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-data-lineage-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Data lineage",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-data-lineage-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Data lineage",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-data-lifecycle-governance-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Data lifecycle governance",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-data-lifecycle-governance-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Data lifecycle governance",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-agentcore-identity-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Bedrock AgentCore Identity",
+        "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-agentcore-identity-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Amazon Bedrock AgentCore Identity",
+        "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-agentcore-policy-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Policy in Amazon Bedrock AgentCore",
+        "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-agentcore-policy-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: Policy in Amazon Bedrock AgentCore",
+        "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-rag-grounding-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: RAG grounding",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-rag-grounding-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: RAG grounding",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-lake-formation-scenario",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Lake Formation",
+        "url": "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d5-aws-lake-formation-definition",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AWS documentation: AWS Lake Formation",
+        "url": "https://docs.aws.amazon.com/lake-formation/latest/dg/what-is-lake-formation.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d4-0001",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "Amazon SageMaker Clarify partial dependence plots",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-partial-dependence-plots.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d2-0001",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AIF-C01 Domain 2: Fundamentals of Generative AI",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d3-0001",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "AIF-C01 Domain 3: Applications of Foundation Models",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  },
+  {
+    "questionId": "aif-d1-0001",
+    "status": "verified",
+    "reason": "The app answer is supported by the linked official AWS documentation.",
+    "proof": [
+      {
+        "title": "What is Amazon Comprehend?",
+        "url": "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      },
+      {
+        "title": "What is Amazon Rekognition?",
+        "url": "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      },
+      {
+        "title": "What is Amazon Transcribe?",
+        "url": "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      },
+      {
+        "title": "What is Amazon Polly?",
+        "url": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ]
+  }
+]

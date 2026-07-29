@@ -31,6 +31,23 @@ export interface VerificationRef {
   verifiedOn: string;
 }
 
+export interface PracticeExam {
+  id: number;
+  title: string;
+  version: number;
+  questionIds: string[];
+}
+
+export type ReviewStatus = "verified" | "unverified" | "conflicted";
+
+export interface QuestionReview {
+  questionId: string;
+  status: ReviewStatus;
+  reason: string;
+  proof: VerificationRef[];
+  sourceClaim?: string;
+}
+
 export interface QuestionBase {
   id: string;
   origin: "source-derived" | "official-addition";
@@ -127,6 +144,8 @@ export interface AppContent {
   questions: Question[];
   videos: SourceVideo[];
   cheatSheet: CheatSheetEntry[];
+  exams: PracticeExam[];
+  reviews: QuestionReview[];
 }
 
 export interface GroupScore {
