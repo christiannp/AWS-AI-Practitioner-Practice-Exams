@@ -184,6 +184,26 @@ describe("daily phone flow", () => {
         '[data-item-id="prepare"][data-order-action="down"]'
       )
     );
+
+    const moveToStart = root.querySelector<HTMLButtonElement>(
+      '[data-item-id="prepare"][data-order-action="up"]'
+    )!;
+    moveToStart.click();
+    expect(document.activeElement).toBe(
+      root.querySelector(
+        '[data-item-id="prepare"][data-order-action="down"]'
+      )
+    );
+
+    const moveToEnd = root.querySelector<HTMLButtonElement>(
+      '[data-item-id="evaluate"][data-order-action="down"]'
+    )!;
+    moveToEnd.click();
+    expect(document.activeElement).toBe(
+      root.querySelector(
+        '[data-item-id="evaluate"][data-order-action="up"]'
+      )
+    );
   });
 
   it("restores the exact radio, checkbox, and matching control after autosave rerenders", async () => {

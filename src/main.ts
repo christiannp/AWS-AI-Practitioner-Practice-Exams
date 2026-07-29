@@ -304,12 +304,26 @@ export async function bootApp(
     return questionMap.get(active.questionIds[active.currentIndex] ?? "");
   };
 
-  const renderAndRestoreFocus = (focusKey: string | undefined): void => {
+  const renderAndRestoreFocus = (
+    focusKey: string | undefined,
+    fallbackFocusKey?: string
+  ): void => {
     render();
     if (!focusKey) return;
-    [...root.querySelectorAll<HTMLElement>("[data-focus-key]")]
-      .find((control) => control.dataset.focusKey === focusKey)
-      ?.focus({ preventScroll: true });
+    const controls = [
+      ...root.querySelectorAll<HTMLElement>("[data-focus-key]")
+    ];
+    const exact = controls.find(
+      (control) => control.dataset.focusKey === focusKey
+    );
+    const exactIsDisabled =
+      exact instanceof HTMLButtonElement && exact.disabled;
+    const target = exactIsDisabled
+      ? controls.find(
+          (control) => control.dataset.focusKey === fallbackFocusKey
+        )
+      : exact;
+    target?.focus({ preventScroll: true });
   };
 
   const clickHandler = (event: MouseEvent): void => {
@@ -346,7 +360,12 @@ export async function bootApp(
           ...session,
           answers: { ...session.answers, [question.id]: current }
         }));
-        renderAndRestoreFocus(orderButton.dataset.focusKey);
+        const oppositeDirection =
+          orderButton.dataset.orderAction === "up" ? "down" : "up";
+        renderAndRestoreFocus(
+          orderButton.dataset.focusKey,
+          `order:${question.id}:${orderButton.dataset.itemId ?? ""}:${oppositeDirection}`
+        );
       }
       return;
     }
