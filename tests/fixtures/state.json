@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "settings": {
+    "targetDate": "2026-08-31"
+  },
+  "attempts": {
+    "fixture-mc": [
+      {
+        "questionId": "fixture-mc",
+        "answer": "a",
+        "correct": false,
+        "completedAt": "2026-07-29T08:00:00.000Z"
+      }
+    ]
+  },
+  "mastery": {
+    "fixture-choice": {
+      "score": 0.15,
+      "successStreak": 0,
+      "dueOn": "2026-07-30"
+    }
+  },
+  "sessions": [],
+  "inProgress": {
+    "id": "daily-2026-07-29",
+    "mode": "daily",
+    "questionIds": ["fixture-mc", "fixture-mr"],
+    "answers": {
+      "fixture-mc": "a",
+      "fixture-mr": ["a", "c"]
+    },
+    "currentIndex": 1
+  }
+}
