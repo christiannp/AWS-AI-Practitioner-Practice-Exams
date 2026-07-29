@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import audit from "../public/data/source-audit.json";
+import cheatSheet from "../public/data/cheat-sheet.json";
+import questions from "../public/data/questions.json";
 import videos from "../public/data/source-videos.json";
 import {
   fingerprintQuestion,
@@ -49,6 +51,63 @@ describe("source audit", () => {
           entry.reason.length > 0 &&
           entry.videoId.length > 0 &&
           entry.timestampSeconds >= 0
+      )
+    ).toBe(true);
+  });
+});
+
+describe("verified content bank", () => {
+  it("has unique IDs, normalized prompts, and semantic fingerprints", () => {
+    const ids = questions.map((question) => question.id);
+    const prompts = questions.map((question) =>
+      normalizeText(question.prompt)
+    );
+    const fingerprints = questions.map((question) => question.fingerprint);
+
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(new Set(prompts).size).toBe(prompts.length);
+    expect(new Set(fingerprints).size).toBe(fingerprints.length);
+  });
+
+  it("ships only explained questions with dated HTTPS verification", () => {
+    expect(questions.length).toBeGreaterThanOrEqual(4);
+    expect(
+      questions.every(
+        (question) =>
+          question.explanation.length > 0 &&
+          question.concepts.length > 0 &&
+          question.sources.length > 0 &&
+          question.verification.length > 0 &&
+          question.verification.every(
+            (source) =>
+              source.url.startsWith("https://") &&
+              source.verifiedOn >= "2026-07-29"
+          )
+      )
+    ).toBe(true);
+  });
+
+  it("includes all four current AIF-C01 interaction formats", () => {
+    expect(new Set(questions.map((question) => question.type))).toEqual(
+      new Set([
+        "multiple-choice",
+        "multiple-response",
+        "ordering",
+        "matching"
+      ])
+    );
+  });
+
+  it("gives every domain at least one cheat-sheet memory hook", () => {
+    expect(new Set(cheatSheet.map((entry) => entry.domain))).toEqual(
+      new Set([1, 2, 3, 4, 5])
+    );
+    expect(
+      cheatSheet.every(
+        (entry) =>
+          entry.memoryHook.length > 0 &&
+          entry.facts.length > 0 &&
+          entry.sourceUrl.startsWith("https://")
       )
     ).toBe(true);
   });

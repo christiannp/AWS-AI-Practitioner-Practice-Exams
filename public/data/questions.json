@@ -1,0 +1,272 @@
+[
+  {
+    "id": "aif-d4-0001",
+    "type": "multiple-choice",
+    "prompt": "A retailer uses a forecasting model. Stakeholders need a global view of how changes in one input feature affect predictions while averaging over other features. Which visualization should the AI practitioner use?",
+    "domain": 4,
+    "task": "4.2",
+    "difficulty": "exam",
+    "concepts": [
+      "explainability",
+      "partial-dependence-plot"
+    ],
+    "services": [
+      "Amazon SageMaker Clarify"
+    ],
+    "options": [
+      {
+        "id": "a",
+        "text": "A model convergence table",
+        "distractorReason": "A convergence table describes optimization behavior, not how a feature influences predictions."
+      },
+      {
+        "id": "b",
+        "text": "A partial dependence plot"
+      },
+      {
+        "id": "c",
+        "text": "A sample of the training records",
+        "distractorReason": "Sample records show inputs but do not summarize the feature-to-prediction relationship."
+      },
+      {
+        "id": "d",
+        "text": "The model training source code",
+        "distractorReason": "Source code does not provide stakeholders with the requested global feature-effect visualization."
+      }
+    ],
+    "correctId": "b",
+    "explanation": "A partial dependence plot shows the average effect of a feature on a model's predictions, which supports global model explainability.",
+    "sources": [
+      {
+        "playlistId": "PLMdFrZK3uZdev_uAoHZj-6lO55erQ6zd_",
+        "videoId": "yrkju-Ch7ME",
+        "videoTitle": "AWS AI Certification Questions AIF-C01 | Part -01 | @ITIndia50",
+        "url": "https://www.youtube.com/watch?v=yrkju-Ch7ME&list=PLMdFrZK3uZdev_uAoHZj-6lO55erQ6zd_&t=32s",
+        "questionNumber": 1,
+        "timestampSeconds": 32
+      }
+    ],
+    "verification": [
+      {
+        "title": "Amazon SageMaker Clarify partial dependence plots",
+        "url": "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-partial-dependence-plots.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ],
+    "fingerprint": "19e12a42ce14ffaffe6f67cb6578cb07745746e7cb03d90d9cb44a56b5e3ebd6"
+  },
+  {
+    "id": "aif-d2-0001",
+    "type": "multiple-response",
+    "prompt": "Which TWO limitations of generative AI should a company plan to mitigate when deploying a customer-facing application?",
+    "domain": 2,
+    "task": "2.2",
+    "difficulty": "foundation",
+    "concepts": [
+      "generative-ai-limitations",
+      "hallucinations",
+      "prompt-sensitivity"
+    ],
+    "services": [],
+    "options": [
+      {
+        "id": "a",
+        "text": "The model can produce plausible but factually incorrect output."
+      },
+      {
+        "id": "b",
+        "text": "The model always produces the same response for a prompt.",
+        "distractorReason": "Generative models can be nondeterministic; identical prompts do not guarantee identical responses."
+      },
+      {
+        "id": "c",
+        "text": "Small prompt changes can materially change the response."
+      },
+      {
+        "id": "d",
+        "text": "The model can answer only questions seen verbatim during training.",
+        "distractorReason": "Foundation models generalize beyond exact training examples, although their outputs still require evaluation."
+      },
+      {
+        "id": "e",
+        "text": "The model automatically verifies every claim against an authoritative source.",
+        "distractorReason": "Claim verification is not automatic and must be added through grounding, validation, or human review."
+      }
+    ],
+    "correctIds": [
+      "a",
+      "c"
+    ],
+    "explanation": "Hallucinated output and sensitivity to prompt wording are recognized generative AI limitations. Production systems should use grounding, evaluation, guardrails, and human oversight as appropriate.",
+    "sources": [
+      {
+        "playlistId": "PLwRKAmP13yer3GDXZlAXt20u7qp9U6fBf",
+        "videoId": "b7m5BOwufLI",
+        "videoTitle": "Part-19 (451 - 475) | AWS AI Practitioner(AIF-C01) Practice Exam Questions with Answers | Exam Prep",
+        "url": "https://www.youtube.com/watch?v=b7m5BOwufLI&list=PLwRKAmP13yer3GDXZlAXt20u7qp9U6fBf"
+      }
+    ],
+    "verification": [
+      {
+        "title": "AIF-C01 Domain 2: Fundamentals of Generative AI",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ],
+    "fingerprint": "40168e838e51d8adc9cdeee7192e9d3986e3998d9837af502c6f690794f0b119"
+  },
+  {
+    "id": "aif-d3-0001",
+    "type": "ordering",
+    "prompt": "Arrange these foundation model lifecycle activities in the most appropriate order for adapting a selected model to a business use case.",
+    "domain": 3,
+    "task": "3.3",
+    "difficulty": "foundation",
+    "concepts": [
+      "foundation-model-lifecycle",
+      "fine-tuning",
+      "evaluation",
+      "deployment"
+    ],
+    "services": [
+      "Amazon Bedrock",
+      "Amazon SageMaker AI"
+    ],
+    "items": [
+      {
+        "id": "select",
+        "text": "Select a suitable foundation model"
+      },
+      {
+        "id": "adapt",
+        "text": "Adapt or fine-tune the model when required"
+      },
+      {
+        "id": "evaluate",
+        "text": "Evaluate the model against business criteria"
+      },
+      {
+        "id": "deploy",
+        "text": "Deploy the approved model"
+      }
+    ],
+    "correctOrder": [
+      "select",
+      "adapt",
+      "evaluate",
+      "deploy"
+    ],
+    "explanation": "Model selection precedes optional adaptation. The resulting model must be evaluated against the use case before it is approved for deployment.",
+    "sources": [
+      {
+        "playlistId": "PLwRKAmP13yer3GDXZlAXt20u7qp9U6fBf",
+        "videoId": "b7m5BOwufLI",
+        "videoTitle": "Part-19 (451 - 475) | AWS AI Practitioner(AIF-C01) Practice Exam Questions with Answers | Exam Prep",
+        "url": "https://www.youtube.com/watch?v=b7m5BOwufLI&list=PLwRKAmP13yer3GDXZlAXt20u7qp9U6fBf"
+      }
+    ],
+    "verification": [
+      {
+        "title": "AIF-C01 Domain 3: Applications of Foundation Models",
+        "url": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ],
+    "fingerprint": "cd6262abef5e04844c22658c1cc5d37e1ccf3a468d00c97f8c832538b39497bf"
+  },
+  {
+    "id": "aif-d1-0001",
+    "type": "matching",
+    "prompt": "Match each managed AWS AI service to its primary capability.",
+    "domain": 1,
+    "task": "1.2",
+    "difficulty": "foundation",
+    "concepts": [
+      "aws-ai-services",
+      "comprehend",
+      "rekognition",
+      "transcribe",
+      "polly"
+    ],
+    "services": [
+      "Amazon Comprehend",
+      "Amazon Rekognition",
+      "Amazon Transcribe",
+      "Amazon Polly"
+    ],
+    "prompts": [
+      {
+        "id": "text",
+        "text": "Analyze entities, key phrases, and sentiment in text"
+      },
+      {
+        "id": "image",
+        "text": "Analyze images and videos"
+      },
+      {
+        "id": "speech-to-text",
+        "text": "Convert speech to text"
+      },
+      {
+        "id": "text-to-speech",
+        "text": "Convert text to lifelike speech"
+      }
+    ],
+    "targets": [
+      {
+        "id": "comprehend",
+        "text": "Amazon Comprehend"
+      },
+      {
+        "id": "rekognition",
+        "text": "Amazon Rekognition"
+      },
+      {
+        "id": "transcribe",
+        "text": "Amazon Transcribe"
+      },
+      {
+        "id": "polly",
+        "text": "Amazon Polly"
+      }
+    ],
+    "correctMatches": {
+      "text": "comprehend",
+      "image": "rekognition",
+      "speech-to-text": "transcribe",
+      "text-to-speech": "polly"
+    },
+    "explanation": "Comprehend analyzes natural-language text, Rekognition analyzes image and video content, Transcribe performs speech-to-text, and Polly performs text-to-speech.",
+    "sources": [
+      {
+        "playlistId": "PLMdFrZK3uZdev_uAoHZj-6lO55erQ6zd_",
+        "videoId": "VTlZdZHvp3s",
+        "videoTitle": "AWS AI Practitioner Certificate Questions AIF-C01 | Part 02 | AWS Certification | @IT India",
+        "url": "https://www.youtube.com/watch?v=VTlZdZHvp3s&list=PLMdFrZK3uZdev_uAoHZj-6lO55erQ6zd_"
+      }
+    ],
+    "verification": [
+      {
+        "title": "What is Amazon Comprehend?",
+        "url": "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      },
+      {
+        "title": "What is Amazon Rekognition?",
+        "url": "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      },
+      {
+        "title": "What is Amazon Transcribe?",
+        "url": "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      },
+      {
+        "title": "What is Amazon Polly?",
+        "url": "https://docs.aws.amazon.com/polly/latest/dg/what-is.html",
+        "verifiedOn": "2026-07-29"
+      }
+    ],
+    "fingerprint": "e4164a079d1e5ca00b3cc677a40b875406e9287acffc2b9efe2a27842b10b3df"
+  }
+]

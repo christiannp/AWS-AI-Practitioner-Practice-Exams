@@ -1,0 +1,98 @@
+[
+  {
+    "id": "d1-learning-types",
+    "domain": 1,
+    "title": "Learning types",
+    "memoryHook": "Labels teach, clusters discover, rewards steer.",
+    "facts": [
+      "Supervised learning uses labeled examples.",
+      "Unsupervised learning discovers patterns in unlabeled data.",
+      "Reinforcement learning learns actions from rewards and penalties."
+    ],
+    "confusions": [
+      "Classification predicts categories; regression predicts numeric values."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+    "concepts": [
+      "supervised-learning",
+      "unsupervised-learning",
+      "reinforcement-learning"
+    ]
+  },
+  {
+    "id": "d2-embeddings",
+    "domain": 2,
+    "title": "Embeddings",
+    "memoryHook": "Meaning becomes coordinates.",
+    "facts": [
+      "Embeddings represent semantic information as numeric vectors.",
+      "Semantically similar content tends to have nearby vectors."
+    ],
+    "confusions": [
+      "Tokenization splits input; embedding maps content into vector space."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+    "concepts": [
+      "embeddings",
+      "vectors",
+      "semantic-search"
+    ]
+  },
+  {
+    "id": "d3-rag-finetuning",
+    "domain": 3,
+    "title": "RAG versus fine-tuning",
+    "memoryHook": "RAG supplies facts; fine-tuning shapes behavior.",
+    "facts": [
+      "Retrieval augmented generation adds relevant external context at inference time.",
+      "Fine-tuning changes model behavior by training on task-specific examples."
+    ],
+    "confusions": [
+      "Use RAG for changing private knowledge; do not fine-tune merely to inject frequently changing facts."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+    "concepts": [
+      "rag",
+      "fine-tuning"
+    ]
+  },
+  {
+    "id": "d4-responsible-ai",
+    "domain": 4,
+    "title": "Responsible AI",
+    "memoryHook": "Fair, explainable, private, safe, controlled.",
+    "facts": [
+      "Responsible AI includes fairness, explainability, privacy, safety, controllability, veracity, and governance."
+    ],
+    "confusions": [
+      "Transparency communicates how a system is built and used; explainability helps people understand model behavior."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+    "concepts": [
+      "responsible-ai",
+      "explainability",
+      "transparency"
+    ]
+  },
+  {
+    "id": "d5-security",
+    "domain": 5,
+    "title": "Security service compass",
+    "memoryHook": "IAM grants, KMS encrypts, CloudTrail records.",
+    "facts": [
+      "AWS IAM controls identities and permissions.",
+      "AWS KMS manages encryption keys.",
+      "AWS CloudTrail records API activity for auditing."
+    ],
+    "confusions": [
+      "Amazon Macie discovers sensitive data in Amazon S3; it is not an identity service."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+    "concepts": [
+      "iam",
+      "kms",
+      "cloudtrail",
+      "macie"
+    ]
+  }
+]

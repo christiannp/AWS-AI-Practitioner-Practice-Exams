@@ -1,0 +1,12 @@
+AWS AIF-C01 SOURCE ANSWER CORRECTIONS
+Verified against current authoritative documentation.
+
+Entry format:
+Source:
+Question location:
+Question summary:
+Source stated:
+Verified answer:
+Why:
+Verification:
+Verified on:
