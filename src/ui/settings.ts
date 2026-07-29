@@ -61,7 +61,7 @@ export function renderSettings(
       </article>
 
       ${
-        context.recoveryPayload
+        context.recoveryPayload !== undefined
           ? `<article class="settings-card warning-card">
               <div>
                 <p class="eyebrow">Recovery</p>

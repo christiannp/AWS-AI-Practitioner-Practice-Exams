@@ -158,6 +158,34 @@ describe("daily phone flow", () => {
     expect(root.textContent).not.toContain("Correct answer");
   });
 
+  it("restores the changed ordering button after moving an item", async () => {
+    const storage = new MemoryStorage();
+    const state = emptyState();
+    state.inProgress = {
+      id: "ordering-focus",
+      mode: "daily",
+      questionIds: ["fixture-ordering"],
+      answers: {},
+      currentIndex: 0
+    };
+    saveState(storage, state);
+    window.history.replaceState(null, "", "#/practice");
+    const root = document.querySelector<HTMLElement>("#app")!;
+    app = await bootApp(root, { content, storage, now: fixedNow });
+
+    const move = root.querySelector<HTMLButtonElement>(
+      '[data-item-id="prepare"][data-order-action="down"]'
+    )!;
+    move.focus();
+    move.click();
+
+    expect(document.activeElement).toBe(
+      root.querySelector(
+        '[data-item-id="prepare"][data-order-action="down"]'
+      )
+    );
+  });
+
   it("restores the exact radio, checkbox, and matching control after autosave rerenders", async () => {
     const storage = new MemoryStorage();
     const state = emptyState();
@@ -362,6 +390,60 @@ describe("library, cheat sheet, and settings", () => {
     }
   );
 
+  it.each([
+    ["daily", '[data-action="start-daily"]'],
+    ["mock", '[data-action="start-mock"]'],
+    ["source", '[data-action="start-source"]']
+  ])(
+    "keeps saved answers when the %s replacement confirmation is cancelled",
+    async (mode, action) => {
+      const guardedQuestions = Array.from({ length: 70 }, (_, index) => ({
+        ...questions[index % questions.length]!,
+        id: `cancel-${index}`,
+        prompt: `Cancellation fixture ${index} keeps unique verified wording.`,
+        fingerprint: `cancel-${index}`,
+        sources: [
+          {
+            playlistId: "fixture",
+            videoId: "source-video",
+            videoTitle: "Fixture source video",
+            url: "https://www.youtube.com/watch?v=source-video"
+          }
+        ]
+      }));
+      const storage = new MemoryStorage();
+      const state = emptyState();
+      state.inProgress = {
+        id: "keep-cancelled-session",
+        mode: "daily",
+        questionIds: [guardedQuestions[0]!.id],
+        answers: { [guardedQuestions[0]!.id]: "a" },
+        currentIndex: 0
+      };
+      saveState(storage, state);
+      const confirm = vi.spyOn(window, "confirm").mockReturnValue(false);
+      const root = document.querySelector<HTMLElement>("#app")!;
+      app = await bootApp(root, {
+        content: { ...content, questions: guardedQuestions },
+        storage,
+        now: fixedNow
+      });
+
+      if (mode !== "daily") app.navigate("library");
+      if (mode === "source") {
+        const source = root.querySelector<HTMLSelectElement>(
+          '[data-library-filter="source"]'
+        )!;
+        source.value = "source-video";
+        source.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+      click(action);
+
+      expect(confirm).toHaveBeenCalledTimes(1);
+      expect(loadState(storage).state.inProgress).toEqual(state.inProgress);
+    }
+  );
+
   it("refreshes the local day when date-sensitive UI rerenders after midnight", async () => {
     let current = new Date(2026, 6, 29, 23, 59);
     const storage = new MemoryStorage();
@@ -440,5 +522,18 @@ describe("library, cheat sheet, and settings", () => {
     click('[data-action="discard-recovery"]');
     expect(root.textContent).not.toContain("Unrecognized local data");
     expect(storage.getItem(RECOVERY_KEY)).toBeNull();
+  });
+
+  it("shows recovery actions for an empty corrupt payload", async () => {
+    const storage = new MemoryStorage();
+    storage.setItem(STORAGE_KEY, "");
+    const root = document.querySelector<HTMLElement>("#app")!;
+    app = await bootApp(root, { content, storage, now: fixedNow });
+
+    app.navigate("settings");
+
+    expect(root.textContent).toContain("Unrecognized local data");
+    expect(root.querySelector('[data-action="download-recovery"]')).not.toBeNull();
+    expect(root.querySelector('[data-action="discard-recovery"]')).not.toBeNull();
   });
 });

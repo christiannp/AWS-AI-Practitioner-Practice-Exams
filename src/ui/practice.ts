@@ -70,11 +70,15 @@ function orderingControl(
               <span class="order-actions">
                 <button type="button" data-order-action="up" data-item-id="${escapeHtml(
                   id
+                )}" data-focus-key="${escapeHtml(
+                  `order:${question.id}:${id}:up`
                 )}" ${index === 0 ? "disabled" : ""} aria-label="Move ${escapeHtml(
                   item?.text ?? id
                 )} up">↑</button>
                 <button type="button" data-order-action="down" data-item-id="${escapeHtml(
                   id
+                )}" data-focus-key="${escapeHtml(
+                  `order:${question.id}:${id}:down`
                 )}" ${index === order.length - 1 ? "disabled" : ""} aria-label="Move ${escapeHtml(
                   item?.text ?? id
                 )} down">↓</button>

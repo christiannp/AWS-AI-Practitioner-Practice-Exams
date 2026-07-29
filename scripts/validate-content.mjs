@@ -437,14 +437,20 @@ for (const entry of audit) {
   }
 }
 
+for (const entry of cheatSheet) {
+  requireValue(
+    isOfficialAwsDocumentationUrl(entry.sourceUrl),
+    `${entry.id}: cheat-sheet source URL must use an approved official authority URL`
+  );
+}
+
 for (const domain of [1, 2, 3, 4, 5]) {
   requireValue(
     cheatSheet.some(
       (entry) =>
         entry.domain === domain &&
         entry.memoryHook?.length > 0 &&
-        entry.facts?.length > 0 &&
-        isOfficialAwsDocumentationUrl(entry.sourceUrl)
+        entry.facts?.length > 0
     ),
     `Cheat sheet has no valid entry for Domain ${domain}`
   );

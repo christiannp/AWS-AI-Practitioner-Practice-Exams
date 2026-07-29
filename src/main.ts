@@ -346,7 +346,7 @@ export async function bootApp(
           ...session,
           answers: { ...session.answers, [question.id]: current }
         }));
-        render();
+        renderAndRestoreFocus(orderButton.dataset.focusKey);
       }
       return;
     }
@@ -420,13 +420,19 @@ export async function bootApp(
         exportState(state),
         "application/json"
       );
-    } else if (action === "download-recovery" && context.recoveryPayload) {
+    } else if (
+      action === "download-recovery" &&
+      context.recoveryPayload !== undefined
+    ) {
       triggerDownload(
         `aws-aif-recovery-${today()}.txt`,
         context.recoveryPayload,
         "text/plain"
       );
-    } else if (action === "discard-recovery" && context.recoveryPayload) {
+    } else if (
+      action === "discard-recovery" &&
+      context.recoveryPayload !== undefined
+    ) {
       if (
         window.confirm(
           "Discard the preserved corrupt recovery payload? Download it first if you may need it."

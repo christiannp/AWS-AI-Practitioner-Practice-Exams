@@ -8,6 +8,7 @@ import type {
 
 export const STORAGE_KEY = "aws-aif-study-state";
 export const RECOVERY_KEY = "aws-aif-study-state-recovery";
+const protectedPrimaryRecovery = new WeakSet<Storage>();
 
 function defaultState(): LearnerState {
   return {
@@ -164,7 +165,12 @@ export function loadState(storage: Storage): LoadResult {
       error instanceof Error ? error.message : "Invalid local learner state.";
     const recoveryPayload = preservedRecovery ?? payload;
     if (preservedRecovery === undefined) {
-      storage.setItem(RECOVERY_KEY, payload);
+      try {
+        storage.setItem(RECOVERY_KEY, payload);
+        protectedPrimaryRecovery.delete(storage);
+      } catch {
+        protectedPrimaryRecovery.add(storage);
+      }
     }
     return {
       state: defaultState(),
@@ -175,15 +181,19 @@ export function loadState(storage: Storage): LoadResult {
 }
 
 export function saveState(storage: Storage, state: LearnerState): void {
+  if (protectedPrimaryRecovery.has(storage)) return;
   storage.setItem(STORAGE_KEY, exportState(state));
 }
 
 export function resetState(storage: Storage): LearnerState {
-  storage.removeItem(STORAGE_KEY);
+  if (!protectedPrimaryRecovery.has(storage)) {
+    storage.removeItem(STORAGE_KEY);
+  }
   return defaultState();
 }
 
 export function discardRecovery(storage: Storage): void {
+  protectedPrimaryRecovery.delete(storage);
   storage.removeItem(RECOVERY_KEY);
   const payload = storage.getItem(STORAGE_KEY);
   if (payload === null) return;

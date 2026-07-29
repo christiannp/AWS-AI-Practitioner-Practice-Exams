@@ -41,6 +41,15 @@ class MemoryStorage implements Storage {
   }
 }
 
+class RecoveryQuotaStorage extends MemoryStorage {
+  override setItem(key: string, value: string): void {
+    if (key === RECOVERY_KEY) {
+      throw new DOMException("Storage quota exceeded", "QuotaExceededError");
+    }
+    super.setItem(key, value);
+  }
+}
+
 const validState = fixture as LearnerState;
 
 describe("local learner-state persistence", () => {
@@ -99,6 +108,21 @@ describe("local learner-state persistence", () => {
     expect(loadState(storage).recoveryPayload).toBeUndefined();
     expect(storage.getItem(STORAGE_KEY)).toBeNull();
     expect(storage.getItem(RECOVERY_KEY)).toBeNull();
+  });
+
+  it("protects the original corrupt payload when recovery-key persistence exceeds quota", () => {
+    const storage = new RecoveryQuotaStorage();
+    storage.setItem(STORAGE_KEY, "{large corrupt payload");
+
+    const loaded = loadState(storage);
+    expect(loaded.recoveryPayload).toBe("{large corrupt payload");
+
+    saveState(storage, validState);
+    expect(storage.getItem(STORAGE_KEY)).toBe("{large corrupt payload");
+
+    discardRecovery(storage);
+    saveState(storage, validState);
+    expect(loadState(storage).state).toEqual(validState);
   });
 
   it("rejects unsupported versions and structurally invalid imports", () => {
