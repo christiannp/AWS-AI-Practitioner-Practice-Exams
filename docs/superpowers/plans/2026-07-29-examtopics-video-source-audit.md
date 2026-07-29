@@ -1422,7 +1422,11 @@ git commit -m "feat: complete expanded AIF-C01 source audit"
 
 ---
 
-### Task 13: Publish the Verified Branch to the Public GitHub Repository
+### Task 13: Publish the Reviewed Branch to the Public GitHub Repository
+
+Execute this release-only task after Tasks 1–12 pass the broad SDD
+whole-branch review and any final-review fixes are complete. It intentionally
+runs after that review because the user approved review-first publication.
 
 **Files:**
 - No source-file changes expected.
