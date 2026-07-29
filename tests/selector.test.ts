@@ -7,7 +7,10 @@ import {
   selectSourceGroup
 } from "../src/domain/selector";
 
-function makeQuestion(index: number, bucket: string): Question {
+function makeQuestion(
+  index: number,
+  bucket: string
+): Extract<Question, { type: "multiple-choice" }> {
   const domain = ((index % 5) + 1) as 1 | 2 | 3 | 4 | 5;
   return {
     id: `${bucket}-${index}`,
@@ -146,6 +149,54 @@ describe("selectDailyGroup", () => {
     );
     expect(depleted).toHaveLength(10);
   });
+
+  it("recomputes domain counts while replacing overrepresented selections", () => {
+    const weak = Array.from({ length: 13 }, (_, index) => ({
+      ...makeQuestion(index, "weak-one-domain"),
+      domain: 1 as const
+    }));
+    const unseen = Array.from({ length: 7 }, (_, index) => ({
+      ...makeQuestion(index, "unseen-one-domain"),
+      domain: 1 as const
+    }));
+    const review = Array.from({ length: 5 }, (_, index) => ({
+      ...makeQuestion(index, "review-one-domain"),
+      domain: 1 as const
+    }));
+    const alternatives = [
+      { ...makeQuestion(100, "alternative"), domain: 2 as const },
+      { ...makeQuestion(101, "alternative"), domain: 3 as const }
+    ];
+    const bank = [...weak, ...unseen, ...review, ...alternatives];
+    const state: LearnerState = {
+      version: 1,
+      settings: { targetDate: "2026-08-31" },
+      attempts: {},
+      mastery: {},
+      sessions: []
+    };
+    for (const question of [...weak, ...review, ...alternatives]) {
+      state.attempts[question.id] = [
+        {
+          questionId: question.id,
+          answer: "a",
+          correct: true,
+          completedAt: "2026-07-20T08:00:00.000Z"
+        }
+      ];
+      state.mastery[question.concepts[0]!] = question.id.startsWith("weak")
+        ? { score: 0.2, successStreak: 0, dueOn: "2026-07-30" }
+        : question.id.startsWith("review")
+          ? { score: 0.9, successStreak: 4, dueOn: "2026-07-30" }
+          : { score: 0.9, successStreak: 4, dueOn: "2026-09-30" };
+    }
+
+    const group = selectDailyGroup(bank, state, "2026-07-30");
+
+    expect(new Set(group.map((question) => question.domain))).toEqual(
+      new Set([1, 2, 3])
+    );
+  });
 });
 
 describe("other group selectors", () => {
@@ -156,6 +207,36 @@ describe("other group selectors", () => {
     expect(mock).toHaveLength(65);
     expect(new Set(mock.map((question) => question.id)).size).toBe(65);
     expect(selectMock(bank, 65, "commute-1")).toEqual(mock);
+  });
+
+  it("includes every available interaction format in a 65-question mock", () => {
+    const bank: Question[] = Array.from({ length: 70 }, (_, index) =>
+      makeQuestion(index, "formats")
+    );
+    bank[0] = questionsByType(
+      "multiple-response",
+      bank[0]! as Extract<Question, { type: "multiple-choice" }>
+    );
+    bank[1] = questionsByType(
+      "ordering",
+      bank[1]! as Extract<Question, { type: "multiple-choice" }>
+    );
+    bank[2] = questionsByType(
+      "matching",
+      bank[2]! as Extract<Question, { type: "multiple-choice" }>
+    );
+
+    for (const seed of Array.from({ length: 20 }, (_, index) => `format-${index}`)) {
+      const mock = selectMock(bank, 65, seed);
+      expect(new Set(mock.map((question) => question.type))).toEqual(
+        new Set([
+          "multiple-choice",
+          "multiple-response",
+          "ordering",
+          "matching"
+        ])
+      );
+    }
   });
 
   it("selects only questions carrying the requested source provenance", () => {
@@ -172,3 +253,41 @@ describe("other group selectors", () => {
     ).toBe(true);
   });
 });
+
+function questionsByType(
+  type: "multiple-response" | "ordering" | "matching",
+  base: Extract<Question, { type: "multiple-choice" }>
+): Question {
+  const { correctId: _correctId, ...choiceBase } = base;
+  if (type === "multiple-response") {
+    return { ...choiceBase, type, correctIds: ["a", "b"] };
+  }
+  const { options: _options, ...common } = choiceBase;
+  if (type === "ordering") {
+    return {
+      ...common,
+      type,
+      items: [
+        { id: "a", text: "A" },
+        { id: "b", text: "B" },
+        { id: "c", text: "C" }
+      ],
+      correctOrder: ["a", "b", "c"]
+    };
+  }
+  return {
+    ...common,
+    type,
+    prompts: [
+      { id: "a", text: "A" },
+      { id: "b", text: "B" },
+      { id: "c", text: "C" }
+    ],
+    targets: [
+      { id: "1", text: "One" },
+      { id: "2", text: "Two" },
+      { id: "3", text: "Three" }
+    ],
+    correctMatches: { a: "1", b: "2", c: "3" }
+  };
+}

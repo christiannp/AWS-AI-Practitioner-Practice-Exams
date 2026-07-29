@@ -85,6 +85,11 @@ function validateQuestion(question, videoIds) {
     `${question.id}: explanation is required`
   );
   requireValue(
+    !/\bbecause it (?:a|an)\b/i.test(question.explanation ?? "") &&
+      !/\baWS\b/.test(question.explanation ?? ""),
+    `${question.id}: explanation contains a known generated sentence-fragment defect`
+  );
+  requireValue(
     Array.isArray(question.sources) &&
       (question.origin === "official-addition" || question.sources.length > 0),
     `${question.id}: source-derived questions need source provenance`
@@ -112,6 +117,13 @@ function validateQuestion(question, videoIds) {
     requireValue(
       verification.verifiedOn >= "2026-07-29",
       `${question.id}: verification date is stale or missing`
+    );
+  }
+  for (const option of question.options ?? []) {
+    requireValue(
+      !/\bbecause it (?:a|an)\b/i.test(option.distractorReason ?? "") &&
+        !/\baWS\b/.test(option.distractorReason ?? ""),
+      `${question.id}: distractor ${option.id} contains a known generated sentence-fragment defect`
     );
   }
 
@@ -291,13 +303,23 @@ for (const chapter of auditedCourse?.chapters ?? []) {
     Array.isArray(chapter.verification) &&
       chapter.verification.length > 0 &&
       chapter.verification.every(
-        (url) => typeof url === "string" && url.startsWith("https://")
+        (url) => isOfficialAwsDocumentationUrl(url)
       ),
-    `${auditedCourseId}/${chapter.title}: HTTPS verification is required`
+    `${auditedCourseId}/${chapter.title}: verification must use an approved official authority URL`
   );
 }
 
 const rejectedClaims = auditedCourse?.rejectedClaims ?? [];
+for (const rejected of rejectedClaims) {
+  requireValue(
+    Array.isArray(rejected.verification) &&
+      rejected.verification.length > 0 &&
+      rejected.verification.every((url) =>
+        isOfficialAwsDocumentationUrl(url)
+      ),
+    `${auditedCourseId}/rejected claim "${rejected.claim}": verification must use an approved official authority URL`
+  );
+}
 for (const [claim, currentRule] of [
   [
     "The exam duration is 120 minutes.",
@@ -422,7 +444,7 @@ for (const domain of [1, 2, 3, 4, 5]) {
         entry.domain === domain &&
         entry.memoryHook?.length > 0 &&
         entry.facts?.length > 0 &&
-        entry.sourceUrl?.startsWith("https://")
+        isOfficialAwsDocumentationUrl(entry.sourceUrl)
     ),
     `Cheat sheet has no valid entry for Domain ${domain}`
   );

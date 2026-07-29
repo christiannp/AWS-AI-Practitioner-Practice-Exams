@@ -33,6 +33,9 @@ function choiceControl(
                   name="answer-${question.id}"
                   value="${escapeHtml(option.id)}"
                   data-answer-choice
+                  data-focus-key="${escapeHtml(
+                    `choice:${question.id}:${option.id}`
+                  )}"
                   ${selected.has(option.id) ? "checked" : ""}
                 />
                 <span class="choice-letter">${option.id.toUpperCase()}</span>
@@ -99,7 +102,12 @@ function matchingControl(
             (prompt) => `
               <label>
                 <span>${escapeHtml(prompt.text)}</span>
-                <select data-match-prompt="${escapeHtml(prompt.id)}">
+                <select
+                  data-match-prompt="${escapeHtml(prompt.id)}"
+                  data-focus-key="${escapeHtml(
+                    `match:${question.id}:${prompt.id}`
+                  )}"
+                >
                   <option value="">Choose a match</option>
                   ${question.targets
                     .map(

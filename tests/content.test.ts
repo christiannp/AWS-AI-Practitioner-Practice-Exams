@@ -182,6 +182,25 @@ describe("course syllabus audit", () => {
     );
   });
 
+  it("uses official authority URLs for chapters and rejected claims", () => {
+    const course = materials.find(
+      (item) => item.id === "youtube:WZeZZ8_W-M4"
+    );
+
+    expect(
+      course?.chapters.every((chapter) =>
+        chapter.verification.every(isOfficialAwsDocumentationUrl)
+      )
+    ).toBe(true);
+    expect(
+      course?.rejectedClaims.every((claim) =>
+        claim.verification.every(isOfficialAwsDocumentationUrl)
+      )
+    ).toBe(true);
+    expect(isOfficialAwsDocumentationUrl(course?.sourceUrl ?? "")).toBe(false);
+    expect(course?.answerAuthority).toBe(false);
+  });
+
   it("teaches the Lake Formation gap only as an official addition", () => {
     const lakeFormationQuestionIds = [
       "aif-d5-aws-lake-formation-scenario",
@@ -294,9 +313,25 @@ describe("verified content bank", () => {
         (entry) =>
           entry.memoryHook.length > 0 &&
           entry.facts.length > 0 &&
-          entry.sourceUrl.startsWith("https://")
+          isOfficialAwsDocumentationUrl(entry.sourceUrl)
       )
     ).toBe(true);
+  });
+
+  it("contains no known generated sentence-fragment defects", () => {
+    const generatedText = questions.flatMap((question) => [
+      question.explanation,
+      ...("options" in question
+        ? question.options.flatMap((option) => option.distractorReason ?? [])
+        : [])
+    ]);
+
+    expect(generatedText).not.toEqual(
+      expect.arrayContaining([
+        expect.stringMatching(/\bbecause it (?:a|an)\b/i),
+        expect.stringMatching(/\baWS\b/)
+      ])
+    );
   });
 });
 

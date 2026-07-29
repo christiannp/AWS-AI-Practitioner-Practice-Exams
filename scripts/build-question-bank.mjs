@@ -208,10 +208,6 @@ function isService(answer) {
   );
 }
 
-function lowerFirst(value) {
-  return `${value.charAt(0).toLowerCase()}${value.slice(1)}`;
-}
-
 function rotatedDistractors(concept, conceptIndex) {
   const sameDomain = concepts.filter(
     (candidate) =>
@@ -279,15 +275,11 @@ function makeScenarioQuestion(concept, conceptIndex, sourceEntries) {
       ...(choice.key === concept.key
         ? {}
         : {
-            distractorReason: `${choice.answer} ${lowerFirst(
-              choice.definition
-            )} It does not directly satisfy the stated requirement.`
+            distractorReason: `${choice.answer} matches the verified description “${choice.definition}” It does not directly satisfy the stated requirement.`
           })
     })),
     correctId: choices.find((choice) => choice.key === concept.key).optionId,
-    explanation: `${concept.answer} is the best fit because it ${lowerFirst(
-      concept.definition
-    )}`
+    explanation: `${concept.answer} is the best fit for this requirement because its verified description is “${concept.definition}”`
   };
   question.fingerprint = fingerprintQuestion(
     question.prompt,
@@ -318,7 +310,7 @@ function makeDefinitionQuestion(concept, conceptIndex, sourceEntries) {
           })
     })),
     correctId: choices.find((choice) => choice.key === concept.key).optionId,
-    explanation: `${concept.answer} ${lowerFirst(concept.definition)}`,
+    explanation: `${concept.answer} is correct because it matches the verified description “${concept.definition}”`,
   };
   question.fingerprint = fingerprintQuestion(
     question.prompt,

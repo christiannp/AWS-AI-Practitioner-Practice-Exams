@@ -10,7 +10,9 @@ import type {
 import { bootApp, type StudyApp } from "../src/main";
 import {
   loadState,
-  saveState
+  RECOVERY_KEY,
+  saveState,
+  STORAGE_KEY
 } from "../src/state/storage";
 import cheatSheet from "../public/data/cheat-sheet.json";
 import fixtureQuestions from "./fixtures/questions.json";
@@ -156,6 +158,54 @@ describe("daily phone flow", () => {
     expect(root.textContent).not.toContain("Correct answer");
   });
 
+  it("restores the exact radio, checkbox, and matching control after autosave rerenders", async () => {
+    const storage = new MemoryStorage();
+    const state = emptyState();
+    state.inProgress = {
+      id: "focus-controls",
+      mode: "daily",
+      questionIds: ["fixture-mc", "fixture-mr", "fixture-matching"],
+      answers: {},
+      currentIndex: 0
+    };
+    saveState(storage, state);
+    window.history.replaceState(null, "", "#/practice");
+    const root = document.querySelector<HTMLElement>("#app")!;
+    app = await bootApp(root, { content, storage, now: fixedNow });
+
+    const radio = root.querySelector<HTMLInputElement>(
+      'input[data-answer-choice][value="a"]'
+    )!;
+    radio.focus();
+    radio.checked = true;
+    radio.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(document.activeElement).toBe(
+      root.querySelector('input[data-answer-choice][value="a"]')
+    );
+
+    click('[data-action="next-question"]');
+    const checkbox = root.querySelector<HTMLInputElement>(
+      'input[data-answer-choice][value="d"]'
+    )!;
+    checkbox.focus();
+    checkbox.checked = true;
+    checkbox.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(document.activeElement).toBe(
+      root.querySelector('input[data-answer-choice][value="d"]')
+    );
+
+    click('[data-action="next-question"]');
+    const match = root.querySelector<HTMLSelectElement>(
+      '[data-match-prompt="images"]'
+    )!;
+    match.focus();
+    match.value = "Rekognition";
+    match.dispatchEvent(new Event("change", { bubbles: true }));
+    expect(document.activeElement).toBe(
+      root.querySelector('[data-match-prompt="images"]')
+    );
+  });
+
   it("logs a wrong answer once and reveals explanations only in results", async () => {
     const storage = new MemoryStorage();
     const state = emptyState();
@@ -249,5 +299,146 @@ describe("library, cheat sheet, and settings", () => {
     expect(root.querySelector(".reset-confirmation")).not.toBeNull();
     click('[data-action="cancel-reset"]');
     expect(root.querySelector(".reset-confirmation")).toBeNull();
+  });
+
+  it.each([
+    ["daily", '[data-action="start-daily"]'],
+    ["mock", '[data-action="start-mock"]'],
+    ["source", '[data-action="start-source"]']
+  ])(
+    "guards replacement from the %s launch with one confirmation",
+    async (mode, action) => {
+      const guardedQuestions = Array.from({ length: 70 }, (_, index) => ({
+        ...questions[index % questions.length]!,
+        id: `guard-${index}`,
+        prompt: `Guard fixture ${index} keeps a unique verified question.`,
+        fingerprint: `guard-${index}`,
+        sources: [
+          {
+            playlistId: "fixture",
+            videoId: "source-video",
+            videoTitle: "Fixture source video",
+            url: "https://www.youtube.com/watch?v=source-video"
+          }
+        ]
+      }));
+      const storage = new MemoryStorage();
+      const state = emptyState();
+      state.inProgress = {
+        id: "keep-this-session",
+        mode: "daily",
+        questionIds: [guardedQuestions[0]!.id],
+        answers: { [guardedQuestions[0]!.id]: "a" },
+        currentIndex: 0
+      };
+      saveState(storage, state);
+      const confirm = vi.spyOn(window, "confirm").mockReturnValue(true);
+      const root = document.querySelector<HTMLElement>("#app")!;
+      app = await bootApp(root, {
+        content: { ...content, questions: guardedQuestions },
+        storage,
+        now: fixedNow
+      });
+
+      if (mode !== "daily") app.navigate("library");
+      if (mode === "source") {
+        const source = root.querySelector<HTMLSelectElement>(
+          '[data-library-filter="source"]'
+        )!;
+        source.value = "source-video";
+        source.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+      click(action);
+
+      expect(confirm).toHaveBeenCalledTimes(1);
+      expect(confirm.mock.calls[0]?.[0]).toMatch(/in-progress|saved answers/i);
+      expect(loadState(storage).state.inProgress).toMatchObject({
+        mode,
+        answers: {}
+      });
+      expect(loadState(storage).state.inProgress?.id).not.toBe(
+        state.inProgress.id
+      );
+    }
+  );
+
+  it("refreshes the local day when date-sensitive UI rerenders after midnight", async () => {
+    let current = new Date(2026, 6, 29, 23, 59);
+    const storage = new MemoryStorage();
+    const state = emptyState();
+    state.settings.targetDate = "2026-07-31";
+    saveState(storage, state);
+    const root = document.querySelector<HTMLElement>("#app")!;
+    app = await bootApp(root, {
+      content,
+      storage,
+      now: () => current
+    });
+
+    expect(root.querySelector(".quick-stats strong")?.textContent).toBe("2");
+    current = new Date(2026, 6, 30, 0, 1);
+    app.render();
+    expect(root.querySelector(".quick-stats strong")?.textContent).toBe("1");
+  });
+
+  it("offers an accessible download for the complete detailed error report", async () => {
+    const storage = new MemoryStorage();
+    const state = emptyState();
+    state.attempts["fixture-mc"] = [
+      {
+        questionId: "fixture-mc",
+        answer: "a",
+        correct: false,
+        completedAt: "2026-07-29T08:00:00.000Z"
+      }
+    ];
+    saveState(storage, state);
+    Object.defineProperty(URL, "createObjectURL", {
+      configurable: true,
+      value: () => ""
+    });
+    Object.defineProperty(URL, "revokeObjectURL", {
+      configurable: true,
+      value: () => {}
+    });
+    const createObjectURL = vi
+      .spyOn(URL, "createObjectURL")
+      .mockReturnValue("blob:learner-errors");
+    vi.spyOn(URL, "revokeObjectURL").mockImplementation(() => {});
+    vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+    const root = document.querySelector<HTMLElement>("#app")!;
+    app = await bootApp(root, { content, storage, now: fixedNow });
+
+    app.navigate("settings");
+    const download = [...root.querySelectorAll<HTMLButtonElement>("button")]
+      .find((button) => button.textContent?.match(/detailed error report/i));
+    expect(download).toBeDefined();
+    download!.click();
+
+    expect(createObjectURL).toHaveBeenCalledTimes(1);
+  });
+
+  it("keeps corrupt recovery through saves and reloads until explicit discard", async () => {
+    const storage = new MemoryStorage();
+    storage.setItem(STORAGE_KEY, "{broken progress");
+    const root = document.querySelector<HTMLElement>("#app")!;
+    app = await bootApp(root, { content, storage, now: fixedNow });
+
+    app.navigate("settings");
+    expect(root.textContent).toContain("Unrecognized local data");
+    const date = root.querySelector<HTMLInputElement>("[data-target-date]")!;
+    date.value = "2026-08-30";
+    date.dispatchEvent(new Event("change", { bubbles: true }));
+    app.destroy();
+
+    app = await bootApp(root, { content, storage, now: fixedNow });
+    app.navigate("settings");
+    expect(root.textContent).toContain("Unrecognized local data");
+    expect(storage.getItem(RECOVERY_KEY)).toBe("{broken progress");
+
+    vi.spyOn(window, "confirm").mockReturnValue(true);
+    click('[data-action="discard-recovery"]');
+    expect(root.textContent).not.toContain("Unrecognized local data");
+    expect(storage.getItem(RECOVERY_KEY)).toBeNull();
   });
 });

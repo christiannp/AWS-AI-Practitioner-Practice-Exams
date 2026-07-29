@@ -7,6 +7,7 @@ import type {
 } from "../data/types";
 
 export const STORAGE_KEY = "aws-aif-study-state";
+export const RECOVERY_KEY = "aws-aif-study-state-recovery";
 
 function defaultState(): LearnerState {
   return {
@@ -141,16 +142,33 @@ export function exportState(state: LearnerState): string {
 
 export function loadState(storage: Storage): LoadResult {
   const payload = storage.getItem(STORAGE_KEY);
-  if (payload === null) return { state: defaultState() };
+  const preservedRecovery = storage.getItem(RECOVERY_KEY) ?? undefined;
+  if (payload === null) {
+    return {
+      state: defaultState(),
+      ...(preservedRecovery === undefined
+        ? {}
+        : { recoveryPayload: preservedRecovery })
+    };
+  }
 
   try {
-    return { state: importState(payload) };
+    return {
+      state: importState(payload),
+      ...(preservedRecovery === undefined
+        ? {}
+        : { recoveryPayload: preservedRecovery })
+    };
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Invalid local learner state.";
+    const recoveryPayload = preservedRecovery ?? payload;
+    if (preservedRecovery === undefined) {
+      storage.setItem(RECOVERY_KEY, payload);
+    }
     return {
       state: defaultState(),
-      recoveryPayload: payload,
+      recoveryPayload,
       error: `Local progress is corrupt or invalid: ${message}`
     };
   }
@@ -163,4 +181,15 @@ export function saveState(storage: Storage, state: LearnerState): void {
 export function resetState(storage: Storage): LearnerState {
   storage.removeItem(STORAGE_KEY);
   return defaultState();
+}
+
+export function discardRecovery(storage: Storage): void {
+  storage.removeItem(RECOVERY_KEY);
+  const payload = storage.getItem(STORAGE_KEY);
+  if (payload === null) return;
+  try {
+    importState(payload);
+  } catch {
+    storage.removeItem(STORAGE_KEY);
+  }
 }

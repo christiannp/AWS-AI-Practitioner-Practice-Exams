@@ -5,6 +5,8 @@ import {
   exportState,
   importState,
   loadState,
+  discardRecovery,
+  RECOVERY_KEY,
   resetState,
   saveState,
   STORAGE_KEY
@@ -67,6 +69,36 @@ describe("local learner-state persistence", () => {
     expect(result.recoveryPayload).toBe("{not valid json");
     expect(result.error).toMatch(/corrupt|invalid/i);
     expect(storage.getItem(STORAGE_KEY)).toBe("{not valid json");
+    expect(storage.getItem(RECOVERY_KEY)).toBe("{not valid json");
+  });
+
+  it("preserves corrupt recovery through normal saves until explicit discard", () => {
+    const storage = new MemoryStorage();
+    storage.setItem(STORAGE_KEY, "{not valid json");
+
+    expect(loadState(storage).recoveryPayload).toBe("{not valid json");
+    saveState(storage, validState);
+
+    const reloaded = loadState(storage);
+    expect(reloaded.state).toEqual(validState);
+    expect(reloaded.recoveryPayload).toBe("{not valid json");
+    expect(exportState(reloaded.state)).not.toContain("{not valid json");
+
+    discardRecovery(storage);
+    expect(loadState(storage).recoveryPayload).toBeUndefined();
+    expect(storage.getItem(RECOVERY_KEY)).toBeNull();
+  });
+
+  it("does not recreate a corrupt payload after it is explicitly discarded", () => {
+    const storage = new MemoryStorage();
+    storage.setItem(STORAGE_KEY, "{not valid json");
+    loadState(storage);
+
+    discardRecovery(storage);
+
+    expect(loadState(storage).recoveryPayload).toBeUndefined();
+    expect(storage.getItem(STORAGE_KEY)).toBeNull();
+    expect(storage.getItem(RECOVERY_KEY)).toBeNull();
   });
 
   it("rejects unsupported versions and structurally invalid imports", () => {
@@ -86,11 +118,15 @@ describe("local learner-state persistence", () => {
   it("resets only this app's key", () => {
     const storage = new MemoryStorage();
     storage.setItem("another-app", "keep");
+    storage.setItem(RECOVERY_KEY, "preserve explicitly recoverable data");
     saveState(storage, validState);
 
     const reset = resetState(storage);
 
     expect(storage.getItem(STORAGE_KEY)).toBeNull();
+    expect(storage.getItem(RECOVERY_KEY)).toBe(
+      "preserve explicitly recoverable data"
+    );
     expect(storage.getItem("another-app")).toBe("keep");
     expect(reset.settings.targetDate).toBe("2026-08-31");
   });

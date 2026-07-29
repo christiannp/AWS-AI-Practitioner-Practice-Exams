@@ -9,6 +9,8 @@ import type {
 } from "./data/types";
 import { loadContent } from "./data/load";
 import { recordAttempt } from "./domain/mastery";
+import { localDateKey } from "./domain/date";
+import { learnerErrorReportText } from "./domain/error-report";
 import { scoreAnswer, scoreGroup } from "./domain/scoring";
 import {
   selectDailyGroup,
@@ -16,6 +18,7 @@ import {
   selectSourceGroup
 } from "./domain/selector";
 import {
+  discardRecovery,
   exportState,
   importState,
   loadState,
@@ -145,8 +148,7 @@ export async function bootApp(
     attempt: "",
     source: ""
   };
-  const now = nowProvider();
-  const today = now.toISOString().slice(0, 10);
+  const today = (): string => localDateKey(nowProvider());
   const questionMap = new Map(
     content.questions.map((question) => [question.id, question])
   );
@@ -155,8 +157,12 @@ export async function bootApp(
   const context: AppContext = {
     content,
     getState: () => state,
-    today,
-    now,
+    get today() {
+      return today();
+    },
+    get now() {
+      return nowProvider();
+    },
     libraryFilters,
     get cheatDomain() {
       return cheatDomain;
@@ -223,7 +229,15 @@ export async function bootApp(
       shell.announce("No questions are available for that selection.");
       return;
     }
-    const sessionId = `${mode}-${today}-${nowProvider().getTime()}`;
+    if (
+      state.inProgress &&
+      !window.confirm(
+        "Replace the current in-progress group? Its saved answers will be discarded."
+      )
+    ) {
+      return;
+    }
+    const sessionId = `${mode}-${today()}-${nowProvider().getTime()}`;
     setState({
       ...state,
       inProgress: {
@@ -290,6 +304,14 @@ export async function bootApp(
     return questionMap.get(active.questionIds[active.currentIndex] ?? "");
   };
 
+  const renderAndRestoreFocus = (focusKey: string | undefined): void => {
+    render();
+    if (!focusKey) return;
+    [...root.querySelectorAll<HTMLElement>("[data-focus-key]")]
+      .find((control) => control.dataset.focusKey === focusKey)
+      ?.focus({ preventScroll: true });
+  };
+
   const clickHandler = (event: MouseEvent): void => {
     const target = event.target as HTMLElement;
     const routeLink = target.closest<HTMLAnchorElement>('a[href^="#/"]');
@@ -333,17 +355,9 @@ export async function bootApp(
     const action = button.dataset.action;
 
     if (action === "start-daily") {
-      if (
-        state.inProgress &&
-        !window.confirm(
-          "Replace the current in-progress group with today's selection?"
-        )
-      ) {
-        return;
-      }
       startSession(
         "daily",
-        selectDailyGroup(content.questions, state, today, 25)
+        selectDailyGroup(content.questions, state, today(), 25)
       );
     } else if (action === "resume-session") {
       navigate("practice");
@@ -384,7 +398,7 @@ export async function bootApp(
         selectMock(
           content.questions,
           65,
-          `${today}-${state.sessions.length}`
+          `${today()}-${state.sessions.length}`
         )
       );
     } else if (action === "start-source") {
@@ -394,7 +408,7 @@ export async function bootApp(
       );
     } else if (action === "download-cheatsheet") {
       triggerDownload(
-        `aws-aif-cheat-sheet-${today}.txt`,
+        `aws-aif-cheat-sheet-${today()}.txt`,
         cheatSheetText(context),
         "text/plain"
       );
@@ -402,14 +416,31 @@ export async function bootApp(
       window.print();
     } else if (action === "export-progress") {
       triggerDownload(
-        `aws-aif-progress-${today}.json`,
+        `aws-aif-progress-${today()}.json`,
         exportState(state),
         "application/json"
       );
     } else if (action === "download-recovery" && context.recoveryPayload) {
       triggerDownload(
-        `aws-aif-recovery-${today}.txt`,
+        `aws-aif-recovery-${today()}.txt`,
         context.recoveryPayload,
+        "text/plain"
+      );
+    } else if (action === "discard-recovery" && context.recoveryPayload) {
+      if (
+        window.confirm(
+          "Discard the preserved corrupt recovery payload? Download it first if you may need it."
+        )
+      ) {
+        discardRecovery(storage);
+        delete context.recoveryPayload;
+        shell.announce("Recovery payload discarded.");
+        render();
+      }
+    } else if (action === "download-error-report") {
+      triggerDownload(
+        `aws-aif-learner-errors-${today()}.txt`,
+        learnerErrorReportText(content, state, nowProvider()),
         "text/plain"
       );
     } else if (action === "request-reset") {
@@ -459,7 +490,7 @@ export async function bootApp(
         ...session,
         answers: { ...session.answers, [question.id]: answer }
       }));
-      render();
+      renderAndRestoreFocus(element.dataset.focusKey);
       return;
     }
 
@@ -479,7 +510,7 @@ export async function bootApp(
         ...session,
         answers: { ...session.answers, [question.id]: matches }
       }));
-      render();
+      renderAndRestoreFocus(element.dataset.focusKey);
       return;
     }
 

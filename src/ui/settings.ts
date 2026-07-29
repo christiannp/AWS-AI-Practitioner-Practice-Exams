@@ -51,6 +51,15 @@ export function renderSettings(
         }
       </article>
 
+      <article class="settings-card">
+        <div>
+          <p class="eyebrow">Error history</p>
+          <h2>Detailed learner-error TXT</h2>
+          <p>Downloads every incorrect attempt, including repeats, submitted and correct answers, explanations, and official verification links.</p>
+        </div>
+        <button type="button" class="secondary-action" data-action="download-error-report">Download detailed error report</button>
+      </article>
+
       ${
         context.recoveryPayload
           ? `<article class="settings-card warning-card">
@@ -59,7 +68,10 @@ export function renderSettings(
                 <h2>Unrecognized local data</h2>
                 <p>The app started safely without overwriting the original payload.</p>
               </div>
-              <button type="button" class="secondary-action" data-action="download-recovery">Download recovery payload</button>
+              <div class="settings-actions">
+                <button type="button" class="secondary-action" data-action="download-recovery">Download recovery payload</button>
+                <button type="button" class="danger-action" data-action="discard-recovery">Discard recovery payload</button>
+              </div>
             </article>`
           : ""
       }

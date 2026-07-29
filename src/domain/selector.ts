@@ -111,7 +111,7 @@ function ensureDomainBreadth(
 ): Question[] {
   const availableDomains = new Set(bank.map((question) => question.domain));
   const minimum = Math.min(3, availableDomains.size, desired);
-  const selectedDomains = new Set(selected.map((question) => question.domain));
+  let selectedDomains = new Set(selected.map((question) => question.domain));
   if (selectedDomains.size >= minimum) return selected;
 
   const ids = new Set(selected.map((question) => question.id));
@@ -130,13 +130,29 @@ function ensureDomainBreadth(
         !fingerprints.has(question.fingerprint)
     );
     if (!replacement || result.length === 0) continue;
-    const removed = result[result.length - 1]!;
+    const domainCounts = new Map<number, number>();
+    for (const question of result) {
+      domainCounts.set(
+        question.domain,
+        (domainCounts.get(question.domain) ?? 0) + 1
+      );
+    }
+    let replacementIndex = -1;
+    for (let index = result.length - 1; index >= 0; index -= 1) {
+      const question = result[index]!;
+      if ((domainCounts.get(question.domain) ?? 0) > 1) {
+        replacementIndex = index;
+        break;
+      }
+    }
+    if (replacementIndex < 0) continue;
+    const removed = result[replacementIndex]!;
     ids.delete(removed.id);
     fingerprints.delete(removed.fingerprint);
-    result[result.length - 1] = replacement;
+    result[replacementIndex] = replacement;
     ids.add(replacement.id);
     fingerprints.add(replacement.fingerprint);
-    selectedDomains.add(domain);
+    selectedDomains = new Set(result.map((question) => question.domain));
   }
   return result;
 }
@@ -206,7 +222,33 @@ export function selectMock(
   size = 65,
   seed = "mock"
 ): Question[] {
-  return shuffled(uniqueBank(bank), `mock:${seed}`).slice(0, size);
+  const unique = uniqueBank(bank);
+  const desired = Math.min(size, unique.length);
+  const formats = [
+    "multiple-choice",
+    "multiple-response",
+    "ordering",
+    "matching"
+  ] as const;
+  const required =
+    desired >= formats.filter((format) =>
+      unique.some((question) => question.type === format)
+    ).length
+      ? formats
+          .map((format) =>
+            shuffled(
+              unique.filter((question) => question.type === format),
+              `mock:${seed}:format:${format}`
+            )[0]
+          )
+          .filter((question): question is Question => question !== undefined)
+      : [];
+  const requiredIds = new Set(required.map((question) => question.id));
+  const remaining = shuffled(
+    unique.filter((question) => !requiredIds.has(question.id)),
+    `mock:${seed}`
+  );
+  return [...required, ...remaining].slice(0, desired);
 }
 
 export function selectSourceGroup(
