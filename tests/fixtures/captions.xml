@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<timedtext format="3">
+  <body>
+    <p t="1439" d="4001">
+      <s>A</s><s t="241"> company</s><s t="561"> uses</s><s t="801"> Bedrock.</s>
+    </p>
+    <p t="6000" d="1500">
+      <s>Correct</s><s t="400"> answer.</s>
+    </p>
+  </body>
+</timedtext>

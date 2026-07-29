@@ -2,4 +2,5 @@
 node_modules/
 dist/
 .npm-cache/
+.source-cache/
 .DS_Store
