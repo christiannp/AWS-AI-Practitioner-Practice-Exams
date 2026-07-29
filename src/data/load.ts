@@ -14,10 +14,12 @@ async function loadJson<T>(url: string, label: string): Promise<T> {
 }
 
 export async function loadContent(): Promise<AppContent> {
+  const dataUrl = (filename: string) =>
+    new URL(`data/${filename}`, document.baseURI).toString();
   const [questions, videos, cheatSheet] = await Promise.all([
-    loadJson<Question[]>("/data/questions.json", "Question bank"),
-    loadJson<SourceVideo[]>("/data/source-videos.json", "Source catalog"),
-    loadJson<CheatSheetEntry[]>("/data/cheat-sheet.json", "Cheat sheet")
+    loadJson<Question[]>(dataUrl("questions.json"), "Question bank"),
+    loadJson<SourceVideo[]>(dataUrl("source-videos.json"), "Source catalog"),
+    loadJson<CheatSheetEntry[]>(dataUrl("cheat-sheet.json"), "Cheat sheet")
   ]);
 
   if (
