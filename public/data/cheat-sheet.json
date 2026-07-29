@@ -13,30 +13,122 @@
       "Classification predicts categories; regression predicts numeric values."
     ],
     "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
-    "concepts": [
-      "supervised-learning",
-      "unsupervised-learning",
-      "reinforcement-learning"
-    ]
+    "concepts": ["supervised-learning", "unsupervised-learning", "reinforcement-learning"]
   },
   {
-    "id": "d2-embeddings",
-    "domain": 2,
-    "title": "Embeddings",
-    "memoryHook": "Meaning becomes coordinates.",
+    "id": "d1-metrics",
+    "domain": 1,
+    "title": "Classification metrics",
+    "memoryHook": "Precision trusts alarms; recall finds cases.",
     "facts": [
-      "Embeddings represent semantic information as numeric vectors.",
-      "Semantically similar content tends to have nearby vectors."
+      "Precision is true positives divided by all predicted positives.",
+      "Recall is true positives divided by all actual positives.",
+      "F1 is the harmonic mean of precision and recall."
     ],
     "confusions": [
-      "Tokenization splits input; embedding maps content into vector space."
+      "Prioritize precision when false alarms are costly; prioritize recall when missed positives are costly."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+    "concepts": ["precision", "recall", "f1-score"]
+  },
+  {
+    "id": "d1-inference",
+    "domain": 1,
+    "title": "Inference patterns",
+    "memoryHook": "Now: real-time. Later: batch. Long: async. Sporadic: serverless.",
+    "facts": [
+      "Real-time endpoints serve low-latency interactive requests.",
+      "Batch inference processes offline collections.",
+      "Asynchronous inference queues large-payload or long-running requests.",
+      "Serverless inference fits intermittent traffic without capacity management."
+    ],
+    "confusions": [
+      "Training learns parameters; inference uses the trained model."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain1.html",
+    "concepts": ["real-time-inference", "batch-inference", "asynchronous-inference", "serverless-inference"]
+  },
+  {
+    "id": "d1-service-compass",
+    "domain": 1,
+    "title": "Managed AI service compass",
+    "memoryHook": "Read, see, hear, speak: Comprehend, Rekognition, Transcribe, Polly.",
+    "facts": [
+      "Textract extracts text, forms, and tables from documents.",
+      "Comprehend analyzes language; Rekognition analyzes images and video.",
+      "Transcribe is speech-to-text; Polly is text-to-speech.",
+      "Lex builds conversational interfaces; Personalize builds recommendations."
+    ],
+    "confusions": [
+      "Translate changes language; Transcribe changes speech into text."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/aif-01-in-scope-services.html",
+    "concepts": ["amazon-textract", "amazon-comprehend", "amazon-rekognition", "amazon-transcribe", "amazon-polly"]
+  },
+  {
+    "id": "d2-model-units",
+    "domain": 2,
+    "title": "Tokens, context, and embeddings",
+    "memoryHook": "Tokens are pieces; context is the desk; embeddings are coordinates.",
+    "facts": [
+      "Tokens are the units a language model processes and generates.",
+      "The context window limits the token span available in one interaction.",
+      "Embeddings represent semantic meaning as vectors."
+    ],
+    "confusions": [
+      "Tokenization splits content; embedding maps meaning into vector space."
     ],
     "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
-    "concepts": [
-      "embeddings",
-      "vectors",
-      "semantic-search"
-    ]
+    "concepts": ["tokens", "context-window", "embeddings"]
+  },
+  {
+    "id": "d2-limitations",
+    "domain": 2,
+    "title": "Generative AI tradeoffs",
+    "memoryHook": "Capable is not factual, deterministic, cheap, or explainable.",
+    "facts": [
+      "Hallucinations are plausible outputs that are unsupported or false.",
+      "Probabilistic token selection can make output nondeterministic.",
+      "Model selection balances capability, latency, cost, complexity, and compliance."
+    ],
+    "confusions": [
+      "A fluent response is not proof of factual accuracy."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+    "concepts": ["hallucination", "nondeterminism", "model-selection"]
+  },
+  {
+    "id": "d2-agentic-ai",
+    "domain": 2,
+    "title": "Agentic AI and MCP",
+    "memoryHook": "An agent plans and acts; MCP gives tools a common plug.",
+    "facts": [
+      "Agentic AI pursues goals through planning, memory, tool use, and workflow orchestration.",
+      "MCP standardizes how AI applications connect to external tools and context.",
+      "Context engineering assembles instructions, facts, tools, memory, and conversation state."
+    ],
+    "confusions": [
+      "A chatbot that only returns text is not automatically an agent."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+    "concepts": ["agentic-ai", "model-context-protocol", "context-engineering"]
+  },
+  {
+    "id": "d2-aws-genai-tools",
+    "domain": 2,
+    "title": "Current AWS GenAI tools",
+    "memoryHook": "Bedrock builds, Quick works, Kiro codes, Strands wires, AgentCore runs.",
+    "facts": [
+      "Amazon Bedrock provides managed foundation-model access.",
+      "Amazon Quick is an agentic workspace for business research, insight, and action.",
+      "Kiro supports specification-driven AI development.",
+      "Strands Agents is an SDK for agents; AgentCore provides production agent services."
+    ],
+    "confusions": [
+      "SageMaker JumpStart supplies pre-trained models and solution templates; it is not the same as Bedrock managed FM APIs."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain2.html",
+    "concepts": ["amazon-bedrock", "amazon-quick", "kiro", "strands-agents", "bedrock-agentcore"]
   },
   {
     "id": "d3-rag-finetuning",
@@ -44,55 +136,177 @@
     "title": "RAG versus fine-tuning",
     "memoryHook": "RAG supplies facts; fine-tuning shapes behavior.",
     "facts": [
-      "Retrieval augmented generation adds relevant external context at inference time.",
-      "Fine-tuning changes model behavior by training on task-specific examples."
+      "RAG retrieves relevant context at inference time without retraining the model.",
+      "Fine-tuning changes model behavior with task-specific examples.",
+      "Knowledge Bases for Amazon Bedrock manages ingestion, retrieval, and grounded generation."
     ],
     "confusions": [
       "Use RAG for changing private knowledge; do not fine-tune merely to inject frequently changing facts."
     ],
     "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
-    "concepts": [
-      "rag",
-      "fine-tuning"
-    ]
+    "concepts": ["rag", "fine-tuning", "bedrock-knowledge-bases"]
+  },
+  {
+    "id": "d3-prompt-patterns",
+    "domain": 3,
+    "title": "Prompt patterns",
+    "memoryHook": "Zero tells, few shows, chain decomposes, negative forbids.",
+    "facts": [
+      "Zero-shot prompting gives instructions without examples.",
+      "Few-shot prompting includes a small number of examples.",
+      "Chain-of-thought prompting encourages intermediate reasoning.",
+      "Negative prompting states content or behavior to avoid."
+    ],
+    "confusions": [
+      "In-context examples guide a request without changing model weights."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+    "concepts": ["zero-shot-prompting", "few-shot-prompting", "chain-of-thought", "negative-prompting"]
+  },
+  {
+    "id": "d3-generation-controls",
+    "domain": 3,
+    "title": "Generation controls",
+    "memoryHook": "Temperature varies; top-p weighs mass; top-k counts choices.",
+    "facts": [
+      "Lower temperature generally makes output more consistent.",
+      "Top-p samples from a cumulative probability mass.",
+      "Top-k restricts sampling to a fixed number of likely tokens."
+    ],
+    "confusions": [
+      "These controls affect token selection, not the model context-window size."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+    "concepts": ["temperature", "top-p", "top-k"]
+  },
+  {
+    "id": "d3-evaluation",
+    "domain": 3,
+    "title": "Foundation model evaluation",
+    "memoryHook": "ROUGE summarizes, BLEU translates, BERTScore means, humans judge nuance.",
+    "facts": [
+      "ROUGE measures overlap for summarization.",
+      "BLEU compares machine translations with references.",
+      "BERTScore compares semantic similarity with contextual embeddings.",
+      "LLM-as-a-judge applies a rubric through another language model."
+    ],
+    "confusions": [
+      "Automatic metrics should be paired with business metrics and human evaluation when quality is subjective."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain3.html",
+    "concepts": ["rouge", "bleu", "bertscore", "llm-as-judge"]
   },
   {
     "id": "d4-responsible-ai",
     "domain": 4,
     "title": "Responsible AI",
-    "memoryHook": "Fair, explainable, private, safe, controlled.",
+    "memoryHook": "Fair, explainable, private, robust, controlled, truthful.",
     "facts": [
-      "Responsible AI includes fairness, explainability, privacy, safety, controllability, veracity, and governance."
+      "Responsible AI includes fairness, explainability, privacy, robustness, controllability, veracity, and governance.",
+      "Governance establishes oversight, accountability, policies, and decision rights."
     ],
     "confusions": [
-      "Transparency communicates how a system is built and used; explainability helps people understand model behavior."
+      "Responsible AI is a lifecycle practice, not a single model metric."
     ],
     "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
-    "concepts": [
-      "responsible-ai",
-      "explainability",
-      "transparency"
-    ]
+    "concepts": ["fairness", "privacy", "robustness", "controllability", "veracity"]
+  },
+  {
+    "id": "d4-transparency-explainability",
+    "domain": 4,
+    "title": "Transparency versus explainability",
+    "memoryHook": "Transparency shows the system; explainability explains the outcome.",
+    "facts": [
+      "Transparency communicates design, training, limitations, and intended use.",
+      "Explainability helps people understand model behavior or a prediction.",
+      "SageMaker Model Cards document model details; SageMaker Clarify analyzes bias and explanations."
+    ],
+    "confusions": [
+      "A model card is documentation; a feature-attribution method explains prediction influence."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+    "concepts": ["transparency", "explainability", "sagemaker-model-cards", "sagemaker-clarify"]
+  },
+  {
+    "id": "d4-human-oversight",
+    "domain": 4,
+    "title": "Human-centered oversight",
+    "memoryHook": "Explain for the affected person, then give a path to respond.",
+    "facts": [
+      "Human-centered explainability tailors explanations to stakeholder needs.",
+      "Human review is useful for high-impact or low-confidence decisions.",
+      "Feedback mechanisms help affected users question or correct outcomes."
+    ],
+    "confusions": [
+      "Human oversight does not remove the need for automated evaluation and monitoring."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain4.html",
+    "concepts": ["human-centered-explainability", "amazon-a2i", "ai-governance"]
   },
   {
     "id": "d5-security",
     "domain": 5,
     "title": "Security service compass",
-    "memoryHook": "IAM grants, KMS encrypts, CloudTrail records.",
+    "memoryHook": "IAM grants, KMS keys, Macie finds, PrivateLink isolates.",
     "facts": [
-      "AWS IAM controls identities and permissions.",
+      "IAM controls identities and permissions; apply least privilege.",
       "AWS KMS manages encryption keys.",
-      "AWS CloudTrail records API activity for auditing."
+      "Amazon Macie discovers sensitive data in Amazon S3.",
+      "AWS PrivateLink enables private access through VPC endpoints."
     ],
     "confusions": [
-      "Amazon Macie discovers sensitive data in Amazon S3; it is not an identity service."
+      "Macie discovers sensitive S3 data; it does not grant access or manage encryption keys."
     ],
     "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
-    "concepts": [
-      "iam",
-      "kms",
-      "cloudtrail",
-      "macie"
-    ]
+    "concepts": ["iam-least-privilege", "aws-kms", "amazon-macie", "aws-privatelink"]
+  },
+  {
+    "id": "d5-guardrails",
+    "domain": 5,
+    "title": "AI interaction defenses",
+    "memoryHook": "Limit access, filter input, ground output, log the path.",
+    "facts": [
+      "Prompt injection uses untrusted input to override intended behavior.",
+      "Bedrock Guardrails can filter denied topics, harmful content, and sensitive information.",
+      "RAG grounding, output validation, and confidence scoring help detect hallucinations."
+    ],
+    "confusions": [
+      "Guardrails reduce risk but do not prove every generated claim is true."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+    "concepts": ["prompt-injection", "bedrock-guardrails", "rag-grounding"]
+  },
+  {
+    "id": "d5-governance-services",
+    "domain": 5,
+    "title": "Audit and governance services",
+    "memoryHook": "CloudTrail events, Config state, Audit Manager evidence, Artifact reports.",
+    "facts": [
+      "CloudTrail records API activity.",
+      "AWS Config records resource configuration and evaluates rules.",
+      "AWS Audit Manager collects evidence for assessments.",
+      "AWS Artifact provides AWS compliance reports and agreements."
+    ],
+    "confusions": [
+      "CloudWatch provides operational metrics, logs, and alarms; CloudTrail records account and API events."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/aws-certification/latest/ai-practitioner-01/ai-practitioner-01-domain5.html",
+    "concepts": ["aws-cloudtrail", "aws-config", "aws-audit-manager", "aws-artifact"]
+  },
+  {
+    "id": "d5-s3-encryption",
+    "domain": 5,
+    "title": "SSE-S3 versus SSE-KMS access",
+    "memoryHook": "S3 key: GetObject. KMS key: GetObject plus Decrypt.",
+    "facts": [
+      "A role needs S3 object permissions such as s3:GetObject to read an object.",
+      "SSE-S3 uses Amazon S3 managed keys and requires no separate KMS decrypt permission.",
+      "SSE-KMS access also requires the applicable KMS key permissions and key policy."
+    ],
+    "confusions": [
+      "Do not add kms:Decrypt merely because an object is encrypted; first identify SSE-S3 versus SSE-KMS."
+    ],
+    "sourceUrl": "https://docs.aws.amazon.com/bedrock/latest/userguide/kb-permissions.html",
+    "concepts": ["sse-s3-object-access", "aws-kms", "iam-least-privilege"]
   }
 ]

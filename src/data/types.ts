@@ -33,6 +33,7 @@ export interface VerificationRef {
 
 export interface QuestionBase {
   id: string;
+  origin: "source-derived" | "official-addition";
   type: QuestionType;
   prompt: string;
   domain: Domain;

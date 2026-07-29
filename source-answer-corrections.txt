@@ -1,12 +1,12 @@
 AWS AIF-C01 SOURCE ANSWER CORRECTIONS
-Verified against current authoritative documentation.
+Only confirmed source-answer errors are listed. Each correction was checked
+against current AWS documentation before inclusion.
 
-Entry format:
-Source:
-Question location:
-Question summary:
-Source stated:
-Verified answer:
-Why:
-Verification:
-Verified on:
+Source: AWS AI Certification Questions AIF-C01 | Part -01 | @ITIndia50
+Question location: Question 9 at 10:26 — https://www.youtube.com/watch?v=yrkju-Ch7ME&t=626s
+Question summary: A Bedrock role cannot read S3 objects encrypted with Amazon S3 managed keys (SSE-S3).
+Source stated: Give the role permission to decrypt with the correct encryption key.
+Verified answer: No listed choice is fully correct. Give the Bedrock role s3:GetObject access to the objects (and s3:ListBucket when listing is required). SSE-S3 needs no separate KMS decrypt permission.
+Why: Amazon S3 handles SSE-S3 keys. AWS documents KMS decrypt permission as an additional requirement only when the data source uses an AWS KMS key.
+Verification: https://docs.aws.amazon.com/bedrock/latest/userguide/kb-permissions.html ; https://docs.aws.amazon.com/AmazonS3/latest/userguide/troubleshoot-403-errors.html
+Verified on: 2026-07-29

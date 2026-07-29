@@ -45,13 +45,24 @@ describe("source audit", () => {
     expect(
       audit.every(
         (entry) =>
-          ["pending", "included", "merged", "corrected", "excluded"].includes(
+          ["included", "merged", "corrected", "excluded"].includes(
             entry.status
           ) &&
           entry.reason.length > 0 &&
           entry.videoId.length > 0 &&
-          entry.timestampSeconds >= 0
+          entry.timestampSeconds >= 0 &&
+          entry.promptSummary.length <= 180
       )
+    ).toBe(true);
+  });
+
+  it("maps every retained source item to a shipped question", () => {
+    const questionIds = new Set(questions.map((question) => question.id));
+
+    expect(
+      audit
+        .filter((entry) => entry.status !== "excluded")
+        .every((entry) => questionIds.has(entry.questionId))
     ).toBe(true);
   });
 });
@@ -70,13 +81,15 @@ describe("verified content bank", () => {
   });
 
   it("ships only explained questions with dated HTTPS verification", () => {
-    expect(questions.length).toBeGreaterThanOrEqual(4);
+    expect(questions.length).toBeGreaterThanOrEqual(200);
     expect(
       questions.every(
         (question) =>
           question.explanation.length > 0 &&
           question.concepts.length > 0 &&
-          question.sources.length > 0 &&
+          ["source-derived", "official-addition"].includes(question.origin) &&
+          (question.origin === "official-addition" ||
+            question.sources.length > 0) &&
           question.verification.length > 0 &&
           question.verification.every(
             (source) =>
@@ -85,6 +98,27 @@ describe("verified content bank", () => {
           )
       )
     ).toBe(true);
+  });
+
+  it("covers every task in the current AIF-C01 exam guide", () => {
+    expect(new Set(questions.map((question) => question.task))).toEqual(
+      new Set([
+        "1.1",
+        "1.2",
+        "1.3",
+        "2.1",
+        "2.2",
+        "2.3",
+        "3.1",
+        "3.2",
+        "3.3",
+        "3.4",
+        "4.1",
+        "4.2",
+        "5.1",
+        "5.2"
+      ])
+    );
   });
 
   it("includes all four current AIF-C01 interaction formats", () => {

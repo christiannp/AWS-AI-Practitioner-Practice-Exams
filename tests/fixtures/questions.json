@@ -1,6 +1,7 @@
 [
   {
     "id": "fixture-mc",
+    "origin": "official-addition",
     "type": "multiple-choice",
     "prompt": "Which option is marked as correct in this scoring fixture?",
     "domain": 1,
@@ -50,6 +51,7 @@
   },
   {
     "id": "fixture-mr",
+    "origin": "official-addition",
     "type": "multiple-response",
     "prompt": "Which two options are marked as correct in this scoring fixture?",
     "domain": 2,
@@ -103,6 +105,7 @@
   },
   {
     "id": "fixture-ordering",
+    "origin": "official-addition",
     "type": "ordering",
     "prompt": "Place the controlled lifecycle labels in the fixture's expected order.",
     "domain": 3,
@@ -149,6 +152,7 @@
   },
   {
     "id": "fixture-matching",
+    "origin": "official-addition",
     "type": "matching",
     "prompt": "Match each controlled data label to the fixture's expected AWS service.",
     "domain": 5,

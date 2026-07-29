@@ -59,6 +59,10 @@ function validateOptions(question, correctIds) {
 function validateQuestion(question, videoIds) {
   requireValue(typeof question.id === "string", "Question has no stable ID");
   requireValue(
+    ["source-derived", "official-addition"].includes(question.origin),
+    `${question.id}: invalid content origin`
+  );
+  requireValue(
     [1, 2, 3, 4, 5].includes(question.domain),
     `${question.id}: invalid domain`
   );
@@ -80,8 +84,9 @@ function validateQuestion(question, videoIds) {
     `${question.id}: explanation is required`
   );
   requireValue(
-    Array.isArray(question.sources) && question.sources.length > 0,
-    `${question.id}: source provenance is required`
+    Array.isArray(question.sources) &&
+      (question.origin === "official-addition" || question.sources.length > 0),
+    `${question.id}: source-derived questions need source provenance`
   );
   for (const source of question.sources ?? []) {
     requireValue(
