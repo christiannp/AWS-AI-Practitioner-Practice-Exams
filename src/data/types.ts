@@ -7,8 +7,7 @@ export type QuestionType =
 export type Answer = string | string[] | Record<string, string>;
 export type Domain = 1 | 2 | 3 | 4 | 5;
 
-export interface YouTubeSourceRef {
-  sourceType: "youtube";
+export interface SourceRef {
   playlistId: string;
   videoId: string;
   videoTitle: string;
@@ -16,17 +15,6 @@ export interface YouTubeSourceRef {
   questionNumber?: number;
   timestampSeconds?: number;
 }
-
-export interface ExamTopicsSourceRef {
-  sourceType: "examtopics";
-  sourceKey: string;
-  sourceLabel: "ExamTopics AIF-C01";
-  url: string;
-  pageNumber: number;
-  questionNumber: number;
-}
-
-export type SourceRef = YouTubeSourceRef | ExamTopicsSourceRef;
 
 export interface SourceVideo {
   playlistId: string;

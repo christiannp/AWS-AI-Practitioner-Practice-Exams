@@ -31,7 +31,6 @@ function makeQuestion(index: number, bucket: string): Question {
       index < 5
         ? [
             {
-              sourceType: "youtube",
               playlistId: "fixture",
               videoId: "source-video",
               videoTitle: "Fixture source",
@@ -168,10 +167,7 @@ describe("other group selectors", () => {
     expect(group).toHaveLength(5);
     expect(
       group.every((question) =>
-        question.sources.some(
-          (source) =>
-            source.sourceType === "youtube" && source.videoId === "source-video"
-        )
+        question.sources.some((source) => source.videoId === "source-video")
       )
     ).toBe(true);
   });
