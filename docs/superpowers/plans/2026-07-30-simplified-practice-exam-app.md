@@ -42,7 +42,7 @@
 - Produces: `AppContent.exams: PracticeExam[]` and `AppContent.reviews: QuestionReview[]`
 - Consumes: `public/data/questions.json` and the known conflict ID `aif-d5-sse-s3-object-access-scenario`
 
-- [ ] **Step 1: Write manifest contract tests**
+- [x] **Step 1: Write manifest contract tests**
 
 ```ts
 import exams from "../public/data/practice-exams.json";
@@ -67,13 +67,13 @@ it("keeps one corrected source conflict out of every exam", () => {
 });
 ```
 
-- [ ] **Step 2: Run the content tests and confirm the missing JSON imports fail**
+- [x] **Step 2: Run the content tests and confirm the missing JSON imports fail**
 
 Run: `npm test -- --run tests/content.test.ts`
 
 Expected: FAIL because `practice-exams.json` and `question-reviews.json` do not exist.
 
-- [ ] **Step 3: Implement deterministic manifest generation**
+- [x] **Step 3: Implement deterministic manifest generation**
 
 `scripts/build-practice-exams.mjs` must:
 
@@ -90,7 +90,7 @@ const stable = [...verified].sort(
 
 Distribute the first 260 IDs round-robin into four 65-item exams so each gets a domain and difficulty mix. Put the remaining seven IDs into Exam 5, then append the first 58 IDs from a domain-weighted stable candidate list, skipping IDs already present in Exam 5. Generate 267 `verified` review records from each question's official verification, plus one `conflicted` record whose reason states that SSE-S3 requires `s3:GetObject` and does not require KMS decrypt permission. Write both files with two-space indentation and a trailing newline.
 
-- [ ] **Step 4: Add types, loading, and validator contracts**
+- [x] **Step 4: Add types, loading, and validator contracts**
 
 Extend `AppContent`:
 
@@ -115,13 +115,13 @@ export interface QuestionReview {
 
 Load the two new JSON files in `loadContent()`. Extend `validate-content.mjs` to require five sequential exam IDs, 65 unique IDs per exam, Verified-only membership, exactly 268 review records, one review per question, and no unreviewed question IDs.
 
-- [ ] **Step 5: Generate data and run content validation**
+- [x] **Step 5: Generate data and run content validation**
 
 Run: `node scripts/build-practice-exams.mjs && npm run validate:content && npm test -- --run tests/content.test.ts`
 
 Expected: PASS with 267 Verified, 0 Unverified, 1 Conflicted, and five valid exams.
 
-- [ ] **Step 6: Commit stable content manifests**
+- [x] **Step 6: Commit stable content manifests**
 
 ```bash
 git add scripts/build-practice-exams.mjs scripts/validate-content.mjs public/data/practice-exams.json public/data/question-reviews.json src/data/types.ts src/data/load.ts tests/content.test.ts
@@ -142,7 +142,7 @@ git commit -m "feat: add stable verified practice exams"
 - Produces: `ExamResult { examId; score; correct; total; completedAt; mastered }`
 - Consumes: compatible `attempts` from version-1 state
 
-- [ ] **Step 1: Replace storage tests with version-2 and migration coverage**
+- [x] **Step 1: Replace storage tests with version-2 and migration coverage**
 
 ```ts
 it("starts with empty browser-only exam state", () => {
@@ -167,13 +167,13 @@ it("migrates v1 attempts and discards target and planner fields", () => {
 
 Keep corrupt-payload preservation coverage and remove Settings-only import, export, and reset expectations.
 
-- [ ] **Step 2: Run storage tests and confirm version mismatch failures**
+- [x] **Step 2: Run storage tests and confirm version mismatch failures**
 
 Run: `npm test -- --run tests/storage.test.ts`
 
 Expected: FAIL because the implementation still emits version 1.
 
-- [ ] **Step 3: Implement strict state-v2 validation and v1 migration**
+- [x] **Step 3: Implement strict state-v2 validation and v1 migration**
 
 Define:
 
@@ -194,13 +194,13 @@ export interface LearnerState {
 
 `loadState()` parses version 2 directly, migrates version 1 by copying only structurally valid attempts, and preserves invalid JSON under `RECOVERY_KEY`. `saveState()` continues to validate before writing.
 
-- [ ] **Step 4: Run focused storage tests**
+- [x] **Step 4: Run focused storage tests**
 
 Run: `npm test -- --run tests/storage.test.ts`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit state migration**
+- [x] **Step 5: Commit state migration**
 
 ```bash
 git add src/data/types.ts src/state/storage.ts tests/storage.test.ts tests/fixtures/state.json
@@ -221,7 +221,7 @@ git commit -m "feat: migrate local progress to exam state"
 - Keeps: internal routes `"practice" | "results"`
 - Produces actions `start-exam`, `resume-exam`, and `open-results`, with `data-exam-id`
 
-- [ ] **Step 1: Write navigation and catalog tests**
+- [x] **Step 1: Write navigation and catalog tests**
 
 ```ts
 it("shows only the three requested bottom destinations", async () => {
@@ -238,23 +238,23 @@ it("lists five numbered local exams with stable counts", async () => {
 });
 ```
 
-- [ ] **Step 2: Run the app tests and confirm old navigation fails**
+- [x] **Step 2: Run the app tests and confirm old navigation fails**
 
 Run: `npm test -- --run tests/app.test.ts`
 
 Expected: FAIL because Today and Settings still render.
 
-- [ ] **Step 3: Implement the shell and catalog**
+- [x] **Step 3: Implement the shell and catalog**
 
 Set `#/exams` as the default route and brand link. Remove target-chip state and `updateTarget()`. `renderExams()` maps `context.content.exams` to numbered cards and derives Start, Resume, last score, and Mastered state from local state. It must not render or link to any external practice exam.
 
-- [ ] **Step 4: Run navigation and catalog tests**
+- [x] **Step 4: Run navigation and catalog tests**
 
 Run: `npm test -- --run tests/app.test.ts`
 
 Expected: the three-nav and five-card assertions pass.
 
-- [ ] **Step 5: Commit the new public structure**
+- [x] **Step 5: Commit the new public structure**
 
 ```bash
 git add src/ui/exams.ts src/ui/shell.ts src/ui/types.ts src/main.ts tests/app.test.ts
@@ -274,7 +274,7 @@ git commit -m "feat: add numbered exam catalog"
 - Produces: actions `previous-page`, `next-page`, `submit-exam`, `confirm-submit`, and `cancel-submit`
 - Produces: answer controls with `data-question-id` so one page can edit ten question cards
 
-- [ ] **Step 1: Add multi-question page tests**
+- [x] **Step 1: Add multi-question page tests**
 
 ```ts
 it("renders no more than ten questions and uses the requested bottom progress copy", async () => {
@@ -293,13 +293,13 @@ it("renders five questions on page seven and restores browser-local answers", as
 });
 ```
 
-- [ ] **Step 2: Run focused app tests and confirm single-question rendering fails**
+- [x] **Step 2: Run focused app tests and confirm single-question rendering fails**
 
 Run: `npm test -- --run tests/app.test.ts -t "renders no more than ten|renders five"`
 
 Expected: FAIL because the old renderer uses `currentIndex`.
 
-- [ ] **Step 3: Render and edit all questions on the active page**
+- [x] **Step 3: Render and edit all questions on the active page**
 
 Use:
 
@@ -313,13 +313,13 @@ export function pageQuestionIds(ids: string[], page: number): string[] {
 
 Change answer handlers to resolve the question from `data-question-id` instead of one global current question. Keep ordering focus restoration, matching controls, immediate save, hidden answers, incomplete-submit confirmation, and accessible fieldsets.
 
-- [ ] **Step 4: Run all app tests**
+- [x] **Step 4: Run all app tests**
 
 Run: `npm test -- --run tests/app.test.ts`
 
 Expected: PASS for start, resume, four formats, pagination, focus, and submission confirmation.
 
-- [ ] **Step 5: Commit the paginated exam experience**
+- [x] **Step 5: Commit the paginated exam experience**
 
 ```bash
 git add src/ui/practice.ts src/main.ts src/styles.css tests/app.test.ts
@@ -341,7 +341,7 @@ git commit -m "feat: paginate practice exams by ten"
 - Produces: `continue-practice` action that starts only the current wrong IDs
 - Produces: an original exam result that remains unchanged during retry rounds
 
-- [ ] **Step 1: Write results and retry tests**
+- [x] **Step 1: Write results and retry tests**
 
 ```ts
 it("reviews wrong answers only with collapsed proof details", async () => {
@@ -368,27 +368,27 @@ it("retries only wrong answers until the queue is empty without replacing the or
 });
 ```
 
-- [ ] **Step 2: Run results tests and confirm all-answer review fails**
+- [x] **Step 2: Run results tests and confirm all-answer review fails**
 
 Run: `npm test -- --run tests/app.test.ts tests/error-report.test.ts`
 
 Expected: FAIL because the old results renderer reviews every question and has no retry queue.
 
-- [ ] **Step 3: Implement original scoring, mastery queues, and collapsed review**
+- [x] **Step 3: Implement original scoring, mastery queues, and collapsed review**
 
 On an initial submit, save the score and wrong IDs under the exam result. On a retry submit, replace the mastery queue with only that round's wrong IDs. Render only wrong question cards. Put explanation, distractor notes, official proof, and video provenance inside one closed `<details>`. Show Continue practice only while the queue is non-empty; show Mastered and next-exam actions when empty.
 
-- [ ] **Step 4: Preserve repeated incorrect attempts in TXT output**
+- [x] **Step 4: Preserve repeated incorrect attempts in TXT output**
 
 Keep one section per incorrect attempt, in timestamp order, including question, user answer, correct answer, explanation, and all official verification URLs. Add exam ID and round ID when present.
 
-- [ ] **Step 5: Run focused results and report tests**
+- [x] **Step 5: Run focused results and report tests**
 
 Run: `npm test -- --run tests/app.test.ts tests/error-report.test.ts`
 
 Expected: PASS.
 
-- [ ] **Step 6: Commit iterative retry**
+- [x] **Step 6: Commit iterative retry**
 
 ```bash
 git add src/ui/results.ts src/main.ts src/domain/error-report.ts src/styles.css tests/app.test.ts tests/error-report.test.ts
@@ -409,7 +409,7 @@ git commit -m "feat: retry wrong answers until mastered"
 - Produces: filters `status`, `domain`, `type`, `source`, and `search`
 - Produces: action `show-more-library` in increments of 25
 
-- [ ] **Step 1: Write Library status, proof, and filtering tests**
+- [x] **Step 1: Write Library status, proof, and filtering tests**
 
 ```ts
 it("shows governance counts and the corrected conflict with proof", async () => {
@@ -432,23 +432,23 @@ it("labels unverified choices as Proposed answer and incrementally reveals cards
 });
 ```
 
-- [ ] **Step 2: Run the Library tests and confirm launcher UI fails**
+- [x] **Step 2: Run the Library tests and confirm launcher UI fails**
 
 Run: `npm test -- --run tests/app.test.ts -t "governance|unverified"`
 
 Expected: FAIL because Library is still a mock/source launcher.
 
-- [ ] **Step 3: Implement joined dashboard cards and filters**
+- [x] **Step 3: Implement joined dashboard cards and filters**
 
 Render three count cards. Join every review record to its question. Verified cards show Correct answer and official proof. Unverified cards show Proposed answer plus the missing-proof reason. Conflicted cards show source claim, corrected answer, reason, source URLs, and official proof. Apply text search to prompt, task, concepts, and services; reset visible count to 25 whenever a filter changes.
 
-- [ ] **Step 4: Run Library tests**
+- [x] **Step 4: Run Library tests**
 
 Run: `npm test -- --run tests/app.test.ts`
 
 Expected: PASS for counts, filters, labels, conflict evidence, and incremental rendering.
 
-- [ ] **Step 5: Commit the Library dashboard**
+- [x] **Step 5: Commit the Library dashboard**
 
 ```bash
 git add src/ui/library.ts src/ui/types.ts src/main.ts src/styles.css tests/app.test.ts
@@ -467,7 +467,7 @@ git commit -m "feat: add question review dashboard"
 - Consumes: incorrect attempts matched through question concepts
 - Produces: `orderedCheatSheetEntries(context)` with stable local promotion
 
-- [ ] **Step 1: Write baseline and local-promotion tests**
+- [x] **Step 1: Write baseline and local-promotion tests**
 
 ```ts
 it("keeps checked-in First 20 Hours order before any attempts", async () => {
@@ -483,23 +483,23 @@ it("promotes cards connected to locally missed concepts", async () => {
 });
 ```
 
-- [ ] **Step 2: Run Cheat Sheet tests and confirm mastery-based order fails**
+- [x] **Step 2: Run Cheat Sheet tests and confirm mastery-based order fails**
 
 Run: `npm test -- --run tests/app.test.ts -t "First 20 Hours|promotes cards"`
 
 Expected: FAIL because the old renderer sorts by removed mastery records.
 
-- [ ] **Step 3: Implement error-count promotion with stable baseline ties**
+- [x] **Step 3: Implement error-count promotion with stable baseline ties**
 
 Build a `wrongCountByConcept` map from local incorrect attempts and question concepts. Sort entries by descending wrong-concept count, then by original checked-in array index. Replace percentage mastery labels with `First 20 Hours · Step N` before errors and `Review priority` after promotion. Keep domain filter, download, print, memory hooks, facts, warnings, and AWS source links.
 
-- [ ] **Step 4: Run app tests**
+- [x] **Step 4: Run app tests**
 
 Run: `npm test -- --run tests/app.test.ts`
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit Cheat Sheet ordering**
+- [x] **Step 5: Commit Cheat Sheet ordering**
 
 ```bash
 git add src/ui/cheatsheet.ts src/styles.css tests/app.test.ts
@@ -526,7 +526,7 @@ git commit -m "feat: prioritize cheat sheet from local errors"
 - Consumes: all interfaces finalized in Tasks 1–7
 - Produces: a static production build with only the three requested public surfaces
 
-- [ ] **Step 1: Add regression assertions for removed capabilities**
+- [x] **Step 1: Add regression assertions for removed capabilities**
 
 ```ts
 it("contains no removed planner or official-card copy", async () => {
@@ -537,21 +537,21 @@ it("contains no removed planner or official-card copy", async () => {
 });
 ```
 
-- [ ] **Step 2: Delete obsolete modules and imports**
+- [x] **Step 2: Delete obsolete modules and imports**
 
 Remove the listed files, remove their imports and action branches from `src/main.ts`, and remove planner-only CSS selectors. Keep the app's recovery behavior internal; do not create a fourth navigation destination.
 
-- [ ] **Step 3: Finish mobile-first styles and documentation**
+- [x] **Step 3: Finish mobile-first styles and documentation**
 
 Ensure all tap targets are at least 44px, the bottom exam controls remain visible above the three-item navigation, ten question cards flow in one column on phones, review details are collapsed, and Library filters remain readable at 320px. Update README routes, static deployment, browser-only persistence, five-exam policy, retry behavior, and content review statuses.
 
-- [ ] **Step 4: Run the full automated gate**
+- [x] **Step 4: Run the full automated gate**
 
 Run: `npm run check`
 
 Expected: content validation, all Vitest tests, TypeScript, and Vite production build pass.
 
-- [ ] **Step 5: Browser-verify the live Vite app**
+- [x] **Step 5: Browser-verify the live Vite app**
 
 At `http://127.0.0.1:5173/`, verify:
 
@@ -565,7 +565,7 @@ At `http://127.0.0.1:5173/`, verify:
 8. Cheat Sheet has fixed initial order and promotes weak concepts after an error.
 9. No target, planner, timer, Settings, login, or backend UI remains.
 
-- [ ] **Step 6: Inspect the final diff and commit cleanup**
+- [x] **Step 6: Inspect the final diff and commit cleanup**
 
 Run: `git diff --check && git status --short`
 
@@ -576,7 +576,7 @@ git add -A
 git commit -m "refactor: remove learning planner surfaces"
 ```
 
-- [ ] **Step 7: Push the tested branch to public GitHub**
+- [x] **Step 7: Push the tested branch to public GitHub**
 
 Run: `git push origin HEAD:main`
 

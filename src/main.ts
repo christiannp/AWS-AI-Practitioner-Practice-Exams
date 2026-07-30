@@ -3,38 +3,24 @@ import "./styles.css";
 import type {
   Answer,
   AppContent,
+  InProgressExam,
   LearnerState,
-  Question,
-  StudySession
+  Question
 } from "./data/types";
 import { loadContent } from "./data/load";
-import { recordAttempt } from "./domain/mastery";
-import { localDateKey } from "./domain/date";
 import { learnerErrorReportText } from "./domain/error-report";
 import { scoreAnswer, scoreGroup } from "./domain/scoring";
-import {
-  selectDailyGroup,
-  selectMock,
-  selectSourceGroup
-} from "./domain/selector";
-import {
-  discardRecovery,
-  exportState,
-  importState,
-  loadState,
-  resetState,
-  saveState
-} from "./state/storage";
+import { loadState, saveState } from "./state/storage";
 import { cheatSheetText, renderCheatSheet } from "./ui/cheatsheet";
 import {
   answerIsComplete,
+  escapeHtml,
   initialOrderingAnswer
 } from "./ui/format";
-import { renderHome } from "./ui/home";
+import { renderExams } from "./ui/exams";
 import { renderLibrary } from "./ui/library";
-import { renderPractice } from "./ui/practice";
+import { QUESTIONS_PER_PAGE, renderPractice } from "./ui/practice";
 import { renderResults } from "./ui/results";
-import { renderSettings } from "./ui/settings";
 import { renderShell } from "./ui/shell";
 import type {
   AppContext,
@@ -57,23 +43,20 @@ export interface StudyApp {
 function routeFromHash(hash: string): Route {
   const candidate = hash.replace(/^#\//, "");
   if (
-    [
-      "home",
-      "practice",
-      "results",
-      "library",
-      "cheatsheet",
-      "settings"
-    ].includes(candidate)
+    ["exams", "practice", "results", "cheatsheet", "library"].includes(
+      candidate
+    )
   ) {
     return candidate as Route;
   }
-  return "home";
+  return "exams";
 }
 
-function withoutInProgress(state: LearnerState): LearnerState {
-  const { inProgress: _inProgress, ...rest } = state;
-  return rest;
+function dateKey(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
 }
 
 function triggerDownload(filename: string, text: string, type: string): void {
@@ -88,17 +71,9 @@ function triggerDownload(filename: string, text: string, type: string): void {
   URL.revokeObjectURL(url);
 }
 
-function sessionQuestions(
-  content: AppContent,
-  state: LearnerState
-): Question[] {
-  if (!state.inProgress) return [];
-  const questionMap = new Map(
-    content.questions.map((question) => [question.id, question])
-  );
-  return state.inProgress.questionIds
-    .map((id) => questionMap.get(id))
-    .filter((question): question is Question => question !== undefined);
+function withoutInProgress(state: LearnerState): LearnerState {
+  const { inProgress: _inProgress, ...rest } = state;
+  return rest;
 }
 
 export async function bootApp(
@@ -108,7 +83,7 @@ export async function bootApp(
   root.innerHTML = `
     <section class="loading-panel" aria-live="polite">
       <span class="loading-mark" aria-hidden="true">AIF</span>
-      <p>Loading verified practice bank…</p>
+      <p>Loading verified practice exams…</p>
     </section>
   `;
 
@@ -122,7 +97,7 @@ export async function bootApp(
       <section class="error-panel" aria-labelledby="load-error-title">
         <p class="eyebrow">Content unavailable</p>
         <h1 id="load-error-title">The practice bank could not load.</h1>
-        <p>${message}</p>
+        <p>${escapeHtml(message)}</p>
         <button type="button" class="primary-small" onclick="location.reload()">Retry</button>
       </section>
     `;
@@ -135,60 +110,59 @@ export async function bootApp(
 
   const storage = options.storage ?? window.localStorage;
   const nowProvider = options.now ?? (() => new Date());
-  const loaded = loadState(storage);
-  let state = loaded.state;
+  let state = loadState(storage).state;
   let route = routeFromHash(window.location.hash);
   let confirmSubmission = false;
-  let confirmReset = false;
-  let importError = "";
   let cheatDomain = "";
+  let libraryVisible = 25;
   const libraryFilters: LibraryFilters = {
+    status: "",
     domain: "",
     type: "",
-    attempt: "",
-    source: ""
+    source: "",
+    search: ""
   };
-  const today = (): string => localDateKey(nowProvider());
   const questionMap = new Map(
     content.questions.map((question) => [question.id, question])
   );
-  const shell = renderShell(root, state);
+  const examMap = new Map(content.exams.map((exam) => [exam.id, exam]));
+  const shell = renderShell(root);
 
   const context: AppContext = {
     content,
     getState: () => state,
     get today() {
-      return today();
-    },
-    get now() {
-      return nowProvider();
+      return dateKey(nowProvider());
     },
     libraryFilters,
+    get libraryVisible() {
+      return libraryVisible;
+    },
     get cheatDomain() {
       return cheatDomain;
     },
-    questionById: (id) => questionMap.get(id)
+    questionById: (id) => questionMap.get(id),
+    examById: (id) => examMap.get(id)
   };
-  if (loaded.recoveryPayload !== undefined) {
-    context.recoveryPayload = loaded.recoveryPayload;
-  }
 
   const setState = (nextState: LearnerState): void => {
     state = nextState;
     saveState(storage, state);
-    shell.updateTarget(state);
   };
 
   const render = (): void => {
     shell.setRoute(route);
-    document.title = `${
-      route === "home"
-        ? "Today"
-        : `${route.charAt(0).toUpperCase()}${route.slice(1)}`
-    } · AIF Field Guide`;
+    shell.main.dataset.view = route;
+    const routeTitle =
+      route === "exams"
+        ? "Practice Exams"
+        : route === "cheatsheet"
+          ? "Cheat Sheet"
+          : route.charAt(0).toUpperCase() + route.slice(1);
+    document.title = `${routeTitle} · AIF Field Guide`;
     switch (route) {
-      case "home":
-        renderHome(shell.main, context);
+      case "exams":
+        renderExams(shell.main, context);
         break;
       case "practice":
         renderPractice(shell.main, context, confirmSubmission);
@@ -196,19 +170,11 @@ export async function bootApp(
       case "results":
         renderResults(shell.main, context);
         break;
-      case "library":
-        renderLibrary(shell.main, context);
-        break;
       case "cheatsheet":
         renderCheatSheet(shell.main, context);
         break;
-      case "settings":
-        renderSettings(
-          shell.main,
-          context,
-          confirmReset,
-          importError
-        );
+      case "library":
+        renderLibrary(shell.main, context);
         break;
     }
   };
@@ -221,87 +187,39 @@ export async function bootApp(
     shell.main.focus({ preventScroll: true });
   };
 
-  const startSession = (
-    mode: StudySession["mode"],
-    questions: Question[]
-  ): void => {
-    if (questions.length === 0) {
-      shell.announce("No questions are available for that selection.");
+  const startExam = (examId: number): void => {
+    const exam = examMap.get(examId);
+    if (!exam) {
+      shell.announce("That practice exam is unavailable.");
       return;
     }
     if (
       state.inProgress &&
       !window.confirm(
-        "Replace the current in-progress group? Its saved answers will be discarded."
+        "Replace the current in-progress exam? Its saved answers will be discarded."
       )
     ) {
       return;
     }
-    const sessionId = `${mode}-${today()}-${nowProvider().getTime()}`;
     setState({
-      ...state,
+      ...withoutInProgress(state),
       inProgress: {
-        id: sessionId,
-        mode,
-        questionIds: questions.map((question) => question.id),
+        id: `exam-${examId}-${nowProvider().getTime()}`,
+        examId,
+        mode: "exam",
+        questionIds: [...exam.questionIds],
         answers: {},
-        currentIndex: 0
+        page: 0
       }
     });
     navigate("practice");
   };
 
   const updateSession = (
-    transform: (
-      session: NonNullable<LearnerState["inProgress"]>
-    ) => NonNullable<LearnerState["inProgress"]>
+    transform: (session: InProgressExam) => InProgressExam
   ): void => {
     if (!state.inProgress) return;
     setState({ ...state, inProgress: transform(state.inProgress) });
-  };
-
-  const completeSession = (): void => {
-    const active = state.inProgress;
-    if (!active || state.sessions.some((session) => session.id === active.id)) {
-      return;
-    }
-    const questions = sessionQuestions(content, state);
-    const completedAt = nowProvider().toISOString();
-    const groupScore = scoreGroup(questions, active.answers);
-    let nextState = state;
-    for (const question of questions) {
-      const answer = active.answers[question.id] ?? "";
-      const result = scoreAnswer(question, answer);
-      nextState = recordAttempt(
-        nextState,
-        question,
-        result.correct,
-        completedAt,
-        answer
-      );
-    }
-    const completedSession: StudySession = {
-      id: active.id,
-      mode: active.mode,
-      questionIds: active.questionIds,
-      completedAt,
-      correctCount: groupScore.correct
-    };
-    nextState = {
-      ...withoutInProgress(nextState),
-      sessions: [...nextState.sessions, completedSession]
-    };
-    setState(nextState);
-    shell.announce(
-      `Group submitted. ${groupScore.correct} of ${groupScore.total} correct.`
-    );
-    navigate("results");
-  };
-
-  const currentQuestion = (): Question | undefined => {
-    const active = state.inProgress;
-    if (!active) return undefined;
-    return questionMap.get(active.questionIds[active.currentIndex] ?? "");
   };
 
   const renderAndRestoreFocus = (
@@ -326,6 +244,109 @@ export async function bootApp(
     target?.focus({ preventScroll: true });
   };
 
+  const completeRound = (): void => {
+    const active = state.inProgress;
+    if (!active) return;
+    const questions = active.questionIds
+      .map((id) => questionMap.get(id))
+      .filter((question): question is Question => question !== undefined);
+    const completedAt = nowProvider().toISOString();
+    const groupScore = scoreGroup(questions, active.answers);
+    const wrongQuestionIds: string[] = [];
+    const attempts = structuredClone(state.attempts);
+    const wrongHistory = [...state.wrongHistory];
+
+    for (const question of questions) {
+      const answer = active.answers[question.id] ?? "";
+      const result = scoreAnswer(question, answer);
+      const attempt = {
+        questionId: question.id,
+        answer,
+        correct: result.correct,
+        completedAt
+      };
+      attempts[question.id] = [...(attempts[question.id] ?? []), attempt];
+      if (!result.correct) {
+        wrongQuestionIds.push(question.id);
+        wrongHistory.push({
+          ...attempt,
+          examId: active.examId,
+          roundId: active.id
+        });
+      }
+    }
+
+    const existingResult = state.examResults[String(active.examId)];
+    const examResult =
+      active.mode === "exam" || !existingResult
+        ? {
+            examId: active.examId,
+            score: groupScore.percentage,
+            correct: groupScore.correct,
+            total: groupScore.total,
+            completedAt,
+            masteryQueue: wrongQuestionIds,
+            mastered: wrongQuestionIds.length === 0
+          }
+        : {
+            ...existingResult,
+            masteryQueue: wrongQuestionIds,
+            mastered: wrongQuestionIds.length === 0
+          };
+    const nextState: LearnerState = {
+      ...withoutInProgress(state),
+      attempts,
+      examResults: {
+        ...state.examResults,
+        [String(active.examId)]: examResult
+      },
+      wrongHistory,
+      latestResult: {
+        examId: active.examId,
+        roundId: active.id,
+        mode: active.mode,
+        questionIds: [...active.questionIds],
+        wrongQuestionIds,
+        answers: structuredClone(active.answers),
+        completedAt,
+        correct: groupScore.correct
+      }
+    };
+    setState(nextState);
+    shell.announce(
+      `Practice Exam ${active.examId} submitted. ${groupScore.correct} of ${groupScore.total} correct.`
+    );
+    navigate("results");
+  };
+
+  const continuePractice = (): void => {
+    const latest = state.latestResult;
+    if (!latest) return;
+    const result = state.examResults[String(latest.examId)];
+    if (!result || result.masteryQueue.length === 0) return;
+    if (
+      state.inProgress &&
+      !window.confirm(
+        "Replace the current in-progress exam? Its saved answers will be discarded."
+      )
+    ) {
+      return;
+    }
+    const questionIds = [...result.masteryQueue];
+    setState({
+      ...withoutInProgress(state),
+      inProgress: {
+        id: `retry-${latest.examId}-${nowProvider().getTime()}`,
+        examId: latest.examId,
+        mode: "retry",
+        questionIds,
+        answers: {},
+        page: 0
+      }
+    });
+    navigate("practice");
+  };
+
   const clickHandler = (event: MouseEvent): void => {
     const target = event.target as HTMLElement;
     const routeLink = target.closest<HTMLAnchorElement>('a[href^="#/"]');
@@ -334,9 +355,11 @@ export async function bootApp(
       navigate(routeFromHash(routeLink.getAttribute("href") ?? ""));
       return;
     }
+
     const orderButton = target.closest<HTMLElement>("[data-order-action]");
     if (orderButton) {
-      const question = currentQuestion();
+      const card = orderButton.closest<HTMLElement>("[data-question-id]");
+      const question = questionMap.get(card?.dataset.questionId ?? "");
       const active = state.inProgress;
       if (!active || !question || question.type !== "ordering") return;
       const current =
@@ -369,129 +392,92 @@ export async function bootApp(
       }
       return;
     }
+
     const button = target.closest<HTMLElement>("[data-action]");
     if (!button) return;
     const action = button.dataset.action;
+    const examId = Number(button.dataset.examId);
 
-    if (action === "start-daily") {
-      startSession(
-        "daily",
-        selectDailyGroup(content.questions, state, today(), 25)
-      );
-    } else if (action === "resume-session") {
+    if (action === "start-exam" || action === "start-next-exam") {
+      startExam(examId);
+    } else if (action === "resume-exam") {
       navigate("practice");
-    } else if (action === "previous-question") {
+    } else if (action === "previous-page") {
       updateSession((session) => ({
         ...session,
-        currentIndex: Math.max(0, session.currentIndex - 1)
+        page: Math.max(0, session.page - 1)
       }));
       render();
-    } else if (action === "next-question") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (action === "next-page") {
       updateSession((session) => ({
         ...session,
-        currentIndex: Math.min(
-          session.questionIds.length - 1,
-          session.currentIndex + 1
+        page: Math.min(
+          Math.ceil(session.questionIds.length / QUESTIONS_PER_PAGE) - 1,
+          session.page + 1
         )
       }));
       render();
-    } else if (action === "submit-group") {
-      const questions = sessionQuestions(content, state);
-      const unanswered = questions.filter((question) =>
-        !answerIsComplete(question, state.inProgress?.answers[question.id])
-      ).length;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else if (action === "submit-exam") {
+      const questions = state.inProgress?.questionIds
+        .map((id) => questionMap.get(id))
+        .filter((question): question is Question => question !== undefined);
+      const unanswered =
+        questions?.filter(
+          (question) =>
+            !answerIsComplete(
+              question,
+              state.inProgress?.answers[question.id]
+            )
+        ).length ?? 0;
       if (unanswered > 0) {
         confirmSubmission = true;
         render();
       } else {
-        completeSession();
+        completeRound();
       }
     } else if (action === "confirm-submit") {
-      completeSession();
+      completeRound();
     } else if (action === "cancel-submit") {
       confirmSubmission = false;
       render();
-    } else if (action === "start-mock") {
-      startSession(
-        "mock",
-        selectMock(
-          content.questions,
-          65,
-          `${today()}-${state.sessions.length}`
-        )
-      );
-    } else if (action === "start-source") {
-      startSession(
-        "source",
-        selectSourceGroup(content.questions, libraryFilters.source)
-      );
+    } else if (action === "continue-practice") {
+      continuePractice();
+    } else if (action === "show-more-library") {
+      libraryVisible += 25;
+      render();
     } else if (action === "download-cheatsheet") {
       triggerDownload(
-        `aws-aif-cheat-sheet-${today()}.txt`,
+        `aws-aif-cheat-sheet-${dateKey(nowProvider())}.txt`,
         cheatSheetText(context),
         "text/plain"
       );
     } else if (action === "print-cheatsheet") {
       window.print();
-    } else if (action === "export-progress") {
-      triggerDownload(
-        `aws-aif-progress-${today()}.json`,
-        exportState(state),
-        "application/json"
-      );
-    } else if (
-      action === "download-recovery" &&
-      context.recoveryPayload !== undefined
-    ) {
-      triggerDownload(
-        `aws-aif-recovery-${today()}.txt`,
-        context.recoveryPayload,
-        "text/plain"
-      );
-    } else if (
-      action === "discard-recovery" &&
-      context.recoveryPayload !== undefined
-    ) {
-      if (
-        window.confirm(
-          "Discard the preserved corrupt recovery payload? Download it first if you may need it."
-        )
-      ) {
-        discardRecovery(storage);
-        delete context.recoveryPayload;
-        shell.announce("Recovery payload discarded.");
-        render();
-      }
     } else if (action === "download-error-report") {
       triggerDownload(
-        `aws-aif-learner-errors-${today()}.txt`,
+        `aws-aif-learner-errors-${dateKey(nowProvider())}.txt`,
         learnerErrorReportText(content, state, nowProvider()),
         "text/plain"
       );
-    } else if (action === "request-reset") {
-      confirmReset = true;
-      render();
-    } else if (action === "cancel-reset") {
-      confirmReset = false;
-      render();
-    } else if (action === "confirm-reset") {
-      state = resetState(storage);
-      confirmReset = false;
-      shell.updateTarget(state);
-      shell.announce("Local study progress was reset.");
-      navigate("home");
     }
-
   };
 
   const changeHandler = (event: Event): void => {
     const element = event.target;
-    if (!(element instanceof HTMLInputElement || element instanceof HTMLSelectElement)) {
+    if (
+      !(
+        element instanceof HTMLInputElement ||
+        element instanceof HTMLSelectElement
+      )
+    ) {
       return;
     }
 
     if (element.matches("[data-answer-choice]")) {
-      const question = currentQuestion();
+      const card = element.closest<HTMLElement>("[data-question-id]");
+      const question = questionMap.get(card?.dataset.questionId ?? "");
       if (
         !question ||
         (question.type !== "multiple-choice" &&
@@ -504,12 +490,10 @@ export async function bootApp(
         answer = element.value;
       } else {
         answer = [
-          ...root.querySelectorAll<HTMLInputElement>(
+          ...(card?.querySelectorAll<HTMLInputElement>(
             "input[data-answer-choice]:checked"
-          )
-        ]
-          .filter((input) => input.name === `answer-${question.id}`)
-          .map((input) => input.value);
+          ) ?? [])
+        ].map((input) => input.value);
       }
       updateSession((session) => ({
         ...session,
@@ -520,7 +504,8 @@ export async function bootApp(
     }
 
     if (element.matches("[data-match-prompt]")) {
-      const question = currentQuestion();
+      const card = element.closest<HTMLElement>("[data-question-id]");
+      const question = questionMap.get(card?.dataset.questionId ?? "");
       const active = state.inProgress;
       if (!active || !question || question.type !== "matching") return;
       const existing = active.answers[question.id];
@@ -544,6 +529,14 @@ export async function bootApp(
       | undefined;
     if (filter) {
       libraryFilters[filter] = element.value;
+      libraryVisible = 25;
+      render();
+      return;
+    }
+
+    if (element.matches("[data-library-search]")) {
+      libraryFilters.search = element.value;
+      libraryVisible = 25;
       render();
       return;
     }
@@ -551,46 +544,6 @@ export async function bootApp(
     if (element.matches("[data-cheat-domain]")) {
       cheatDomain = element.value;
       render();
-      return;
-    }
-
-    if (element.matches("[data-target-date]")) {
-      if (/^\d{4}-\d{2}-\d{2}$/.test(element.value)) {
-        setState({
-          ...state,
-          settings: { ...state.settings, targetDate: element.value }
-        });
-        shell.announce("Target date updated.");
-        render();
-      }
-      return;
-    }
-
-    if (
-      element instanceof HTMLInputElement &&
-      element.matches("[data-import-progress]") &&
-      element.files?.[0]
-    ) {
-      const file = element.files[0];
-      void file.text().then((text) => {
-        try {
-          const imported = importState(text);
-          if (
-            window.confirm(
-              "Replace all current local progress with this backup?"
-            )
-          ) {
-            setState(imported);
-            importError = "";
-            shell.announce("Progress backup imported.");
-            render();
-          }
-        } catch (error) {
-          importError =
-            error instanceof Error ? error.message : "Import failed.";
-          render();
-        }
-      });
     }
   };
 
@@ -604,8 +557,8 @@ export async function bootApp(
   window.addEventListener("hashchange", hashHandler);
 
   if (!window.location.hash) {
-    window.history.replaceState(null, "", "#/home");
-    route = "home";
+    window.history.replaceState(null, "", "#/exams");
+    route = "exams";
   }
   render();
 
@@ -620,7 +573,7 @@ export async function bootApp(
   };
 }
 
-const root = document.querySelector<HTMLElement>("#app");
-if (root) {
-  void bootApp(root);
+const appRoot = document.querySelector<HTMLElement>("#app");
+if (appRoot) {
+  void bootApp(appRoot);
 }

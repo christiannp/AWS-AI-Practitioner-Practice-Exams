@@ -100,33 +100,48 @@ export interface Attempt {
   completedAt: string;
 }
 
-export interface StudySession {
-  id: string;
-  mode: "daily" | "mock" | "source";
-  questionIds: string[];
-  completedAt: string;
-  correctCount: number;
+export interface WrongAttempt extends Attempt {
+  examId: number;
+  roundId: string;
 }
 
-export interface MasteryRecord {
+export interface ExamResult {
+  examId: number;
   score: number;
-  successStreak: number;
-  dueOn: string;
+  correct: number;
+  total: number;
+  completedAt: string;
+  masteryQueue: string[];
+  mastered: boolean;
+}
+
+export interface InProgressExam {
+  id: string;
+  examId: number;
+  mode: "exam" | "retry";
+  questionIds: string[];
+  answers: Record<string, Answer>;
+  page: number;
+}
+
+export interface SubmittedRound {
+  examId: number;
+  roundId: string;
+  mode: InProgressExam["mode"];
+  questionIds: string[];
+  wrongQuestionIds: string[];
+  answers: Record<string, Answer>;
+  completedAt: string;
+  correct: number;
 }
 
 export interface LearnerState {
-  version: 1;
-  settings: { targetDate: string };
+  version: 2;
   attempts: Record<string, Attempt[]>;
-  mastery: Record<string, MasteryRecord>;
-  sessions: StudySession[];
-  inProgress?: {
-    id: string;
-    mode: StudySession["mode"];
-    questionIds: string[];
-    answers: Record<string, Answer>;
-    currentIndex: number;
-  };
+  examResults: Record<string, ExamResult>;
+  wrongHistory: WrongAttempt[];
+  inProgress?: InProgressExam;
+  latestResult?: SubmittedRound;
 }
 
 export interface CheatSheetEntry {

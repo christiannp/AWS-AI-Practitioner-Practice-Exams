@@ -97,7 +97,18 @@ export function learnerErrorReportText(
         left.attempt.completedAt.localeCompare(right.attempt.completedAt) ||
         left.index - right.index
     );
+  const usedHistoryIndexes = new Set<number>();
   const sections = errors.map(({ attempt }, index) => {
+    const historyIndex = state.wrongHistory.findIndex(
+      (entry, candidateIndex) =>
+        !usedHistoryIndexes.has(candidateIndex) &&
+        entry.questionId === attempt.questionId &&
+        entry.completedAt === attempt.completedAt &&
+        JSON.stringify(entry.answer) === JSON.stringify(attempt.answer)
+    );
+    const history =
+      historyIndex >= 0 ? state.wrongHistory[historyIndex] : undefined;
+    if (historyIndex >= 0) usedHistoryIndexes.add(historyIndex);
     const question = questionById.get(attempt.questionId);
     if (!question) {
       const submitted =
@@ -107,6 +118,8 @@ export function learnerErrorReportText(
       return [
         `ERROR ATTEMPT ${index + 1}`,
         `Timestamp: ${attempt.completedAt}`,
+        `Practice Exam: ${history?.examId ?? "Unavailable"}`,
+        `Round ID: ${history?.roundId ?? "Unavailable"}`,
         `Question ID: ${attempt.questionId}`,
         "Domain: Unavailable",
         "Task: Unavailable",
@@ -128,6 +141,8 @@ export function learnerErrorReportText(
     return [
       `ERROR ATTEMPT ${index + 1}`,
       `Timestamp: ${attempt.completedAt}`,
+      `Practice Exam: ${history?.examId ?? "Unavailable"}`,
+      `Round ID: ${history?.roundId ?? "Unavailable"}`,
       `Question ID: ${question.id}`,
       `Domain: ${question.domain}`,
       `Task: ${question.task}`,

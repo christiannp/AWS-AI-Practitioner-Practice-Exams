@@ -284,6 +284,36 @@ describe("verified content bank", () => {
     );
   });
 
+  it("keeps both difficulty levels in every practice exam", () => {
+    const questionById = new Map(
+      questions.map((question) => [question.id, question])
+    );
+
+    expect(
+      exams.every(
+        (exam) =>
+          new Set(
+            exam.questionIds.map(
+              (id) => questionById.get(id)?.difficulty
+            )
+          ).size === 2
+      )
+    ).toBe(true);
+  });
+
+  it("locks the 260-distinct plus 7-new-and-58-repeat exam policy", () => {
+    const firstFourIds = exams
+      .slice(0, 4)
+      .flatMap((exam) => exam.questionIds);
+    const firstFourSet = new Set(firstFourIds);
+    const examFive = exams[4]!.questionIds;
+
+    expect(firstFourIds).toHaveLength(260);
+    expect(firstFourSet.size).toBe(260);
+    expect(examFive.filter((id) => !firstFourSet.has(id))).toHaveLength(7);
+    expect(examFive.filter((id) => firstFourSet.has(id))).toHaveLength(58);
+  });
+
   it("has unique IDs, normalized prompts, and semantic fingerprints", () => {
     const ids = questions.map((question) => question.id);
     const prompts = questions.map((question) =>

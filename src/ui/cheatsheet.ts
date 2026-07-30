@@ -1,35 +1,62 @@
-import { conceptMastery } from "../domain/mastery";
+import type { CheatSheetEntry } from "../data/types";
 import { escapeHtml } from "./format";
 import type { AppContext } from "./types";
+
+interface OrderedEntry {
+  entry: CheatSheetEntry;
+  baselineIndex: number;
+  wrongCount: number;
+}
+
+export function orderedCheatSheetEntries(
+  context: AppContext
+): OrderedEntry[] {
+  const wrongCountByConcept = new Map<string, number>();
+  for (const attempts of Object.values(context.getState().attempts)) {
+    for (const attempt of attempts) {
+      if (attempt.correct) continue;
+      const question = context.questionById(attempt.questionId);
+      for (const concept of question?.concepts ?? []) {
+        wrongCountByConcept.set(
+          concept,
+          (wrongCountByConcept.get(concept) ?? 0) + 1
+        );
+      }
+    }
+  }
+
+  return context.content.cheatSheet
+    .map((entry, baselineIndex) => ({
+      entry,
+      baselineIndex,
+      wrongCount: entry.concepts.reduce(
+        (total, concept) => total + (wrongCountByConcept.get(concept) ?? 0),
+        0
+      )
+    }))
+    .filter(
+      ({ entry }) =>
+        !context.cheatDomain || String(entry.domain) === context.cheatDomain
+    )
+    .sort(
+      (left, right) =>
+        right.wrongCount - left.wrongCount ||
+        left.baselineIndex - right.baselineIndex
+    );
+}
 
 export function renderCheatSheet(
   container: HTMLElement,
   context: AppContext
 ): void {
-  const state = context.getState();
-  const entries = context.content.cheatSheet
-    .filter(
-      (entry) =>
-        !context.cheatDomain || String(entry.domain) === context.cheatDomain
-    )
-    .map((entry) => ({
-      entry,
-      mastery: Math.min(
-        ...entry.concepts.map((concept) => conceptMastery(state, concept))
-      )
-    }))
-    .sort(
-      (left, right) =>
-        left.mastery - right.mastery ||
-        left.entry.domain - right.entry.domain
-    );
+  const entries = orderedCheatSheetEntries(context);
 
   container.setAttribute("aria-labelledby", "page-title");
   container.innerHTML = `
     <section class="page-intro">
-      <p class="eyebrow">Memory deck</p>
-      <h1 id="page-title">Small hooks, fast recall.</h1>
-      <p>Weak concepts appear first. Use these cues between practice groups, not as a substitute for explanations.</p>
+      <p class="eyebrow">Cheat Sheet</p>
+      <h1 id="page-title">High leverage first.</h1>
+      <p>The initial sequence follows <em>The First 20 Hours</em>: learn the distinctions that unlock the most questions. Local mistakes quietly move related cards forward.</p>
     </section>
 
     <section class="cheat-toolbar">
@@ -53,11 +80,15 @@ export function renderCheatSheet(
     <section class="cheat-grid" aria-label="Cheat-sheet memory notes">
       ${entries
         .map(
-          ({ entry, mastery }) => `
-            <article class="cheat-card">
+          ({ entry, baselineIndex, wrongCount }) => `
+            <article class="cheat-card" data-cheat-id="${escapeHtml(entry.id)}">
               <div class="cheat-card-heading">
                 <span>D${entry.domain}</span>
-                <em>${Math.round(mastery * 100)}% mastery</em>
+                <em>${
+                  wrongCount > 0
+                    ? `Review priority · ${wrongCount} ${wrongCount === 1 ? "miss" : "misses"}`
+                    : `First 20 Hours · Step ${baselineIndex + 1}`
+                }</em>
               </div>
               <h2>${escapeHtml(entry.title)}</h2>
               <blockquote>${escapeHtml(entry.memoryHook)}</blockquote>
@@ -85,16 +116,15 @@ export function renderCheatSheet(
 }
 
 export function cheatSheetText(context: AppContext): string {
-  const entries = context.content.cheatSheet.filter(
-    (entry) =>
-      !context.cheatDomain || String(entry.domain) === context.cheatDomain
-  );
+  const entries = orderedCheatSheetEntries(context);
   return [
     "AWS CERTIFIED AI PRACTITIONER — COMMUTER CHEAT SHEET",
     `Generated ${context.today}`,
+    "Order: First 20 Hours baseline with local wrong-answer promotion",
     "",
-    ...entries.flatMap((entry) => [
+    ...entries.flatMap(({ entry, wrongCount }) => [
       `DOMAIN ${entry.domain} — ${entry.title.toUpperCase()}`,
+      ...(wrongCount > 0 ? [`REVIEW PRIORITY: ${wrongCount}`] : []),
       `HOOK: ${entry.memoryHook}`,
       ...entry.facts.map((fact) => `- ${fact}`),
       ...entry.confusions.map((item) => `WATCH: ${item}`),

@@ -6,6 +6,13 @@ import {
 } from "./format";
 import type { AppContext } from "./types";
 
+export const QUESTIONS_PER_PAGE = 10;
+
+export function pageQuestionIds(ids: string[], page: number): string[] {
+  const start = page * QUESTIONS_PER_PAGE;
+  return ids.slice(start, start + QUESTIONS_PER_PAGE);
+}
+
 function choiceControl(
   question: Extract<Question, { type: "multiple-choice" | "multiple-response" }>,
   answer: Answer | undefined
@@ -30,7 +37,7 @@ function choiceControl(
               <label class="choice-option">
                 <input
                   type="${inputType}"
-                  name="answer-${question.id}"
+                  name="answer-${escapeHtml(question.id)}"
                   value="${escapeHtml(option.id)}"
                   data-answer-choice
                   data-focus-key="${escapeHtml(
@@ -156,76 +163,82 @@ export function renderPractice(
     container.setAttribute("aria-labelledby", "page-title");
     container.innerHTML = `
       <section class="empty-state">
-        <p class="eyebrow">No active group</p>
-        <h1 id="page-title">Ready when you are.</h1>
-        <p>Start an adaptive daily group from Today or choose a mock in Library.</p>
-        <a class="button-link" href="#/home">Return to Today</a>
+        <p class="eyebrow">No active exam</p>
+        <h1 id="page-title">Choose a practice exam.</h1>
+        <a class="button-link" href="#/exams">Return to Practice Exams</a>
       </section>
     `;
     return;
   }
 
-  const questions = session.questionIds
+  const pageCount = Math.ceil(
+    session.questionIds.length / QUESTIONS_PER_PAGE
+  );
+  const page = Math.min(session.page, Math.max(pageCount - 1, 0));
+  const questions = pageQuestionIds(session.questionIds, page)
     .map((id) => context.questionById(id))
     .filter((question): question is Question => question !== undefined);
-  const index = Math.min(session.currentIndex, Math.max(questions.length - 1, 0));
-  const question = questions[index];
-  if (!question) {
-    container.innerHTML =
-      '<section class="error-panel"><h1 id="page-title">This group has no available questions.</h1></section>';
-    return;
-  }
-  const answer = session.answers[question.id];
-  const answeredCount = questions.filter(
-    (item) => answerIsComplete(item, session.answers[item.id])
+  const allQuestions = session.questionIds
+    .map((id) => context.questionById(id))
+    .filter((question): question is Question => question !== undefined);
+  const answeredCount = allQuestions.filter((question) =>
+    answerIsComplete(question, session.answers[question.id])
   ).length;
-  const unansweredCount = questions.length - answeredCount;
+  const unansweredCount = allQuestions.length - answeredCount;
+  const title = `Practice Exam ${session.examId}`;
 
   container.setAttribute("aria-labelledby", "page-title");
   container.innerHTML = `
     <section class="practice-header">
       <div>
-        <p class="eyebrow">${escapeHtml(session.mode)} practice</p>
-        <h1 id="page-title">Question ${index + 1} of ${questions.length}</h1>
+        <p class="eyebrow">${session.mode === "retry" ? "Wrong-answer retry" : "Focused practice"}</p>
+        <h1 id="page-title">${title}</h1>
       </div>
-      <span class="answered-chip">${answeredCount} answered</span>
-      <div class="practice-progress" aria-label="${index + 1} of ${
-        questions.length
-      }">
-        <span style="width:${((index + 1) / questions.length) * 100}%"></span>
-      </div>
+      <span class="page-chip">Page ${page + 1} of ${pageCount}</span>
     </section>
 
-    <article class="question-card" data-question-id="${escapeHtml(question.id)}">
-      <div class="question-meta">
-        <span>Domain ${question.domain}</span>
-        <span>${escapeHtml(question.type.replace("-", " "))}</span>
+    <section class="question-page" aria-label="${title}, page ${page + 1}">
+      ${questions
+        .map(
+          (question, index) => `
+            <article class="question-card" data-question-id="${escapeHtml(
+              question.id
+            )}">
+              <div class="question-meta">
+                <span>${page * QUESTIONS_PER_PAGE + index + 1}</span>
+                <span>Domain ${question.domain}</span>
+                <span>${escapeHtml(question.type.replace("-", " "))}</span>
+              </div>
+              <h2>${escapeHtml(question.prompt)}</h2>
+              ${questionControl(question, session.answers[question.id])}
+            </article>
+          `
+        )
+        .join("")}
+    </section>
+
+    <section class="exam-controls" aria-label="Exam controls">
+      <p>${title}: <strong>${answeredCount}</strong> of ${
+        allQuestions.length
+      } answered</p>
+      <div>
+        <button type="button" class="secondary-action" data-action="previous-page" ${
+          page === 0 ? "disabled" : ""
+        }>← Previous</button>
+        <button type="button" class="secondary-action" data-action="next-page" ${
+          page === pageCount - 1 ? "disabled" : ""
+        }>Next →</button>
+        <button type="button" class="submit-action" data-action="submit-exam">
+          Submit
+        </button>
       </div>
-      <h2>${escapeHtml(question.prompt)}</h2>
-      ${questionControl(question, answer)}
-    </article>
-
-    <div class="practice-nav">
-      <button type="button" class="secondary-action" data-action="previous-question" ${
-        index === 0 ? "disabled" : ""
-      }>← Previous</button>
-      <button type="button" class="secondary-action" data-action="next-question" ${
-        index === questions.length - 1 ? "disabled" : ""
-      }>Next →</button>
-    </div>
-
-    <section class="submit-zone">
-      <p>${answeredCount} of ${questions.length} answered. Answers stay hidden until submission.</p>
-      <button type="button" class="submit-action" data-action="submit-group">
-        Submit group
-      </button>
       ${
         confirmSubmission
           ? `<div class="submit-confirmation" role="alert">
               <strong>${unansweredCount} unanswered ${
                 unansweredCount === 1 ? "question" : "questions"
               }.</strong>
-              <p>Unanswered questions will be logged as incorrect. Submit anyway?</p>
+              <p>Unanswered questions count as incorrect. Submit anyway?</p>
               <div>
                 <button type="button" class="danger-action" data-action="confirm-submit">Submit anyway</button>
                 <button type="button" class="secondary-action" data-action="cancel-submit">Keep working</button>

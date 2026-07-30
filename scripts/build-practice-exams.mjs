@@ -15,12 +15,25 @@ const questionById = new Map(
 const verified = questions.filter((question) => question.id !== conflictId);
 
 function stableQuestions(items) {
-  return [...items].sort(
+  const ordered = [...items].sort(
     (left, right) =>
-      left.difficulty.localeCompare(right.difficulty) ||
       left.task.localeCompare(right.task) ||
       left.id.localeCompare(right.id)
   );
+  const exam = ordered.filter((question) => question.difficulty === "exam");
+  const foundation = ordered.filter(
+    (question) => question.difficulty === "foundation"
+  );
+  const mixed = [];
+  for (
+    let index = 0;
+    index < Math.max(exam.length, foundation.length);
+    index += 1
+  ) {
+    if (exam[index]) mixed.push(exam[index]);
+    if (foundation[index]) mixed.push(foundation[index]);
+  }
+  return mixed;
 }
 
 const pools = new Map(

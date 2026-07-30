@@ -2,16 +2,13 @@ import { describe, expect, it } from "vitest";
 
 import type { LearnerState } from "../src/data/types";
 import {
-  exportState,
-  importState,
-  loadState,
   discardRecovery,
+  loadState,
   RECOVERY_KEY,
-  resetState,
   saveState,
   STORAGE_KEY
 } from "../src/state/storage";
-import fixture from "./fixtures/state.json";
+import legacyFixture from "./fixtures/state.json";
 
 class MemoryStorage implements Storage {
   private values = new Map<string, string>();
@@ -50,22 +47,90 @@ class RecoveryQuotaStorage extends MemoryStorage {
   }
 }
 
-const validState = fixture as LearnerState;
+const validState: LearnerState = {
+  version: 2,
+  attempts: {
+    "fixture-mc": [
+      {
+        questionId: "fixture-mc",
+        answer: "a",
+        correct: false,
+        completedAt: "2026-07-29T08:00:00.000Z"
+      }
+    ]
+  },
+  examResults: {
+    "1": {
+      examId: 1,
+      score: 0,
+      correct: 0,
+      total: 65,
+      completedAt: "2026-07-29T08:00:00.000Z",
+      masteryQueue: ["fixture-mc"],
+      mastered: false
+    }
+  },
+  wrongHistory: [
+    {
+      questionId: "fixture-mc",
+      answer: "a",
+      correct: false,
+      completedAt: "2026-07-29T08:00:00.000Z",
+      examId: 1,
+      roundId: "exam-1-1"
+    }
+  ],
+  inProgress: {
+    id: "exam-1-1",
+    examId: 1,
+    mode: "retry",
+    questionIds: ["fixture-mc"],
+    answers: {},
+    page: 0
+  },
+  latestResult: {
+    examId: 1,
+    roundId: "exam-1-1",
+    mode: "exam",
+    questionIds: ["fixture-mc"],
+    wrongQuestionIds: ["fixture-mc"],
+    answers: { "fixture-mc": "a" },
+    completedAt: "2026-07-29T08:00:00.000Z",
+    correct: 0
+  }
+};
 
-describe("local learner-state persistence", () => {
-  it("uses the editable August 31 target as the first-run default", () => {
-    const result = loadState(new MemoryStorage());
-
-    expect(result.state.settings.targetDate).toBe("2026-08-31");
-    expect(result.state.attempts).toEqual({});
-    expect(result.error).toBeUndefined();
+describe("local exam-state persistence", () => {
+  it("starts with empty browser-only exam state", () => {
+    expect(loadState(new MemoryStorage()).state).toEqual({
+      version: 2,
+      attempts: {},
+      examResults: {},
+      wrongHistory: []
+    });
   });
 
-  it("round-trips attempts and in-progress answers", () => {
+  it("round-trips exam results and a resumable retry", () => {
     const storage = new MemoryStorage();
     saveState(storage, validState);
 
     expect(loadState(storage).state).toEqual(validState);
+  });
+
+  it("migrates v1 attempts and discards planner fields", () => {
+    const storage = new MemoryStorage();
+    storage.setItem(STORAGE_KEY, JSON.stringify(legacyFixture));
+
+    const migrated = loadState(storage).state;
+
+    expect(migrated.version).toBe(2);
+    expect(migrated.attempts).toEqual(legacyFixture.attempts);
+    expect(migrated.examResults).toEqual({});
+    expect(migrated.wrongHistory).toEqual([]);
+    expect(migrated).not.toHaveProperty("settings");
+    expect(migrated).not.toHaveProperty("mastery");
+    expect(migrated).not.toHaveProperty("sessions");
+    expect(migrated.inProgress).toBeUndefined();
   });
 
   it("recovers safely from corrupt local JSON without deleting it", () => {
@@ -74,7 +139,7 @@ describe("local learner-state persistence", () => {
 
     const result = loadState(storage);
 
-    expect(result.state.settings.targetDate).toBe("2026-08-31");
+    expect(result.state.version).toBe(2);
     expect(result.recoveryPayload).toBe("{not valid json");
     expect(result.error).toMatch(/corrupt|invalid/i);
     expect(storage.getItem(STORAGE_KEY)).toBe("{not valid json");
@@ -91,32 +156,17 @@ describe("local learner-state persistence", () => {
     const reloaded = loadState(storage);
     expect(reloaded.state).toEqual(validState);
     expect(reloaded.recoveryPayload).toBe("{not valid json");
-    expect(exportState(reloaded.state)).not.toContain("{not valid json");
 
     discardRecovery(storage);
     expect(loadState(storage).recoveryPayload).toBeUndefined();
     expect(storage.getItem(RECOVERY_KEY)).toBeNull();
   });
 
-  it("does not recreate a corrupt payload after it is explicitly discarded", () => {
-    const storage = new MemoryStorage();
-    storage.setItem(STORAGE_KEY, "{not valid json");
-    loadState(storage);
-
-    discardRecovery(storage);
-
-    expect(loadState(storage).recoveryPayload).toBeUndefined();
-    expect(storage.getItem(STORAGE_KEY)).toBeNull();
-    expect(storage.getItem(RECOVERY_KEY)).toBeNull();
-  });
-
-  it("protects the original corrupt payload when recovery-key persistence exceeds quota", () => {
+  it("protects the primary corrupt payload when recovery persistence exceeds quota", () => {
     const storage = new RecoveryQuotaStorage();
     storage.setItem(STORAGE_KEY, "{large corrupt payload");
 
-    const loaded = loadState(storage);
-    expect(loaded.recoveryPayload).toBe("{large corrupt payload");
-
+    expect(loadState(storage).recoveryPayload).toBe("{large corrupt payload");
     saveState(storage, validState);
     expect(storage.getItem(STORAGE_KEY)).toBe("{large corrupt payload");
 
@@ -125,33 +175,24 @@ describe("local learner-state persistence", () => {
     expect(loadState(storage).state).toEqual(validState);
   });
 
-  it("rejects unsupported versions and structurally invalid imports", () => {
-    expect(() => importState('{"version":999}')).toThrow(/unsupported/i);
-    expect(() => importState('{"version":1,"settings":{}}')).toThrow(
-      /invalid/i
-    );
-  });
-
-  it("exports and imports a readable lossless backup", () => {
-    const json = exportState(validState);
-
-    expect(json).toContain("\n");
-    expect(importState(json)).toEqual(validState);
-  });
-
-  it("resets only this app's key", () => {
+  it("rejects a structurally invalid version-2 save", () => {
     const storage = new MemoryStorage();
-    storage.setItem("another-app", "keep");
-    storage.setItem(RECOVERY_KEY, "preserve explicitly recoverable data");
-    saveState(storage, validState);
 
-    const reset = resetState(storage);
-
-    expect(storage.getItem(STORAGE_KEY)).toBeNull();
-    expect(storage.getItem(RECOVERY_KEY)).toBe(
-      "preserve explicitly recoverable data"
-    );
-    expect(storage.getItem("another-app")).toBe("keep");
-    expect(reset.settings.targetDate).toBe("2026-08-31");
+    expect(() =>
+      saveState(storage, {
+        version: 2,
+        attempts: {},
+        examResults: {},
+        wrongHistory: [],
+        inProgress: {
+          id: "broken",
+          examId: 1,
+          mode: "exam",
+          questionIds: [],
+          answers: {},
+          page: -1
+        }
+      })
+    ).toThrow(/invalid learner-state/i);
   });
 });

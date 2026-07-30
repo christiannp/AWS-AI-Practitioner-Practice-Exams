@@ -9,21 +9,6 @@ export function escapeHtml(value: string): string {
     .replaceAll("'", "&#039;");
 }
 
-export function formatDate(date: string): string {
-  const parsed = new Date(`${date}T00:00:00`);
-  return new Intl.DateTimeFormat("en", {
-    month: "long",
-    day: "numeric",
-    year: "numeric"
-  }).format(parsed);
-}
-
-export function daysBetween(from: string, to: string): number {
-  const start = Date.parse(`${from}T00:00:00Z`);
-  const end = Date.parse(`${to}T00:00:00Z`);
-  return Math.ceil((end - start) / 86_400_000);
-}
-
 export function answerIsEmpty(answer: Answer | undefined): boolean {
   if (answer === undefined || answer === "") return true;
   if (Array.isArray(answer)) return answer.length === 0;

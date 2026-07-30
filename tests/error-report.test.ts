@@ -20,8 +20,7 @@ const content: AppContent = {
 describe("detailed learner error report", () => {
   it("includes every incorrect attempt, including repeated errors", () => {
     const state: LearnerState = {
-      version: 1,
-      settings: { targetDate: "2026-08-31" },
+      version: 2,
       attempts: {
         "fixture-mc": [
           {
@@ -44,8 +43,25 @@ describe("detailed learner error report", () => {
           }
         ]
       },
-      mastery: {},
-      sessions: []
+      examResults: {},
+      wrongHistory: [
+        {
+          questionId: "fixture-mc",
+          answer: "a",
+          correct: false,
+          completedAt: "2026-07-28T08:00:00.000Z",
+          examId: 1,
+          roundId: "exam-1-initial"
+        },
+        {
+          questionId: "fixture-mc",
+          answer: "c",
+          correct: false,
+          completedAt: "2026-07-29T08:00:00.000Z",
+          examId: 1,
+          roundId: "retry-1-1"
+        }
+      ]
     };
 
     const report = learnerErrorReportText(
@@ -58,6 +74,9 @@ describe("detailed learner error report", () => {
     expect(report.match(/Question ID: fixture-mc/g)).toHaveLength(2);
     expect(report).toContain("Timestamp: 2026-07-28T08:00:00.000Z");
     expect(report).toContain("Timestamp: 2026-07-29T08:00:00.000Z");
+    expect(report).toContain("Practice Exam: 1");
+    expect(report).toContain("Round ID: exam-1-initial");
+    expect(report).toContain("Round ID: retry-1-1");
     expect(report).toContain("Your submitted answer: A. Option A");
     expect(report).toContain("Your submitted answer: C. Option C");
     expect(report).toContain("Correct answer: B. Option B");
@@ -77,8 +96,7 @@ describe("detailed learner error report", () => {
 
   it("formats multiple response, ordering, and matching answers readably", () => {
     const state: LearnerState = {
-      version: 1,
-      settings: { targetDate: "2026-08-31" },
+      version: 2,
       attempts: {
         "fixture-mr": [
           {
@@ -105,8 +123,8 @@ describe("detailed learner error report", () => {
           }
         ]
       },
-      mastery: {},
-      sessions: []
+      examResults: {},
+      wrongHistory: []
     };
 
     const report = learnerErrorReportText(

@@ -263,6 +263,22 @@ for (const exam of exams) {
     );
   }
 }
+const firstFourQuestionIds = exams
+  .slice(0, 4)
+  .flatMap((exam) => exam.questionIds);
+const firstFourQuestionSet = new Set(firstFourQuestionIds);
+const examFiveQuestionIds = exams[4]?.questionIds ?? [];
+requireValue(
+  firstFourQuestionIds.length === 260 && firstFourQuestionSet.size === 260,
+  "Practice Exams 1–4 must contain 260 distinct questions"
+);
+requireValue(
+  examFiveQuestionIds.filter((id) => !firstFourQuestionSet.has(id)).length ===
+    7 &&
+    examFiveQuestionIds.filter((id) => firstFourQuestionSet.has(id)).length ===
+      58,
+  "Practice Exam 5 must contain 7 new questions and 58 fixed repeats"
+);
 
 requireValue(
   reviews.length === questions.length &&

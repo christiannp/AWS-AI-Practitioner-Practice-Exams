@@ -1,9 +1,11 @@
 import type {
   Answer,
   Attempt,
+  ExamResult,
+  InProgressExam,
   LearnerState,
-  MasteryRecord,
-  StudySession
+  SubmittedRound,
+  WrongAttempt
 } from "../data/types";
 
 export const STORAGE_KEY = "aws-aif-study-state";
@@ -12,11 +14,10 @@ const protectedPrimaryRecovery = new WeakSet<Storage>();
 
 function defaultState(): LearnerState {
   return {
-    version: 1,
-    settings: { targetDate: "2026-08-31" },
+    version: 2,
     attempts: {},
-    mastery: {},
-    sessions: []
+    examResults: {},
+    wrongHistory: []
   };
 }
 
@@ -44,71 +45,117 @@ function isAttempt(value: unknown): value is Attempt {
   );
 }
 
-function isMasteryRecord(value: unknown): value is MasteryRecord {
+function isAttemptMap(value: unknown): value is Record<string, Attempt[]> {
   return (
     isObject(value) &&
+    Object.values(value).every(
+      (attempts) => Array.isArray(attempts) && attempts.every(isAttempt)
+    )
+  );
+}
+
+function isStringArray(value: unknown): value is string[] {
+  return (
+    Array.isArray(value) &&
+    value.every((item) => typeof item === "string")
+  );
+}
+
+function isExamResult(value: unknown): value is ExamResult {
+  return (
+    isObject(value) &&
+    Number.isInteger(value.examId) &&
+    (value.examId as number) > 0 &&
     typeof value.score === "number" &&
     value.score >= 0 &&
-    value.score <= 1 &&
-    Number.isInteger(value.successStreak) &&
-    (value.successStreak as number) >= 0 &&
-    typeof value.dueOn === "string" &&
-    /^\d{4}-\d{2}-\d{2}$/.test(value.dueOn)
-  );
-}
-
-function isStudySession(value: unknown): value is StudySession {
-  return (
-    isObject(value) &&
-    typeof value.id === "string" &&
-    ["daily", "mock", "source"].includes(String(value.mode)) &&
-    Array.isArray(value.questionIds) &&
-    value.questionIds.every((item) => typeof item === "string") &&
+    value.score <= 100 &&
+    Number.isInteger(value.correct) &&
+    (value.correct as number) >= 0 &&
+    Number.isInteger(value.total) &&
+    (value.total as number) > 0 &&
+    (value.correct as number) <= (value.total as number) &&
     typeof value.completedAt === "string" &&
-    Number.isInteger(value.correctCount) &&
-    (value.correctCount as number) >= 0
+    isStringArray(value.masteryQueue) &&
+    typeof value.mastered === "boolean"
   );
 }
 
-function isInProgress(value: unknown): boolean {
+function isWrongAttempt(value: unknown): value is WrongAttempt {
+  return (
+    isAttempt(value) &&
+    isObject(value) &&
+    Number.isInteger(value.examId) &&
+    (value.examId as number) > 0 &&
+    typeof value.roundId === "string"
+  );
+}
+
+function isInProgress(value: unknown): value is InProgressExam {
   if (!isObject(value)) return false;
   return (
     typeof value.id === "string" &&
-    ["daily", "mock", "source"].includes(String(value.mode)) &&
-    Array.isArray(value.questionIds) &&
-    value.questionIds.every((item) => typeof item === "string") &&
+    Number.isInteger(value.examId) &&
+    (value.examId as number) > 0 &&
+    (value.mode === "exam" || value.mode === "retry") &&
+    isStringArray(value.questionIds) &&
+    value.questionIds.length > 0 &&
     isObject(value.answers) &&
     Object.values(value.answers).every(isAnswer) &&
-    Number.isInteger(value.currentIndex) &&
-    (value.currentIndex as number) >= 0
+    Number.isInteger(value.page) &&
+    (value.page as number) >= 0
+  );
+}
+
+function isSubmittedRound(value: unknown): value is SubmittedRound {
+  return (
+    isObject(value) &&
+    Number.isInteger(value.examId) &&
+    (value.examId as number) > 0 &&
+    typeof value.roundId === "string" &&
+    (value.mode === "exam" || value.mode === "retry") &&
+    isStringArray(value.questionIds) &&
+    value.questionIds.length > 0 &&
+    isStringArray(value.wrongQuestionIds) &&
+    isObject(value.answers) &&
+    Object.values(value.answers).every(isAnswer) &&
+    typeof value.completedAt === "string" &&
+    Number.isInteger(value.correct) &&
+    (value.correct as number) >= 0 &&
+    (value.correct as number) <= value.questionIds.length
   );
 }
 
 function isLearnerState(value: unknown): value is LearnerState {
-  if (!isObject(value) || value.version !== 1) return false;
+  if (!isObject(value) || value.version !== 2) return false;
+  if (!isAttemptMap(value.attempts) || !isObject(value.examResults)) {
+    return false;
+  }
+  if (!Object.values(value.examResults).every(isExamResult)) return false;
   if (
-    !isObject(value.settings) ||
-    typeof value.settings.targetDate !== "string" ||
-    !/^\d{4}-\d{2}-\d{2}$/.test(value.settings.targetDate)
+    !Array.isArray(value.wrongHistory) ||
+    !value.wrongHistory.every(isWrongAttempt)
   ) {
     return false;
   }
-  if (!isObject(value.attempts) || !isObject(value.mastery)) return false;
-  if (
-    !Object.values(value.attempts).every(
-      (attempts) => Array.isArray(attempts) && attempts.every(isAttempt)
-    )
-  ) {
+  if (value.inProgress !== undefined && !isInProgress(value.inProgress)) {
     return false;
   }
-  if (!Object.values(value.mastery).every(isMasteryRecord)) return false;
-  if (
-    !Array.isArray(value.sessions) ||
-    !value.sessions.every(isStudySession)
-  ) {
-    return false;
+  return (
+    value.latestResult === undefined ||
+    isSubmittedRound(value.latestResult)
+  );
+}
+
+function migrateVersionOne(value: Record<string, unknown>): LearnerState {
+  if (!isAttemptMap(value.attempts)) {
+    throw new Error("Invalid version-1 learner-state attempts.");
   }
-  return value.inProgress === undefined || isInProgress(value.inProgress);
+  return {
+    version: 2,
+    attempts: structuredClone(value.attempts),
+    examResults: {},
+    wrongHistory: []
+  };
 }
 
 export interface LoadResult {
@@ -122,11 +169,16 @@ export function importState(json: string): LearnerState {
   try {
     parsed = JSON.parse(json);
   } catch {
-    throw new Error("Invalid backup JSON.");
+    throw new Error("Invalid local learner-state JSON.");
   }
 
-  if (isObject(parsed) && parsed.version !== 1) {
-    throw new Error(`Unsupported learner-state version: ${String(parsed.version)}.`);
+  if (isObject(parsed) && parsed.version === 1) {
+    return migrateVersionOne(parsed);
+  }
+  if (isObject(parsed) && parsed.version !== 2) {
+    throw new Error(
+      `Unsupported learner-state version: ${String(parsed.version)}.`
+    );
   }
   if (!isLearnerState(parsed)) {
     throw new Error("Invalid learner-state structure.");
@@ -154,8 +206,16 @@ export function loadState(storage: Storage): LoadResult {
   }
 
   try {
+    const state = importState(payload);
+    if (state.version === 2 && JSON.parse(payload).version === 1) {
+      try {
+        storage.setItem(STORAGE_KEY, exportState(state));
+      } catch {
+        // The in-memory migration is still usable when local storage is full.
+      }
+    }
     return {
-      state: importState(payload),
+      state,
       ...(preservedRecovery === undefined
         ? {}
         : { recoveryPayload: preservedRecovery })
@@ -183,13 +243,6 @@ export function loadState(storage: Storage): LoadResult {
 export function saveState(storage: Storage, state: LearnerState): void {
   if (protectedPrimaryRecovery.has(storage)) return;
   storage.setItem(STORAGE_KEY, exportState(state));
-}
-
-export function resetState(storage: Storage): LearnerState {
-  if (!protectedPrimaryRecovery.has(storage)) {
-    storage.removeItem(STORAGE_KEY);
-  }
-  return defaultState();
 }
 
 export function discardRecovery(storage: Storage): void {
